@@ -9,7 +9,7 @@ namespace :scrape do
 
 
     # url = "http://pinterest.com/search/pins/?q=#{params[:q]}"
-    url = "https://www.pinterest.com/categories/everything/"
+    url = "https://www.pinterest.com/categories/popular/"
     scrape_site(url)
     # scrape_images(url)
   end
@@ -54,12 +54,31 @@ namespace :scrape do
       puts orig_link[0]['href']
 
       data_picture_url = "img.pinImg"
-      picure_url = html_doc.css(data_picture_url)
-      puts picure_url[0]['src']
+      picture_url = html_doc.css(data_picture_url)
+      puts picture_url[0]['src']
 
-      data_post_description = ""
+      data_repin_count = "button.repinLikeNavigateButton.IncrementingNavigateButton > span.buttonText"
+      repin_count = html_doc.css(data_repin_count)
+      if !repin_count.any?
+        puts "no repins yet"
+      else 
+        # puts repin_count
+        puts "repins " + repin_count[0].inner_text.to_s   
+      end
+
+      data_like_count = "button.repinLikeNavigateButton.like > span"
+      like_count = html_doc.css(data_like_count)
+      if !like_count.any?
+        puts "no likes yet"
+      else 
+        # puts like_count
+        puts "likes " + like_count[0].inner_text.to_s
+      end
+
+
 
     end
+end
 
 
      # data_category_list = "div.ajax.Module.CategoriesMenu > div.categoriesWrapper > ul.column0 > li:nth-child(19) > a:nth-child(1).item"
@@ -99,4 +118,4 @@ namespace :scrape do
     # puts "#LIKES " +number_of_likes.count.to_s
 
 
-end
+
