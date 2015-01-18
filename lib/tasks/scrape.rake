@@ -23,7 +23,7 @@ namespace :scrape do
     data_pin_link = "a.pinImageWrapper"
     pin_links = html_doc.css(data_pin_link)
     puts "number of pin links " + pin_links.count.to_s
-    puts pin_links
+    # puts pin_links
 
     pin_link_array = []
 
@@ -57,8 +57,10 @@ namespace :scrape do
       picture_url = html_doc.css(data_picture_url)
       puts picture_url[0]['src']
 
-      data_repin_count = "button.repinLikeNavigateButton.IncrementingNavigateButton > span.buttonText"
+      data_repin_count = "button[data-element-type='174'] > span"
       repin_count = html_doc.css(data_repin_count)
+      puts repin_count.inspect
+
       if !repin_count.any?
         puts "no repins yet"
       else 
@@ -66,8 +68,9 @@ namespace :scrape do
         puts "repins " + repin_count[0].inner_text.to_s   
       end
 
-      data_like_count = "button.repinLikeNavigateButton.like > span"
+      data_like_count = "button[data-element-type='175'] > span"
       like_count = html_doc.css(data_like_count)
+      puts like_count.inspect
       if !like_count.any?
         puts "no likes yet"
       else 
@@ -75,8 +78,14 @@ namespace :scrape do
         puts "likes " + like_count[0].inner_text.to_s
       end
 
-
-
+      # need to do title & description
+      data_title = "h2.richPinName > a"
+      title = html_doc.css(data_title)
+      if !title.any?
+        puts "no title for this one"
+      else
+        puts title.inspect
+      end
     end
 end
 
