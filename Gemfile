@@ -29,6 +29,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem 'devise'
+gem 'nokogiri'
+gem 'fastimage'
 
 gem 'meta_request', group: :development
 
