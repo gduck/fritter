@@ -32,6 +32,9 @@ gem 'devise'
 gem 'nokogiri'
 gem 'fastimage'
 
+# watir required to wait until page info has loaded before scraping
+gem 'watir', '~> 5.0.0'
+
 gem 'meta_request', group: :development
 
 gem 'better_errors', group: :development

@@ -44,48 +44,64 @@ namespace :scrape do
     def scrape_one_page(url)
 
       document = open(url).read
+      # need to wait for repin data to load
+      # sleep 2
       html_doc = Nokogiri::HTML(document)
       
+      puts "--------------------"
       puts "IN PAGE " + url
+
+      puts "PAGE TITLE "+ html_doc.css('title').to_s
 
       data_orig_link = "a.paddedPinLink"
       orig_link = html_doc.css(data_orig_link)
       # puts orig_link.inspect
-      puts orig_link[0]['href']
+      puts "SOURCE URL "+ orig_link[0]['href']
 
       data_picture_url = "img.pinImg"
       picture_url = html_doc.css(data_picture_url)
-      puts picture_url[0]['src']
+      puts "PINTEREST URL " +picture_url[0]['src']
 
-      data_repin_count = "button[data-element-type='174'] > span"
+      # <meta name="pinterestapp:repins" content="3776">
+      data_repin_count = "meta[name=\"pinterestapp:repins\"]"
       repin_count = html_doc.css(data_repin_count)
-      puts repin_count.inspect
-
+      #puts repin_count
       if !repin_count.any?
         puts "no repins yet"
       else 
         # puts repin_count
-        puts "repins " + repin_count[0].inner_text.to_s   
+        puts "REPINS " + repin_count[0]['content'] 
       end
 
-      data_like_count = "button[data-element-type='175'] > span"
+      # <meta name="pinterestapp:likes" content="875">
+      data_like_count = "meta[name=\"pinterestapp:likes\"]"
       like_count = html_doc.css(data_like_count)
-      puts like_count.inspect
+      #puts like_count
       if !like_count.any?
         puts "no likes yet"
       else 
         # puts like_count
-        puts "likes " + like_count[0].inner_text.to_s
+        puts "LIKES " + like_count[0]['content']
       end
 
       # need to do title & description
       data_title = "h2.richPinName > a"
       title = html_doc.css(data_title)
+      #puts title.to_s
       if !title.any?
         puts "no title for this one"
       else
-        puts title.inspect
+        #puts title.inspect
+        puts "TITLE " + title.inner_text.strip
       end
+
+      data_description = "meta[name=\"description\"]"
+      description = html_doc.css(data_description)
+      #puts description
+      puts "DESC " +description[0]['content']
+      # <meta name="description" content="&quot;One small crack does not mean that you are broken, it means that you we're put to the test and you didn't fall apart.&quot;">
+      puts "--------------------"
+
     end
 end
 
