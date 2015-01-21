@@ -22,7 +22,8 @@ ActiveRecord::Schema.define(version: 20150120095548) do
   create_table "pins", force: true do |t|
     t.string   "pininterest_id"
     t.string   "title"
-    t.string   "like_url"
+    t.string   "optional_info"
+    t.string   "pin_url"
     t.string   "img_url"
     t.integer  "like_count"
     t.integer  "category_id"
