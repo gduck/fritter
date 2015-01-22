@@ -9,8 +9,10 @@ namespace :scrape do
 
 
     # url = "http://pinterest.com/search/pins/?q=#{params[:q]}"
-    url = "https://www.pinterest.com/categories/popular/"
-    scrape_site(url)
+    Category.all.each do |category|
+      url = "https://www.pinterest.com/categories/" + category.name + "/"
+      scrape_site(url)
+    end
     # scrape_images(url)
   end
 
@@ -66,7 +68,7 @@ namespace :scrape do
       data_repin_count = "meta[name=\"pinterestapp:repins\"]"
       repin_count = html_doc.css(data_repin_count)
       #puts repin_count
-      if !repin_count.any?
+      if not repin_count.any?
         puts "no repins yet"
       else 
         # puts repin_count
@@ -77,7 +79,7 @@ namespace :scrape do
       data_like_count = "meta[name=\"pinterestapp:likes\"]"
       like_count = html_doc.css(data_like_count)
       #puts like_count
-      if !like_count.any?
+      if not like_count.any?
         puts "no likes yet"
       else 
         # puts like_count
@@ -88,7 +90,7 @@ namespace :scrape do
       data_title = "h2.richPinName > a"
       title = html_doc.css(data_title)
       #puts title.to_s
-      if !title.any?
+      if not title.any?
         puts "no title for this one"
       else
         #puts title.inspect
