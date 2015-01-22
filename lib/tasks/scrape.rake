@@ -32,13 +32,13 @@ namespace :scrape do
     puts pin_link_array
 
     domain_link = "https://www.pinterest.com"
-    scrape_one_page(domain_link + pin_link_array[0])
+    scrape_one_page(domain_link + pin_link_array[0], categoryID)
   end
 
 
   # url will be of format 'https://www.pinterest.com/pin/556264991450154362/'
-  def scrape_one_page(url)
 
+  def scrape_one_page(url, categoryID)
     document = open(url).read
     html_doc = Nokogiri::HTML(document)
     
