@@ -8,7 +8,7 @@ namespace :scrape do
 
     # url = "http://pinterest.com/search/pins/?q=#{params[:q]}"
     Category.all.each do |category|
-      url = "https://www.pinterest.com" + category.name
+      url = "https://www.pinterest.com" + category.link
       puts url
       scrape_site(url, category.id)
     end
@@ -122,9 +122,13 @@ namespace :scrape do
       category_list = html_doc.css(data_category_list)
 
       category_list.each do |item|
-        puts item['href']
-        new_cat = Category.create(name: item['href'])
+        #puts item['href']
+        #puts item
+        cat_name = item.css("div.name").inner_text
+        #puts cat_name
+        new_cat = Category.create(link: item['href'], name: cat_name)
         puts new_cat.name
+        puts new_cat.link
       end
 
   end
