@@ -9,11 +9,11 @@ namespace :scrape do
     # url = "http://pinterest.com/search/pins/?q=#{params[:q]}"
     Category.all.each do |category|
       url = "https://www.pinterest.com/categories/" + category.name + "/"
-      scrape_site(url)
+      scrape_site(url, category.id)
     end
   end
 
-  def scrape_site(url)
+  def scrape_site(url, categoryID)
     document = open(url).read
     html_doc = Nokogiri::HTML(document)
 
@@ -37,8 +37,9 @@ namespace :scrape do
 
   # url will be of format 'https://www.pinterest.com/pin/556264991450154362/'
   def scrape_one_page(url)
-
     document = open(url).read
+    # need to wait for repin data to load
+    # sleep 2
     html_doc = Nokogiri::HTML(document)
     
     puts "--------------------"
@@ -55,6 +56,7 @@ namespace :scrape do
     picture_url = html_doc.css(data_picture_url)
     puts "PINTEREST URL " +picture_url[0]['src']
 
+    # <meta name="pinterestapp:repins" content="3776">
     data_repin_count = "meta[name=\"pinterestapp:repins\"]"
     repin_count = html_doc.css(data_repin_count)
     #puts repin_count
@@ -92,11 +94,9 @@ namespace :scrape do
     #puts description
     puts "DESC " +description[0]['content']
     puts "--------------------"
-
   end
 
   task :get_categories => :environment do
-
     require 'open-uri'
     require 'nokogiri'
 
@@ -106,7 +106,6 @@ namespace :scrape do
   end
 
   def get_cats(url) 
-
     document = open(url).read
       # need to wait for repin data to load
       # sleep 2
@@ -122,7 +121,6 @@ namespace :scrape do
         new_cat = Category.create(name: item.text)
         puts new_cat
       end
-
   end
 end
 
