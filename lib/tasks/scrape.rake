@@ -128,7 +128,8 @@ namespace :scrape do
       category_list = html_doc.css(data_category_list)
 
       category_list.each do |item|
-        puts item.text
+        Category.create(name: item.text)
+        puts Category.last
       end
 
   end
