@@ -1,0 +1,42 @@
+$primary-background-color: rgba(237, 242, 242, 0.8);
+$
+
+#container{
+  background-color: $primary-background-color;
+}
+
+.pin-outer{
+  background-color: white;
+  border: solid black 3px;
+  border-radius: 5px;
+  max-width: 220px;
+  min-height: 400px;
+}
+
+.pin{
+  margin: 3px;
+  overflow: scroll;
+}
+
+.image{
+  width: 100%;
+  min-height: 100px;
+  border-bottom: 1px gray solid;
+}
+
+img{
+  width: 100%;
+  // border-radius: 5px;
+}
+
+.url{
+  border-bottom: 1px gray solid;
+}
+
+.title{
+  border-bottom: 1px gray solid;
+}
+
+.description{
+
+}
