@@ -38,7 +38,7 @@ div.thumbnail{
 div.picture-wrap{
   &:hover{
   cursor: wait;
-    
+
   }
 }
 
@@ -56,12 +56,16 @@ div.picture-wrap{
 
 .url{
   font-size: 11px;
-  vertical-align: text-bottom;
+  // vertical-align: text-bottom;
   padding: 5px;
   a:hover{
     text-decoration: none;
     color: white;
   }
+}
+
+a.link{
+  color: $primary-background-color;
 }
 
 button.heart{
@@ -74,7 +78,7 @@ button.heart{
 .image{
   width: 100%;
   min-height: 100px;
-  border-bottom: 1px $primary-background-color solid;
+  // border-bottom: 1px $primary-background-color solid;
 }
 
 img.pin-image{
@@ -86,7 +90,7 @@ img.pin-image{
   }
 }
 
-div.caption{
+div.thumbnail .caption{
   padding: 0px;
 }
 
@@ -94,6 +98,7 @@ h1.title{
   border-bottom: 1px $primary-background-color solid;
   font-size: 14px;
   padding: 10px;
+  padding-left: 20px;
   margin-top: 10px;
   padding-bottom: 20px;
   overflow-wrap: break-word;
@@ -101,7 +106,7 @@ h1.title{
 
 .description{
   font-size: 11px;
-  margin: 5px;
+  padding: 20px;
   &:hover {
     cursor:hand;
   }
