@@ -26,35 +26,26 @@ hr{
 }
 
 div.pin{
-  border-radius: 10px;
   margin: 0px;
+  border-radius: 10px;
 }
 
-.image{
-  width: 100%;
-  min-height: 100px;
-  border-bottom: 1px $primary-background-color solid;
+div.thumbnail{
+  border-radius: 10px;
+  padding: 0px;
 }
 
-
-img{
+div.picture-wrap{
   &:hover{
-  cursor: hand;
+  cursor: wait;
+    
   }
 }
-
-// .img-cur {
-//   cursor: url(images/cursor.png), auto;
-// }
 
 .visible{
-
-}
-
-.heart{
-  button:hover{
-    // background-color: red;
-  }
+  position: absolute;
+  // text-align: right;
+  width: relative;
 }
 
 .like-button{
@@ -63,18 +54,40 @@ img{
   // align-content: right;
 }
 
-img{
-  width: 100%;
-  // border-radius: 5px;
-}
-
 .url{
-  border-bottom: 1px $primary-background-color solid;
   font-size: 11px;
+  vertical-align: text-bottom;
+  padding: 5px;
   a:hover{
     text-decoration: none;
     color: white;
   }
+}
+
+button.heart{
+  &:hover{
+  // cursor: wait;
+  
+  }
+}
+
+.image{
+  width: 100%;
+  min-height: 100px;
+  border-bottom: 1px $primary-background-color solid;
+}
+
+img.pin-image{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+  &:hover{
+  cursor: hand;
+  }
+}
+
+div.caption{
+  padding: 0px;
 }
 
 h1.title{
