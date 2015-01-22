@@ -11,7 +11,7 @@ namespace :scrape do
       url = "https://www.pinterest.com/categories/" + category.name + "/"
       scrape_site(url)
     end
-    # scrape_images(url)
+
   end
 
   def scrape_site(url)
