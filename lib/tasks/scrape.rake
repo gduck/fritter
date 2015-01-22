@@ -7,9 +7,10 @@ namespace :scrape do
     # require 'date'
 
     # url = "http://pinterest.com/search/pins/?q=#{params[:q]}"
-    url = "https://www.pinterest.com/categories/popular/"
-    scrape_site(url)
-    # scrape_images(url)
+    Category.all.each do |category|
+      url = "https://www.pinterest.com/categories/" + category.name + "/"
+      scrape_site(url)
+    end
   end
 
   def scrape_site(url)
