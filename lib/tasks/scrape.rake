@@ -8,8 +8,9 @@ namespace :scrape do
 
     # url = "http://pinterest.com/search/pins/?q=#{params[:q]}"
     Category.all.each do |category|
-      url = "https://www.pinterest.com/categories/" + category.name + "/"
-      scrape_site(url)
+      url = "https://www.pinterest.com" + category.name
+      puts url
+      scrape_site(url, category.id)
     end
 
   end
@@ -32,6 +33,7 @@ namespace :scrape do
     puts pin_link_array
 
     domain_link = "https://www.pinterest.com"
+    # first scrape one page per category list
     scrape_one_page(domain_link + pin_link_array[0], categoryID)
   end
 
@@ -116,12 +118,13 @@ namespace :scrape do
       puts "--------------------"
       puts "IN PAGE " + url
 
-      data_category_list = "div > div > div > a > div.name"
+      data_category_list = "a.categoryLinkWrapper"
       category_list = html_doc.css(data_category_list)
 
       category_list.each do |item|
-        new_cat = Category.create(name: item.text)
-        puts new_cat
+        puts item['href']
+        new_cat = Category.create(name: item['href'])
+        puts new_cat.name
       end
 
   end
