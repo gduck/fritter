@@ -36,20 +36,24 @@
   top: auto;
 }
 
-.header-right{
+button.header-right{
   display: inline-block;
   float: right;
+  padding: 6px 12px;
+  width: 15vw;
+  text-align: left;
 }
 
 #avatar{
   width: auto;
-  height: 30px;
+  height: 20px;
+  padding: 0;
 }
 
 #user-name{
   font-weight: bold;
   font-size: 14px;
-  margin: 10px;
+  margin-left: 5px;
 }
 
 .lineup{
