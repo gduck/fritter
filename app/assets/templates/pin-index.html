@@ -1,1 +1,36 @@
-<h1>angular home index page</h1>
+
+<div id="container" class="container-fluid">
+  <h1>Fritter render Header</h1>
+  <hr>
+  <div class="pin-outer">
+    <div class="pin thumbnail">
+      <div class="picture-wrap">
+        <div class="image" ng-controller='HomeCtrl' ng-style='image'>
+          <div class="panel-visible">
+            <div class="like-button"><button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
+            </div>
+            <div class="url">
+              <a href='#' class="link glyphicon glyphicon-globe"> {{link}} http://www.babyohominion.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">
+        <h2 class="category">{{ category }} Categorgy</h2>
+        <h1 class="title" >
+          {{ title }} Bhah  saahahahhahah hahahaha hahahahahah
+        </h1>
+        <p class="description">
+          <!-- ng-if="description" -->
+          {{ description }}
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip 
+        </p>
+      </div>
+    </div>
+  </div>
+<!-- container close -->
+</div>
+

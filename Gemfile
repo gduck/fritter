@@ -42,5 +42,6 @@ gem 'binding_of_caller', group: :development
 
 gem 'angularjs-rails'
 
+gem 'masonry-rails'
 
 
