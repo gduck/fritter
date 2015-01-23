@@ -34,7 +34,7 @@ button.back{
 
 
 .nav-content{
-  padding: 8px;
+  padding: 15px;
   background-color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -43,6 +43,10 @@ button.back{
   text-align: left;
   // position: fixed;
   // width: 75vw;
+}
+
+.nav-content > button{
+  margin: 10px;
 }
 
 .nav-content div.big-heart{
@@ -72,22 +76,41 @@ a.big-link{
 img.big-image{
   height: auto;
   width: 60%;
+  border: $primary-background-color 1px solid;
   align-content: center;
 }
 
 .footer-content{
-  padding: 8px;
   text-align: left;
   background-color: white;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
+
+div.footer-url{
+  border-bottom: $primary-background-color 1px solid;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  margin-left: 10px;
+}
+
 a.footer-link{
   color: black;
   font-weight: bold;
+  margin: 10px;
   &:hover{
     text-decoration: none;
     color: gray;
   }
+}
+
+.footer-tite{
+  padding: 10px;
+}
+
+p.des{
+  margin-left: 10px;
+  padding: 10px;
+  padding-bottom:25px; 
 }
