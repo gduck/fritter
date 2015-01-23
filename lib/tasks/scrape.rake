@@ -33,8 +33,9 @@ namespace :scrape do
     puts pin_link_array
 
     domain_link = "https://www.pinterest.com"
-    # first scrape one page per category list
-    scrape_one_page(domain_link + pin_link_array[0], categoryID)
+    pin_link_array.each do |pinlink|
+      scrape_one_page(domain_link + pinlink, categoryID)
+    end
   end
 
 
@@ -48,6 +49,9 @@ namespace :scrape do
     
     puts "--------------------"
     puts "IN PAGE " + url
+
+    newPin.pininterest_id = url.split('/').fifth
+    puts "PININTERST ID: " + newPin.pininterest_id
 
     # sometimes there is not title. If that's the case
     # I want to use the page title instead
