@@ -38,18 +38,25 @@ div.thumbnail{
 div.picture-wrap {
   
   &:hover{
-  cursor: wait;
+    cursor: wait;
   }
 }
 
-.visible{
+.picture-wrap:hover .panel-visible{
+  display: inherit;
+}
+
+.panel-visible{
   height: 100%;
   position: relative;
+  display: none;
 }
 
 .like-button{
   text-align: right;
   padding: 10px;
+  &:hover{
+  }
 }
 
 .url{
@@ -72,7 +79,6 @@ a.link{
 button.heart{
   &:hover{
   // cursor: wait;
-  
   }
 }
 
@@ -80,9 +86,7 @@ button.heart{
   width: 100%;
   height: 100vh;
   max-height: 500px;
-  text-align: bottom;
-  text-align: right;
-  align-content: right;
+  align-content: center;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -92,7 +96,6 @@ button.heart{
   // cursor: wait;
   }
 }
-
 
 div.thumbnail .caption{
   padding: 0px;
