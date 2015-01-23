@@ -1,16 +1,24 @@
 namespace :scrape do 
   desc "Scraping Pinterest"
+
+  # must fill category table before doing this
   task :get_posts => :environment do
 
     require 'open-uri'
     require 'nokogiri'
     # require 'date'
 
-    # url = "http://pinterest.com/search/pins/?q=#{params[:q]}"
+    if (Category.all.count == 0) then
+      puts "please run rake scrape:get_categories first"
+      return
+    end
+
     Category.all.each do |category|
       url = "https://www.pinterest.com" + category.link
       puts url
-      scrape_site(url, category.id)
+      if (category.id > 17) then
+        scrape_site(url, category.id)
+      end
     end
 
   end
@@ -42,9 +50,9 @@ namespace :scrape do
   # url will be of format 'https://www.pinterest.com/pin/556264991450154362/'
 
   def scrape_one_page(url, categoryID)
+    puts "about to scrape :" + url
     document = open(url).read
     html_doc = Nokogiri::HTML(document)
-
     newPin = Pin.new(category_id: categoryID)
     
     puts "--------------------"
@@ -68,8 +76,6 @@ namespace :scrape do
       puts "TITLE " + newPin.title
     end
 
-    
-
     data_orig_link = "a.paddedPinLink"
     orig_link = html_doc.css(data_orig_link)
 
@@ -90,7 +96,7 @@ namespace :scrape do
     newPin.img_url = picture_url[0]['src']
     puts "IMG URL " + newPin.img_url
 
-    # not using repins in fritter
+    # not using repins in fritter at the moment
     # data_repin_count = "meta[name=\"pinterestapp:repins\"]"
     # repin_count = html_doc.css(data_repin_count)
     # if not repin_count.any?
@@ -110,7 +116,6 @@ namespace :scrape do
       puts "LIKES " + newPin.like_count.to_s
     end
 
-
     # some descriptions mention Pinterest quite a lot
     # I wonder if it's ok to replace that with 'fritter'..?
     data_description = "meta[name=\"description\"]"
@@ -119,10 +124,12 @@ namespace :scrape do
     newPin.optional_info = description[0]['content'].gsub(/Pinterest/, "fritter")
     puts "DESC " + newPin.optional_info
     puts "--------------------"
-
     puts newPin.inspect
     puts "--------------------"
 
+    newPin.save
+    puts "PIN SAVED"
+    puts "--------------------"
   end
 
   task :get_categories => :environment do
@@ -130,7 +137,6 @@ namespace :scrape do
     require 'open-uri'
     require 'nokogiri'
 
-    # url = "http://pinterest.com/search/pins/?q=#{params[:q]}"
     url = "https://www.pinterest.com/categories/"
     get_cats(url)
   end
@@ -138,6 +144,7 @@ namespace :scrape do
   def get_cats(url) 
 
     document = open(url).read
+<<<<<<< HEAD
       # need to wait for repin data to load
       # sleep 2
       html_doc = Nokogiri::HTML(document)
@@ -158,6 +165,22 @@ namespace :scrape do
         puts new_cat.link
       end
 
+=======
+    html_doc = Nokogiri::HTML(document)
+    
+    puts "--------------------"
+    puts "IN PAGE " + url
+
+    data_category_list = "a.categoryLinkWrapper"
+    category_list = html_doc.css(data_category_list)
+
+    category_list.each do |item|
+      cat_name = item.css("div.name").inner_text
+      new_cat = Category.create(link: item['href'], name: cat_name)
+      puts new_cat.name
+      puts new_cat.link
+    end
+>>>>>>> data scraping half done
   end
       puts "PAGE TITLE "+ html_doc.css('title').to_s
 
