@@ -1,0 +1,57 @@
+
+.wrapper{
+  text-align: center;
+}
+
+.header-bar{
+  display: inline-block;
+  width: 75%;
+}
+
+.header-left{
+  display: inline-block;
+  float: left;
+}
+
+#logo{
+  width: auto;
+  height: 30px;
+  margin: -7px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#search-bar{
+  margin: -5px;
+  text-align: left;
+  width: 40vw;
+  border-radius: 0;
+  // border-bottom-right-radius: 0;
+}
+
+#dropdown{
+  margin: 2px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  top: auto;
+}
+
+.header-right{
+  display: inline-block;
+  float: right;
+}
+
+#avatar{
+  width: auto;
+  height: 30px;
+}
+
+#user-name{
+  font-weight: bold;
+  font-size: 14px;
+  margin: 10px;
+}
+
+.lineup{
+  display: inline-block;
+}
