@@ -28,7 +28,6 @@ $primary-background-color: rgba(237, 242, 242, 0.6);
   border-radius: 10px;
   display: inline-block;
   margin: 20px;
-  margin-top: 40px;
 }
 
 
@@ -39,9 +38,6 @@ $primary-background-color: rgba(237, 242, 242, 0.6);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom: gray 1px solid;
-  // border: solid 2px black;
-  // margin-bottom: 20px;
-  // h-shadow: 2px black;
 }
 
 button.big-heart{
@@ -65,13 +61,12 @@ a.big-link{
 .image-content{
   text-align: center;
   border-bottom: gray 1px solid;
-
 }
 
 img.big-image{
   height: auto;
   width: 60%;
-  // width: auto;
+
   align-content: center;
 }
 
