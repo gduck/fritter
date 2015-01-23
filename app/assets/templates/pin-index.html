@@ -5,22 +5,24 @@
   <div class="pin-outer js-masonry" data-masonry-options='{ "itemSelector": ".item", "columnWidth": 200 }'>
     <div class="pin thumbnail">
       <div class="picture-wrap">
-        <div class="visible">
-          <div class="like-button"><button class="btn btn-xs btn-default heart glyphicon glyphicon-heart"></button></div>
-          <div class="url">
-            <a href='#' class="link glyphicon glyphicon-globe"> http://www.babyohominion.com</a>
+        <div class="image" style="background-image: url('../assets/Minion-Coffee.jpg')">
+          <div class="visible">
+            <div class="like-button"><button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
+            </div>
+            <div class="url">
+              <a href='#' class="link glyphicon glyphicon-globe"> {{link}} http://www.babyohominion.com</a>
+            </div>
           </div>
-        </div>
-        <div class="image">
-          <img class="pin-image" src="assets/Minion-Coffee.jpg">
         </div>
       </div>
       <div class="caption">
-        <h2 class="category">Happy Category</h2>
-        <h1 class="title">
-          Bhah  saahahahhahah hahahaha hahahahahah
+        <h2 class="category">{{ category }} Categorgy</h2>
+        <h1 class="title" >
+          {{ title }} Bhah  saahahahhahah hahahaha hahahahahah
         </h1>
         <p class="description">
+          <!-- ng-if="description" -->
+          {{ description }}
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

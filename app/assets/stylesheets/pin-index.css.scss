@@ -35,29 +35,29 @@ div.thumbnail{
   padding: 0px;
 }
 
-div.picture-wrap{
+div.picture-wrap {
+  
   &:hover{
   cursor: wait;
-
   }
 }
 
 .visible{
-  position: absolute;
-  // text-align: right;
-  width: relative;
+  height: 100%;
+  position: relative;
 }
 
 .like-button{
   text-align: right;
-  padding: 5px;
-  // align-content: right;
+  padding: 10px;
 }
 
 .url{
+  text-align: left;
   font-size: 11px;
-  // vertical-align: text-bottom;
   padding: 5px;
+  position: absolute;
+  bottom: 5px;
   a:hover{
     text-decoration: none;
     color: white;
@@ -66,6 +66,7 @@ div.picture-wrap{
 
 a.link{
   color: $primary-background-color;
+  padding-left: 5px;
 }
 
 button.heart{
@@ -77,18 +78,21 @@ button.heart{
 
 .image{
   width: 100%;
-  min-height: 100px;
-  // border-bottom: 1px $primary-background-color solid;
-}
-
-img.pin-image{
+  height: 100vh;
+  max-height: 500px;
+  text-align: bottom;
+  text-align: right;
+  align-content: right;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  width: 100%;
   &:hover{
-  cursor: hand;
+  // cursor: wait;
   }
 }
+
 
 div.thumbnail .caption{
   padding: 0px;
@@ -117,7 +121,7 @@ h1.title{
   font-size: 11px;
   padding: 20px;
   &:hover {
-    cursor:hand;
+    // cursor: wait;
   }
 }
 
