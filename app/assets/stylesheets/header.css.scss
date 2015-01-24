@@ -1,6 +1,7 @@
 
 .wrapper{
   text-align: center;
+  align-content: center;
 }
 
 .header-bar{
@@ -11,6 +12,8 @@
 .header-left{
   display: inline-block;
   float: left;
+  // width: 200px;
+  // max-width: 55vw;
 }
 
 #logo{
@@ -40,7 +43,8 @@ button.header-right{
   display: inline-block;
   float: right;
   padding: 6px 12px;
-  width: 15vw;
+  width: 200px;
+  max-width: 15vw;
   text-align: left;
 }
 
@@ -54,8 +58,26 @@ button.header-right{
   font-weight: bold;
   font-size: 14px;
   margin-left: 5px;
+  color: gray;
 }
 
 .lineup{
   display: inline-block;
+}
+
+.profile-pix{
+  width: 70px;
+  height: auto;
+  padding: 5px;
+}
+
+h1.user{
+  color: gray;
+}
+
+.profile{
+  font-size: 12px;
+  text-align: center;
+  padding: 20px;
+  max-width: 450px;
 }
