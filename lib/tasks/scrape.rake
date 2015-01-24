@@ -16,9 +16,11 @@ namespace :scrape do
     Category.all.each do |category|
       url = "https://www.pinterest.com" + category.link
       puts url
-      if (category.id > 20) then
+      # this is to pick up scraping 
+      # half way through in case of (404) error
+      # if (category.id > 20) then
         scrape_site(url, category.id)
-      end
+      # end
     end
 
   end
