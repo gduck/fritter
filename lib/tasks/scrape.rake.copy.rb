@@ -31,7 +31,10 @@ namespace :scrape do
     pin_links = html_doc.css(data_pin_link)
     number_pins = pin_links.count
     puts "number of pin links " + number_pins.to_s
-    if 
+    if number_pins == 0 then
+      return
+    end
+    
 
     pin_link_array = []
 

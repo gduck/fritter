@@ -21,10 +21,9 @@ namespace :scrape do
       scrape_site(url, category.id)
       # end
     end
-
   end
 
-  def scrape_site(url)
+  def scrape_site(url, categoryID)
     document = open(url).read
     html_doc = Nokogiri::HTML(document)
 
@@ -32,21 +31,26 @@ namespace :scrape do
     pin_links = html_doc.css(data_pin_link)
     number_pins = pin_links.count
     puts "number of pin links " + number_pins.to_s
-    if 
+    # if number_pins == 0 then
+    #   return
+    # else
+    #   puts pin_links
+    # end 
 
     pin_link_array = []
-
     domain_link = "https://www.pinterest.com"
+
     pin_links.each_with_index do |link, index|
       pin_link = link['href']
+      puts pin_link
       pin_link_array.push(pin_link)
-      scrape_one_page(domain_link + link, categoryID)
+      puts domain_link + pin_link
+      scrape_one_page(domain_link + pin_link, categoryID)
     end
   end
 
 
   # url will be of format 'https://www.pinterest.com/pin/556264991450154362/'
-
   def scrape_one_page(url, categoryID)
     puts "about to scrape :" + url
     document = open(url).read
@@ -56,8 +60,8 @@ namespace :scrape do
     puts "--------------------"
     puts "IN PAGE " + url
 
-    newPin.pininterest_id = url.split('/').fifth
-    puts "PININTERST ID: " + newPin.pininterest_id
+    newPin.pinterest_id = url.split('/').fifth
+    puts "PINTERST ID: " + newPin.pinterest_id
 
     # sometimes there is not title. If that's the case
     # I want to use the page title instead
@@ -76,9 +80,10 @@ namespace :scrape do
 
     data_orig_link = "a.paddedPinLink"
     orig_link = html_doc.css(data_orig_link)
-
-    newPin.pin_url = orig_link[0]['href']
-    puts "SOURCE URL "+ newPin.pin_url
+    link = orig_link[0]['href']
+    puts "the original link" + link
+    newPin.source_url = orig_link[0]['href']
+    puts "SOURCE URL "+ newPin.source_url
 
     # occasional pictures have a div with class pinImg some have pinImage. weird
     data_picture_url = ["img.pinImg", "img.pinImage"]
@@ -124,14 +129,12 @@ namespace :scrape do
     puts "--------------------"
     puts newPin.inspect
     puts "--------------------"
-
     newPin.save
     puts "PIN SAVED"
     puts "--------------------"
   end
 
   task :get_categories => :environment do
-
     require 'open-uri'
     require 'nokogiri'
 
@@ -139,10 +142,8 @@ namespace :scrape do
     get_categories(url)
   end
 
-
   def get_categories(url) 
     document = open(url).read
-
     html_doc = Nokogiri::HTML(document)
     
     puts "--------------------"
@@ -159,57 +160,5 @@ namespace :scrape do
       puts new_category.link
     end
   end
-      puts "PAGE TITLE "+ html_doc.css('title').to_s
-
-      data_orig_link = "a.paddedPinLink"
-      orig_link = html_doc.css(data_orig_link)
-      # puts orig_link.inspect
-      puts "SOURCE URL "+ orig_link[0]['href']
-
-      data_picture_url = "img.pinImg"
-      picture_url = html_doc.css(data_picture_url)
-      puts "PINTEREST URL " +picture_url[0]['src']
-
-      # <meta name="pinterestapp:repins" content="3776">
-      data_repin_count = "meta[name=\"pinterestapp:repins\"]"
-      repin_count = html_doc.css(data_repin_count)
-      #puts repin_count
-      if not repin_count.any?
-        puts "no repins yet"
-      else 
-        # puts repin_count
-        puts "REPINS " + repin_count[0]['content'] 
-      end
-
-      # <meta name="pinterestapp:likes" content="875">
-      data_like_count = "meta[name=\"pinterestapp:likes\"]"
-      like_count = html_doc.css(data_like_count)
-      #puts like_count
-      if not like_count.any?
-        puts "no likes yet"
-      else 
-        # puts like_count
-        puts "LIKES " + like_count[0]['content']
-      end
-
-      # need to do title & description
-      data_title = "h2.richPinName > a"
-      title = html_doc.css(data_title)
-      #puts title.to_s
-      if not title.any?
-        puts "no title for this one"
-      else
-        #puts title.inspect
-        puts "TITLE " + title.inner_text.strip
-      end
-
-      data_description = "meta[name=\"description\"]"
-      description = html_doc.css(data_description)
-      #puts description
-      puts "DESC " +description[0]['content']
-      # <meta name="description" content="&quot;One small crack does not mean that you are broken, it means that you we're put to the test and you didn't fall apart.&quot;">
-      puts "--------------------"
-
-    end
 end
 
