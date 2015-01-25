@@ -1,0 +1,56 @@
+.lineup{
+  display: inline-block;
+}
+
+.header-bar{
+  display: inline-block;
+  padding: 10px;
+}
+
+.header-left{
+  display: inline-block;
+}
+
+#logo{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+  padding-bottom: 5px;
+  &:hover{
+    background-color: white;
+  }
+}
+
+#search-bar{
+  text-align: left;
+  border-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#dropdown{
+  border-left: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+// this is funny, without the a tag, text-alight left doesn't work
+a.header-right{
+  display: inline-block;
+  padding: 6px 12px;
+  text-align: left;
+  overflow: hidden;
+  background-color: rgba(237, 242, 242, 0.6);
+}
+
+#avatar{
+  width: auto;
+  height: 20px;
+  padding: 0;
+}
+
+#user-name{
+  font-weight: bold;
+  font-size: 14px;
+  margin-left: 5px;
+  color: gray;
+}
