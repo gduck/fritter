@@ -1,4 +1,4 @@
-namespace :scrape do 
+namespace :scrapefirst do 
   desc "Scrape Categories from Pinterest"
 
   task :get_categories => :environment do
@@ -22,6 +22,7 @@ namespace :scrape do
     category_list.each do |item|
       category_name = item.css("div.name").inner_text
       category_link = item['href']
+      #puts category_name
       new_category = Category.create(link: category_link, name: category_name)
       puts new_category.name
       puts new_category.link
