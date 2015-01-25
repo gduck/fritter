@@ -3,7 +3,6 @@ namespace :scrape do
 
   # must fill category table before doing this
   task :get_posts => :environment do
-
     require 'open-uri'
     require 'nokogiri'
     # require 'date'
@@ -19,7 +18,7 @@ namespace :scrape do
       # this is to pick up scraping 
       # half way through in case of (404) error
       # if (category.id > 20) then
-        scrape_site(url, category.id)
+      scrape_site(url, category.id)
       # end
     end
 
@@ -31,20 +30,17 @@ namespace :scrape do
 
     data_pin_link = "a.pinImageWrapper"
     pin_links = html_doc.css(data_pin_link)
-    puts "number of pin links " + pin_links.count.to_s
+    number_pins = pin_links.count
+    puts "number of pin links " + number_pins.to_s
+    if 
 
     pin_link_array = []
 
-    pin_links.each_with_index do |link, index|
-      pin_link_array.push(link['href'])
-    end
-
-    puts "array coming"
-    puts pin_link_array
-
     domain_link = "https://www.pinterest.com"
-    pin_link_array.each do |pinlink|
-      scrape_one_page(domain_link + pinlink, categoryID)
+    pin_links.each_with_index do |link, index|
+      pin_link = link['href']
+      pin_link_array.push(pin_link)
+      scrape_one_page(domain_link + link, categoryID)
     end
   end
 
@@ -140,34 +136,13 @@ namespace :scrape do
     require 'nokogiri'
 
     url = "https://www.pinterest.com/categories/"
-    get_cats(url)
+    get_categories(url)
   end
 
-  def get_cats(url) 
 
+  def get_categories(url) 
     document = open(url).read
-<<<<<<< HEAD
-      # need to wait for repin data to load
-      # sleep 2
-      html_doc = Nokogiri::HTML(document)
-      
-      puts "--------------------"
-      puts "IN PAGE " + url
 
-      data_category_list = "a.categoryLinkWrapper"
-      category_list = html_doc.css(data_category_list)
-
-      category_list.each do |item|
-        #puts item['href']
-        #puts item
-        cat_name = item.css("div.name").inner_text
-        #puts cat_name
-        new_cat = Category.create(link: item['href'], name: cat_name)
-        puts new_cat.name
-        puts new_cat.link
-      end
-
-=======
     html_doc = Nokogiri::HTML(document)
     
     puts "--------------------"
@@ -177,12 +152,12 @@ namespace :scrape do
     category_list = html_doc.css(data_category_list)
 
     category_list.each do |item|
-      cat_name = item.css("div.name").inner_text
-      new_cat = Category.create(link: item['href'], name: cat_name)
-      puts new_cat.name
-      puts new_cat.link
+      category_name = item.css("div.name").inner_text
+      category_link = item['href']
+      new_category = Category.create(link: category_link, name: category_name)
+      puts new_category.name
+      puts new_category.link
     end
->>>>>>> data scraping half done
   end
       puts "PAGE TITLE "+ html_doc.css('title').to_s
 
