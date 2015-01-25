@@ -1,46 +1,45 @@
+.lineup{
+  display: inline-block;
+}
+
 .header-bar{
   display: inline-block;
-  width: 75%;
   padding: 10px;
 }
 
 .header-left{
   display: inline-block;
-  float: left;
-  // width: 200px;
-  // max-width: 55vw;
 }
 
 #logo{
-  width: auto;
-  height: 30px;
-  margin: -7px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  border-right: 0;
+  padding-bottom: 5px;
+  &:hover{
+    background-color: white;
+  }
 }
 
 #search-bar{
-  margin: -5px;
   text-align: left;
-  width: 40vw;
+  // width: 40vw;
   border-radius: 0;
-  // border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 #dropdown{
-  margin: 2px;
+  border-left: 0;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
-  top: auto;
 }
 
-button.header-right{
+// this is funny, without the a tag, text-alight left doesn't work
+a.header-right{
   display: inline-block;
-  float: right;
   padding: 6px 12px;
-  width: 200px;
-  max-width: 15vw;
   text-align: left;
+  overflow: hidden;
 }
 
 #avatar{
@@ -54,8 +53,4 @@ button.header-right{
   font-size: 14px;
   margin-left: 5px;
   color: gray;
-}
-
-.lineup{
-  display: inline-block;
 }
