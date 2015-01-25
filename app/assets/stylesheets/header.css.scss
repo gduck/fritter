@@ -1,12 +1,7 @@
-
-.wrapper{
-  text-align: center;
-  align-content: center;
-}
-
 .header-bar{
   display: inline-block;
   width: 75%;
+  padding: 10px;
 }
 
 .header-left{
@@ -63,21 +58,4 @@ button.header-right{
 
 .lineup{
   display: inline-block;
-}
-
-.profile-pix{
-  width: 70px;
-  height: auto;
-  padding: 5px;
-}
-
-h1.user{
-  color: gray;
-}
-
-.profile{
-  font-size: 12px;
-  text-align: center;
-  padding: 20px;
-  max-width: 450px;
 }
