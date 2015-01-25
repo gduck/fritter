@@ -31,6 +31,7 @@ gem 'spring',        group: :development
 gem 'devise'
 gem 'nokogiri'
 gem 'fastimage'
+gem 'devise'
 
 # watir required to wait until page info has loaded before scraping
 gem 'watir', '~> 5.0.0'
