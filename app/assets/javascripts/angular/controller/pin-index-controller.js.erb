@@ -1,11 +1,10 @@
 app.controller('HomeCtrl', ['$scope', '$http',
   function($scope, $http){
-  
-  $scope.image = {
-    'background-image': "url(" + "<%= asset_path('Minion-Coffee.jpg') %>" + ")"
 
-  };
-  // {{pin.img_url}}
+  //No longer using a set image as the pin backgroun image
+  // $scope.image = {
+  //   'background-image': "url(" + "<%= asset_path('Minion-Coffee.jpg') %>" + ")"
+  // };
 
   $http.get('pins.json').success(function(data){
     console.log('sucess on getting pins');

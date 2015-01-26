@@ -4,7 +4,8 @@
   <div class="pin-outer">
     <div class="pin thumbnail" ng-repeat='pin in pins'>
       <div class="picture-wrap">
-        <div class="image" ng-style="{'background-image':'url({{pin.img_url}})'}">
+        <!-- Set the image as a background image -->
+        <div class="image" ng-style="{'background-image':'url({{pin.img_url}})'}"> 
           <div class="panel-visible">
             <div class="like-button"><button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
             </div>
@@ -15,7 +16,7 @@
         </div>
       </div>
       <div class="caption">
-        <h2 class="category">{{ pin.category_id }}</h2>
+        <h2 class="category">{{ pin.category_name }}</h2>
         <h1 class="title" >
           {{ pin.title }}
         </h1>

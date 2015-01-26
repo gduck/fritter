@@ -13,12 +13,6 @@ app.controller('HeaderCtrl', ['$scope', '$http',
     $scope.categories = data.categories;
   })
 
-  // $http.get('/pins.json').success(function(data){
-  // console.log('sucess on getting pins');
-  // console.log(data);
-  // $scope.pins = data.pins;
-  // })
-
 
 
 }])
