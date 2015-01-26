@@ -2,15 +2,15 @@ $primary-background-color: rgba(237, 242, 242, 0.8);
 
 div.pin-outer{
   background-color: white;
-  border: solid $primary-background-color 2px;
   max-width: 220px;
   min-height: 300px;
-  background-color: $primary-background-color; 
+  background-color: transparent; 
 }
 
-div.pin{
-  margin: 0px;
+a.pin{
+  margin: 10px;
   border-radius: 10px;
+  border: solid $primary-background-color 2px;
 }
 
 div.thumbnail{
@@ -90,7 +90,7 @@ h2.category{
   margin-bottom: 10px;
   font-size: 10px;
   overflow-wrap: break-word;
-  color: $primary-background-color;
+  color: gray;
 }
 
 h1.title{
