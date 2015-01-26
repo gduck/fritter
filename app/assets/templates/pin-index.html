@@ -6,19 +6,20 @@
       <div class="picture-wrap">
         <!-- Set the image as a background image -->
         <div class="image" ng-style="{'background-image':'url({{pin.img_url}})'}"> 
-          <div class="panel-visible">
-            <div class="like-button"><button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
+            <div class="panel-visible">
+              <a href="#/pins/{{pin.id}}"><span class="pin-show-link"></span></a>
+              <div class="like-button"><button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
+              </div>
+              <div class="url">
+                <a href='{{ pin.source_url }}' class="link glyphicon glyphicon-globe">{{ pin.source_url }}</a>
+              </div>
             </div>
-            <div class="url">
-              <a href='{{ pin.source_url }}' class="link glyphicon glyphicon-globe">{{ pin.source_url }}</a>
-            </div>
-          </div>
         </div>
       </div>
       <div class="caption">
         <h2 class="category">{{ pin.category_name }}</h2>
         <h1 class="title" >
-          {{ pin.title }}
+          {{ pin.title }} {{pin.id}}
         </h1>
         <p class="description">
           <!-- ng-if="description" -->

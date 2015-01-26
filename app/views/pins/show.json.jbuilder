@@ -1,4 +1,5 @@
 json.pin do 
+  json.id @pin.id
   json.pinterest_id @pin.pinterest_id
   json.title @pin.title
   json.optional_info @pin.optional_info
