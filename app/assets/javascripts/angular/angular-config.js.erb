@@ -9,9 +9,9 @@ app.config(['$routeProvider',function($routeProvider){
 
 app.config(['$routeProvider',function($routeProvider){
   $routeProvider.when('/pin/', {
-    templateUrl: "<%= asset_path('pin-show.html') %>"
+    templateUrl: "<%= asset_path('pin-show.html') %>",
+    controller: 'PinCtrl'
   })
-
 }])
 
 app.config(['$routeProvider',function($routeProvider){

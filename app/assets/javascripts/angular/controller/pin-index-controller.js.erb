@@ -1,8 +1,17 @@
-app.controller('HomeCtrl', ['$scope', 
-  function($scope){
+app.controller('HomeCtrl', ['$scope', '$http',
+  function($scope, $http){
   
   $scope.image = {
     'background-image': "url(" + "<%= asset_path('Minion-Coffee.jpg') %>" + ")"
 
   };
+  // {{pin.img_url}}
+
+  $http.get('pins.json').success(function(data){
+    console.log('sucess on getting pins');
+    // console.log(data);
+    $scope.pins = data.pins;
+  })
+
+
 }])
