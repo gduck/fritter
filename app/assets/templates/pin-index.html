@@ -1,32 +1,33 @@
-<div class="background container-fluid">
-  <h1>Fritter Render Header</h1>
-  <hr>
-  <div class="pin-outer">
-    <div class="pin thumbnail" ng-repeat='pin in pins'>
-      <div class="picture-wrap">
-        <!-- Set the image as a background image -->
-        <div class="image" ng-style="{'background-image':'url({{pin.img_url}})'}"> 
-            <div class="panel-visible">
-              <a href="#/pins/{{pin.id}}"><span class="pin-show-link"></span></a>
-              <div class="like-button"><button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
+<div class="container-fluid background">
+  <div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
+    <h1>Fritter Render Header</h1>
+    <hr>
+    <div class="pin-outer box col2" ng-repeat='pin in pins'>
+      <div class="pin thumbnail">
+        <div class="picture-wrap">
+          <!-- Set the image as a background image -->
+          <div class="image" ng-style="{'background-image':'url({{pin.img_url}})'}"> 
+              <div class="panel-visible">
+                <a href="#/pins/{{pin.id}}"><span class="pin-show-link"></span></a>
+                <div class="like-button"><button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
+                </div>
+                <div class="url">
+                  <a href='{{ pin.source_url }}' class="link glyphicon glyphicon-globe">{{ pin.source_url }}</a>
+                </div>
               </div>
-              <div class="url">
-                <a href='{{ pin.source_url }}' class="link glyphicon glyphicon-globe">{{ pin.source_url }}</a>
-              </div>
-            </div>
+          </div>
         </div>
-      </div>
-      <div class="caption">
-        <h2 class="category">{{ pin.category_name }}</h2>
-        <h1 class="title" >
-          {{ pin.title }} {{pin.id}}
-        </h1>
-        <p class="description">
-          <!-- ng-if="description" -->
-          {{ pin.optional_info }}
-        </p>
+        <div class="caption">
+          <h2 class="category">{{ pin.category_name }}</h2>
+          <h1 class="title" >
+            {{ pin.title }} {{pin.id}}
+          </h1>
+          <p class="description">
+            <!-- ng-if="description" -->
+            {{ pin.optional_info }}
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
