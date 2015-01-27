@@ -3,4 +3,6 @@ class Pin < ActiveRecord::Base
   validates :source_url,  presence: true #this is the original src url
   validates :like_count, numericality: true
   validates :category_id, presence: true
+
+  belongs_to :category
 end
