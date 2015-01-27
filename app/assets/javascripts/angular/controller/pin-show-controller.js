@@ -9,7 +9,7 @@ app.controller('PinCtrl', ['$scope', '$http', '$routeParams',
   console.log('sure!');
   $http.get('pins/'+$routeParams.id + '.json').success(function(data){
     console.log('success on getting pin on pinctrl');
-    $scope.pin = data.pin;
+    $scope.pin = data.pins[0];
   })
 
 }])
