@@ -1,0 +1,17 @@
+app.controller('HomeCtrl', ['$scope', '$http', function($scope, $http){
+
+  $http.get('pins.json').success(function(data){
+    console.log('sucess on getting pins from HomeCtrl');
+    // console.log(data);
+    $scope.pins = data.pins;
+    var numberOfPins = data.pins.length;
+    // console.log('from controller I see', angular.element('.box').length,'boxes');
+  });
+
+  $http.get('/categories.json').success(function(data){
+    console.log('sucess on get categories');
+    // console.log(data);
+    $scope.categories = data.categories;
+  })
+  
+}])

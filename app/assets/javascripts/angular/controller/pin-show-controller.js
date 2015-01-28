@@ -6,7 +6,6 @@ app.controller('PinCtrl', ['$scope', '$http', '$routeParams',
   //   $scope.pins = data.pins;
   // })
 
-  console.log('sure!');
   $http.get('pins/'+$routeParams.id + '.json').success(function(data){
     console.log('success on getting pin on pinctrl');
     $scope.pin = data.pins[0];

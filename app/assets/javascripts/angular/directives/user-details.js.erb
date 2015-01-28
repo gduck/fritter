@@ -1,0 +1,6 @@
+app.directive('userDetails', ['$http', function($http){
+  return {
+    restrict: 'E',
+    templateUrl: "<%= asset_path('user-show.html') %>",
+  };
+}]);

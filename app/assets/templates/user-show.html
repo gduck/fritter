@@ -1,46 +1,17 @@
-<div class="text-center background container-fluid">
-  <h1>Fritter Render Header</h1>
-  <hr>
-  <div>
-    <div class="user-header">
-      <img src="assets/minion.jpg" class="img-circle profile-pix">
-      <button class="user-details btn btn-default btn-sm">Edit
-      </button>
-
-      <hr>
-    </div>
-    <h1 class="user">Minion Kevin</h1>
-    <div class="profile">Web-development Hihi Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco l</div>
+<div>
+  <div class="user-header">
+    <img src="assets/minion.jpg" class="img-circle profile-pix">
+    <button class="user-details btn btn-default btn-sm">Edit
+    </button>
+    <hr>
   </div>
-  <hr>
-  <div>
-  <!-- pasting the same partial from pin-index -->
-    <div id="{{pin.id}}" class="pin-outer box col2 masonry-brick transitions-enabled infinite-scroll clearfix has-gutters" ng-repeat='pin in pins'>
-    <div class="pin thumbnail">
-      <div class="picture-wrap">
-        <div class="panel-visible">
-          <a href="#/pins/{{pin.id}}" class="empty"><span class="pin-show-link"></span></a>
-          <div class="like-button"><button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
-          </div>
-          <div class="url">
-            <a href='{{ pin.source_url }}' class="link glyphicon glyphicon-globe"><span class="space">{{ pin.source_url }}</span></a>
-          </div>
-        </div>
-        <img ng-src="{{pin.img_url}}" class="image">
-      </div>
 
-      <div class="caption">
-        <h2 class="category">{{ pin.category_name }}</h2>
-        <h1 class="title" >
-          {{ pin.title }}
-        </h1>
-        <p class="description">
-          {{ pin.optional_info }}
-        </p>
-      </div>
-    </div>
+  <h1 class="user">Minion Kevin</h1>
+
+  <div class="profile">
+    Web-development Hihi Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco l
   </div>
-  <!-- Partial ends -->
 </div>
+
+
