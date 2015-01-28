@@ -1,5 +1,5 @@
-app.controller('UserCtrl', ['$scope', '$http', '$routeParams', 
-  function($scope, $http, $routeParams){
+app.controller('UserCtrl', ['$scope', '$http', '$routeParams', 'UserServices',
+  function($scope, $http, $routeParams, UserServices){
 
   console.log("here in the UserCtrl");
   $scope.user = UserServices;
@@ -7,6 +7,7 @@ app.controller('UserCtrl', ['$scope', '$http', '$routeParams',
   $http.get("/user/any").success(function(response,status){
     console.log("http request get user/any")
     UserServices.logInStatus = response.signedIn;
+    console.log(response);
   });
 
   $scope.userSignIn = function() {

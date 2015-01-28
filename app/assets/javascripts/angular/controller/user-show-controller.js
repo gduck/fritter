@@ -1,4 +1,4 @@
-app.controller('UserCtrl', ['$scope', '$http',
+app.controller('UserCtrl2', ['$scope', '$http',
   function($scope, $http){
 
 

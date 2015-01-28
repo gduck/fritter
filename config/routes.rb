@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  # devise_for :users, :controllers => {
-  #   sessions: 'users/sessions',
-  #   registrations: 'users/registrations'
-  #   }
+  devise_for :users, :controllers => {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+    }
 
-  devise_for :users
+
+  # devise_for :users
     # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
   get 'pins' => 'pins#index'
   get 'pins/:id' => 'pins#show'
 
-
+  get '/user/any', to: 'users#any'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

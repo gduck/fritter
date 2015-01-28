@@ -9,12 +9,9 @@
       <input name="newUserPassword" ng-model="newUserPassword" type="password">
     </div>
     <input type="submit">
-    <div>user status is {{user.logInStatus}}</div>
+    <div>user status is {{ user.logInStatus }}</div>
   </form>
-  <form ng-sumbit="userSignOut()">
-    <label>Logout</label>
-    <input type="submit">
-  </form>
-
+  <a ng-click="userSignOut()">Logout</a>
+    
 
 
