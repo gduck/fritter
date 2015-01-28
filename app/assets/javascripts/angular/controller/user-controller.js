@@ -1,10 +1,5 @@
-app.controller('UserCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
-
-  // $http.get('user.json').success(function(data){
-  //   console.log('sucess on getting users');
-  //   console.log(data);
-  //   $scope.user = data.user;
-  // })
+app.controller('UserCtrl', ['$scope', '$http', '$routeParams', 
+  function($scope, $http, $routeParams){
 
   console.log("here in the UserCtrl");
   $scope.user = UserServices;

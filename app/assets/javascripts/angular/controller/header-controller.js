@@ -6,7 +6,7 @@ app.controller('HeaderCtrl', ['$scope', '$http',
   };
 
   $http.get('/categories.json').success(function(data){
-    console.log('sucess on get categories');
+    console.log('success on get categories');
     // console.log(data);
     $scope.categories = data.categories;
   })
