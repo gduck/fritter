@@ -11,7 +11,7 @@ app.controller('HomeCtrl', ['$scope', '$http', function($scope, $http){
   $http.get('/categories.json').success(function(data){
     console.log('sucess on get categories');
     // console.log(data);
-  $scope.categories = data.categories;
+    $scope.categories = data.categories;
   })
   
 }])

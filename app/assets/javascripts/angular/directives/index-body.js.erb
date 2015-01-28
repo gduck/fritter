@@ -10,9 +10,7 @@ app.directive('onFinishRender', ['$timeout', function ($timeout){
     restrict: 'A',
     link: function(scope, element, attr){
       if (scope.$last === true){
-
         console.log("yes on finish render @indexBody");
-        
         $timeout(function () {
           console.log('from directive I see', angular.element('.pin-outer').length,'.pin-outer');
           $('#masonry-container').masonry({
