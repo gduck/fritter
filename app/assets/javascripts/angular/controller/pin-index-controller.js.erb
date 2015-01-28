@@ -1,5 +1,4 @@
-app.controller('HomeCtrl', ['$scope', '$http',
-  function($scope, $http){
+app.controller('HomeCtrl', ['$scope', '$http', function($scope, $http){
 
   //No longer using a set image as the pin backgroun image
   // $scope.image = {
@@ -10,6 +9,11 @@ app.controller('HomeCtrl', ['$scope', '$http',
     console.log('sucess on getting pins');
     // console.log(data);
     $scope.pins = data.pins;
-  })
+    var numberOfPins = data.pins.length;
+    console.log(numberOfPins);
+    console.log(data.pins[numberOfPins-1]);
+    console.log('from controller I see', angular.element('.box').length,'boxes');
+  });
 
+  
 }])

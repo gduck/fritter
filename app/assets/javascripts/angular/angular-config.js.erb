@@ -34,3 +34,24 @@ app.config(['$routeProvider',function($routeProvider){
 //     controller: 'UserCtrl'
 //   })
 }])
+
+app.directive('onFinishRender', function ($timeout){
+  return {
+    restrict: 'A',
+    link: function(scope, element, attr){
+      if (scope.$last === true){
+        $timeout(function () {
+          // console.log('from directive I see', angular.element('.pin-outer').length,'.pin-outer');
+          $('#masonry-container').masonry({
+            // itemSelector: '.pin-outer',
+            // columnWidth: 230,
+            // gutterWith: 50,
+            // isAnimated: !Modernizr.csstransitions,
+            // isRTL: true,
+            // isFitWidth: true
+          });
+        });
+      }
+    }
+  }
+});

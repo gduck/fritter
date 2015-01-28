@@ -1,14 +1,11 @@
 $primary-background-color: rgba(237, 242, 242, 0.8);
 
 div.pin-outer{
-  background-color: white;
-  max-width: 220px;
-  min-height: 300px;
   background-color: transparent; 
 }
 
-a.pin{
-  margin: 10px;
+div.pin{
+  width: 100%;
   border-radius: 10px;
   border: solid $primary-background-color 2px;
 }
@@ -18,8 +15,9 @@ div.thumbnail{
   padding: 0px;
 }
 
-a.picture-wrap {
-  
+div.picture-wrap {
+  position: relative;
+  width: 100%;
   &:hover{
     // cursor: wait;
   }
@@ -31,11 +29,14 @@ div.picture-wrap:hover .panel-visible{
 
 .panel-visible{
   height: 100%;
-  position: relative;
+  width: 100%;
+  position: absolute;
+  // z-index: 1000;
   display: none;
 }
 
 div.like-button{
+  width: 100%;
   text-align: right;
   padding: 10px;
   &:hover{
@@ -43,11 +44,13 @@ div.like-button{
 }
 
 div.url{
+  width: 100%;
   text-align: left;
   font-size: 11px;
   padding: 5px;
   position: absolute;
   bottom: 5px;
+  overflow-wrap:break-word; 
   a:hover{
     text-decoration: none;
     color: white;
@@ -55,31 +58,38 @@ div.url{
 }
 
 a.link{
+  width: 100%;
   color: $primary-background-color;
-  padding-left: 5px;
+  padding-left: 10px;
 }
 
+.source-url{
+  padding-left: 5px;
+}
 button.heart{
   &:hover{
   // cursor: wait;
   }
 }
 
-div.image{
-  // display: block;
+// div.image{
+//   display: block;
+//   width: 100%;
+//   height: 100vh;
+//   // max-height: 500px;
+//   align-content: center;
+//   background-size: 100% auto;
+//   background-repeat: no-repeat;
+//   background-position: center center;
+//   &:hover{
+//   // cursor: wait;
+//   }
+// }
 
-  width: 100%;
-  height: 100vh;
-  max-height: 500px;
-  align-content: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+.image{
+  width:100%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  &:hover{
-  // cursor: wait;
-  }
 }
 
 div.thumbnail .caption{
@@ -120,5 +130,9 @@ p.description{
   top: 0;
   left: 0;
   align-content: center;
+  &:hover{
+    cursor: url('zoom-in.png');
+    // cursor: wait;
+  }
 }
 

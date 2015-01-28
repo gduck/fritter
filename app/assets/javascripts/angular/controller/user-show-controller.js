@@ -7,6 +7,10 @@ app.controller('UserCtrl', ['$scope', '$http',
   //   console.log(data);
   //   $scope.user = data.user;
   // })
-
+  
+    $http.get('pins.json').success(function(data){
+    console.log('sucess on getting pins');
+    $scope.pins = data.pins;
+  })
 
 }])
