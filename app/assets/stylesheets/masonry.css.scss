@@ -6,6 +6,7 @@
 
 #masonry-container {
   // background: #FFF;
+  text-align: center;
   padding: 5px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -25,7 +26,6 @@
 .col4 { width: 380px; }
 .col5 { width: 480px; }
 
-// Max width, but I dont think we need this, because we are standardizing width for every pin
 .col1 img { max-width: 80px; }
 .col2 img { max-width: 220px; }
 .col3 img { max-width: 280px; }

@@ -2,10 +2,9 @@
   <h1>Fritter Render Header</h1>
   <hr>
   <!-- The Actual Index Partial we would use -->
-  <div id="masonry-container" class="masonry">
-    <div class="pin-outer box col2 masonry-brick transitions-enabled infinite-scroll clearfix has-gutters" ng-repeat='pin in pins'>
+  <div id="masonry-container" class="masonry masonry-brick transitions-enabled infinite-scroll clearfix">
+    <div id="{{pin.id}}" class="pin-outer col2 has-gutters" ng-repeat='pin in pins' on-finish-render>
       <div class="pin thumbnail">
-
         <div class="picture-wrap">
           <div class="panel-visible">
             <a href="#/pins/{{pin.id}}" class="empty"><span class="pin-show-link"></span></a>
@@ -17,7 +16,6 @@
           </div>
           <img ng-src="{{pin.img_url}}" class="image">
         </div>
-
         <div class="caption">
           <h2 class="category">{{ pin.category_name }}</h2>
           <h1 class="title" >
@@ -30,7 +28,5 @@
       </div>
     </div>
   </div>
-
+  <!-- partial ends -->
 </div>
-
-<!--<div class="image" ng-style="{'background-image':'url({{pin.img_url}})'}">-->

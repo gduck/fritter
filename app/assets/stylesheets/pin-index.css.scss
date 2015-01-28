@@ -130,5 +130,9 @@ p.description{
   top: 0;
   left: 0;
   align-content: center;
+  &:hover{
+    cursor: url('zoom-in.png');
+    // cursor: wait;
+  }
 }
 
