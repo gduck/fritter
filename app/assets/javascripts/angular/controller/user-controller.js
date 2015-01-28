@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 app.controller('UserCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 
   // $http.get('user.json').success(function(data){
@@ -18,6 +19,10 @@ app.controller('UserCtrl', ['$scope', '$http', '$routeParams', function($scope, 
     $scope.categories = data.categories;
   })
 =======
+=======
+app.controller('UserCtrl', ['$scope', '$http', '$routeParams', 
+  function($scope, $http, $routeParams){
+>>>>>>> Not having a good time. Controller not connecting to view
 
   console.log("here in the UserCtrl");
   $scope.user = UserServices;
