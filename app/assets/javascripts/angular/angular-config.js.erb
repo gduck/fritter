@@ -1,13 +1,14 @@
 var app = angular.module('fritter', ['ngRoute']);
 
+// app.config(['$routeProvider',function($routeProvider){
+//   $routeProvider.when('/', {templateUrl: "<%= asset_path('pin-index.html') %>", controller: 'HomeCtrl'}).when('/pins/:id', {templateUrl: "<%= asset_path('pin-show.html') %>", controller: 'PinCtrl'}).when('/header/', {templateUrl: "<%= asset_path('header.html') %>", controller: 'HeaderCtrl'}).when('/users/sign_up', {templateUrl: "<%= asset_path('user-signup.html') %>", controller: 'UserCtrl'})
+
 app.config(['$routeProvider',function($routeProvider){
-  $routeProvider
-.when('/', {templateUrl: "<%= asset_path('pin-index.html') %>", controller: 'HomeCtrl'})
-.when('/pins/:id', {templateUrl: "<%= asset_path('pin-show.html') %>", controller: 'PinCtrl'})
-.when('/header/', {templateUrl: "<%= asset_path('header.html') %>", controller: 'HeaderCtrl'})
-.when('/user/', {templateUrl: "<%= asset_path('user-show.html') %>", controller: 'UserCtrl'})
-.when('/users/sign_up', {templateUrl: "<%= asset_path('user-signup.html') %>", controller: 'UserCtrl'})
-.when('/users/sign_in', {templateUrl: "<%= asset_path('user-signin.html') %>", controller: 'UserCtrl'})
+  $routeProvider.when('/users/sign_up', {templateUrl: "<%= asset_path('user-signup.html') %>", controller: 'UserCtrl'})
+}]);
+
+// .when('/user/', {templateUrl: "<%= asset_path('user-show.html') %>", controller: 'UserCtrl'})
+// .when('/users/sign_in', {templateUrl: "<%= asset_path('user-signin.html') %>", controller: 'UserCtrl'})
 
 
 // .when('/', {
@@ -35,4 +36,4 @@ app.config(['$routeProvider',function($routeProvider){
 //     templateUrl: "<%= asset_path('user-show.html') %>",
 //     controller: 'UserCtrl'
 //   })
-}])
+// }]);

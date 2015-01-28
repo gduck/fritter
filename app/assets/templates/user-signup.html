@@ -1,13 +1,18 @@
 
   <form ng-submit="newUser()">
     <div>
-      <label for="userEmail">email address</label>
-      <input name="userEmail" ng-model="newUserEmail">
+      <label for="newUserEmail">email address</label>
+      <input name="newUserEmail" ng-model="newUserEmail">
     </div>
     <div>
-      <label for="userPassword">Password (4 character minimum)</label>
-      <input name="userPassword" ng-model="newUserPassword" type="password">
+      <label for="newUserPassword">Password (4 character minimum)</label>
+      <input name="newUserPassword" ng-model="newUserPassword" type="password">
     </div>
+    <input type="submit">
+    <div>user status is {{user.logInStatus}}</div>
+  </form>
+  <form ng-sumbit="userSignOut()">
+    <label>Logout</label>
     <input type="submit">
   </form>
 

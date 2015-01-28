@@ -1,5 +1,4 @@
-app.controller('UserCtrl', ['$scope', '$http',
-  function($scope, $http){
+app.controller('UserCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 
   // $http.get('user.json').success(function(data){
   //   console.log('sucess on getting users');
@@ -7,10 +6,12 @@ app.controller('UserCtrl', ['$scope', '$http',
   //   $scope.user = data.user;
   // })
 
+  console.log("here in the UserCtrl");
   $scope.user = UserServices;
 
   $http.get("/user/any").success(function(response,status){
-    UserServices.status = response.signedIn;
+    console.log("http request get user/any")
+    UserServices.logInStatus = response.signedIn;
   });
 
   $scope.userSignIn = function() {
@@ -20,13 +21,16 @@ app.controller('UserCtrl', ['$scope', '$http',
         'email': $scope.userEmail,
         'password': $scope.userPassword,
         'password_confirmation': $scope.userPassword
-      }
-    }
+      },
+      'commit': "Sign In"
+    };
     $http.post(url, data).success(function(response, status, xhr){
       console.log("response ", response);
+      UserServices.logInStatus = true;
     }).error(function(response) {
       console.log("problem!! - " + response);
-    })   
+      UserServices.logInStatus = false;
+    });
   }
 
   $scope.newUser = function() {
@@ -40,16 +44,19 @@ app.controller('UserCtrl', ['$scope', '$http',
       'commit': "Sign Up"
     };
     $http.post(url, data).success(function(response, status, xhr){
+      UserServices.logInStatus = true;
       console.log("SUCCESSFUL response ", response);
       console.log(status);
     }).error(function(response) {
       console.log("problem!! - " + response);
-    })
+      UserServices.logInStatus = false;
+    });
   }
 
   $scope.userSignOut = function() {
     $http.delete("/users/sign_out/").success(function(response,status){
-      UserServices.status = false;
+      UserServices.logInStatus = false;
+      console.log("ANYTHING DAMMIT");
     })
   }
 
