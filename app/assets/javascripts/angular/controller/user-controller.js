@@ -9,7 +9,7 @@ app.controller('UserCtrl', ['$scope', '$http',
   // })
   
     $http.get('pins.json').success(function(data){
-    console.log('sucess on getting pins');
+    console.log('success on getting pins from UserCtrl');
     $scope.pins = data.pins;
   })
 

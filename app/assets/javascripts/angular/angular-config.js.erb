@@ -1,58 +1,11 @@
 var app = angular.module('fritter', ['ngRoute']);
 
+
 app.config(['$routeProvider',function($routeProvider){
   $routeProvider
-.when('/', {templateUrl: "<%= asset_path('pin-index.html') %>", controller: 'HomeCtrl'})
-.when('/pins/:id', {templateUrl: "<%= asset_path('pin-show.html') %>", controller: 'PinCtrl'})
-.when('/header/', {templateUrl: "<%= asset_path('header.html') %>", controller: 'HeaderCtrl'})
-.when('/user/', {templateUrl: "<%= asset_path('user-show.html') %>", controller: 'UserCtrl'})
+.when('/', {templateUrl: "<%= asset_path('home.html') %>", controller: 'HomeCtrl'})
+// .when('/pins/:id', {templateUrl: "<%= asset_path('pin-show.html') %>", controller: 'PinCtrl'})
+// .when('/header/', {templateUrl: "<%= asset_path('header.html') %>", controller: 'HeaderCtrl'})
+.when('/user/', {templateUrl: "<%= asset_path('user.html') %>", controller: 'UserCtrl'})
 
-
-// .when('/', {
-//     templateUrl: "<%= asset_path('pin-index.html') %>",
-//     controller: 'HomeCtrl'
-//   })
-// }])
-
-// app.config(['$routeProvider',function($routeProvider){
-//   $routeProvider.when('/pins/:id', {
-//     templateUrl: "<%= asset_path('pin-show.html') %>",
-//     controller: 'PinCtrl'
-//   })
-// }])
-
-// app.config(['$routeProvider',function($routeProvider){
-//   $routeProvider.when('/header/', {
-//     templateUrl: "<%= asset_path('header.html') %>",
-//     controller: 'HeaderCtrl'
-//   })
-// }])
-
-// app.config(['$routeProvider',function($routeProvider){
-//   $routeProvider.when('/user/', {
-//     templateUrl: "<%= asset_path('user-show.html') %>",
-//     controller: 'UserCtrl'
-//   })
-}])
-
-app.directive('onFinishRender', ['$timeout', function ($timeout){
-  return {
-    restrict: 'A',
-    link: function(scope, element, attr){
-      if (scope.$last === true){
-        $timeout(function () {
-          // console.log('from directive I see', angular.element('.pin-outer').length,'.pin-outer');
-          $('#masonry-container').masonry({
-            // itemSelector: '.pin-outer',
-            // columnWidth: 230,
-            // gutterWith: 50,
-            // isAnimated: !Modernizr.csstransitions,
-            // isRTL: true,
-            // isFitWidth: true
-          });
-        });
-      }
-    }
-  }
 }]);
-
