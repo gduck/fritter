@@ -1,4 +1,4 @@
-<div class="container-fluid background">
+<div class="container-fluid background text-center">
   <h1>Fritter Render Header</h1>
   <hr>
   <!-- The Actual Index Partial we would use -->
@@ -11,7 +11,7 @@
             <div class="like-button"><button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
             </div>
             <div class="url">
-              <a href='{{ pin.source_url }}' class="link glyphicon glyphicon-globe"><span class="space">{{ pin.source_url }}</span></a>
+              <a href='{{ pin.source_url }}' class="link glyphicon glyphicon-globe"><span class="source-url">{{ pin.source_url }}</span></a>
             </div>
           </div>
           <img ng-src="{{pin.img_url}}" class="image">
