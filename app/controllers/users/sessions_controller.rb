@@ -3,6 +3,8 @@ class Users::SessionsController < Devise::SessionsController
   # before_filter :configure_sign_in_params, only: [:create]
   after_filter :set_csrf_headers, only: [:create, :destroy]
 
+  respond_to :json
+
   def create
     resource = warden.authenticate!(:scope => resource_name, :recall => "users/sessions#failure")
     return sign_in_and_redirect(resource_name, resource)
