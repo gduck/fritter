@@ -35,7 +35,7 @@ app.config(['$routeProvider',function($routeProvider){
 //   })
 }])
 
-app.directive('onFinishRender', function ($timeout){
+app.directive('onFinishRender', ['$timeout', function ($timeout){
   return {
     restrict: 'A',
     link: function(scope, element, attr){
@@ -54,4 +54,5 @@ app.directive('onFinishRender', function ($timeout){
       }
     }
   }
-});
+}]);
+
