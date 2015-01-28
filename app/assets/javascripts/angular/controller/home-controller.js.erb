@@ -15,5 +15,11 @@ app.controller('HomeCtrl', ['$scope', '$http', function($scope, $http){
     // console.log('from controller I see', angular.element('.box').length,'boxes');
   });
 
+  $http.get('/categories.json').success(function(data){
+  console.log('sucess on get categories');
+  // console.log(data);
+  $scope.categories = data.categories;
+  })
+
   
 }])
