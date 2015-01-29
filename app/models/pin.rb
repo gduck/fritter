@@ -5,4 +5,12 @@ class Pin < ActiveRecord::Base
   validates :category_id, presence: true
 
   belongs_to :category
+
+  def self.search(search)
+    if search
+      joins(:pin).where('(pin.title || pin.optional_info) LIKE ?', "%#{search}").includes(:pin)
+    else
+      order(created_at: :desc)
+    end
+  end
 end

@@ -1,7 +1,7 @@
 class PinsController < ApplicationController
 
   def index
-    @pins = Pin.all
+    @pins = Pin.search(params[:search]).limit(50)
   end
 
   def show
