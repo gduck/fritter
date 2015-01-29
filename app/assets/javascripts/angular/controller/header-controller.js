@@ -11,5 +11,12 @@ app.controller('HeaderCtrl', ['$scope', '$http',
     $scope.categories = data.categories;
   })
 
+  url = '/';
+  params = "";
+  $http.get(url, params).success(function(response) {
+    console.log("getting new list of pins");
+    $scope.pins = response.pins
+  })
+
 
 }])
