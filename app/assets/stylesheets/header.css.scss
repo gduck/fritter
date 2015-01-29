@@ -38,10 +38,11 @@
   border-bottom-right-radius: 0;
   background-color: $secondary-background-color;
   color: $primary-font-color;
+  outline: none;
 }
 
 #search-bar::-webkit-input-placeholder {
-   color: $secondary-font-color;
+   color: $tertiary-background-color;
 }
 
 #dropdown{
