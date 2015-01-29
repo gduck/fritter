@@ -15,16 +15,18 @@
           </div>
         </div>
           
-        <a href="{{ pin.source_url }}"><div class="image-content">
-          <img src="{{pin.img_url}}" class="big-image">
-        </div></a>
+        <a href="{{ pin.source_url }}">
+          <div class="image-content">
+            <img src="{{pin.img_url}}" class="big-image">
+          </div>
+        </a>
 
         <div class="footer-content">
           <div class="footer-url">
             <a href="{{ pin.source_url }}" class="footer-link"> Found on: {{ pin.source_url }} </a>
           </div>
           <div class="footer-title">
-            <h1 class="title">{{ pin.title }}</h1>
+            <h2 class="title">{{ pin.title }}</h2>
           </div>
           <div>
             <p class="des">{{ pin.optional_info }}</p>

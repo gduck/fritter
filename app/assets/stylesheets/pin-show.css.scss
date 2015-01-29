@@ -1,8 +1,11 @@
-$primary-background-color: rgba(237, 242, 242, 0.6);
+$primary-background-color: rgba(255, 29, 142, 0.8);// Neon-pink
+$secondary-background-color: rgba(255, 182, 218, 0.8);// Light-pink
+$tertiary-background-color: white; 
+$primary-font-color: black;
+$secondary-font-color: gray; 
 
-.background{
-  background-color: $primary-background-color;
-}
+
+
 
 #cross{
   width: 100%;
@@ -13,14 +16,17 @@ $primary-background-color: rgba(237, 242, 242, 0.6);
 }
 
 button.back{
-
+  background-color: $tertiary-background-color;
+  &:hover{
+    background-color: $secondary-background-color;
+  }
 }
 
 .wrapper{
   width: 75%;
   max-width: 800px;
-  border: solid 1px $primary-background-color;
-  background-color: $primary-background-color;
+  border: solid 1px $tertiary-background-color;
+  background-color: $tertiary-background-color;
   border-radius: 10px;
   display: inline-block;
   margin: 20px;
@@ -30,14 +36,14 @@ button.back{
 
 .nav-content{
   padding: 15px;
-  background-color: white;
+  background-color: $tertiary-background-color;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom: gray 1px solid;
   box-shadow: 0px 1px 1px gray;
   text-align: left;
   // position: fixed;
-  // width: 75vw;
+  // width: 75vw; 
 }
 
 .nav-content > button{
@@ -49,29 +55,43 @@ button.back{
   display: inline-block;
 }
 
+.big-heart > button{
+  &:hover{
+    background-color: $secondary-background-color;
+  }
+}
+
 .nav-content div.big-globe{
   display: inline-block;
 }
 
+.big-globe > button{
+  &:hover{
+    background-color: $secondary-background-color;
+  }
+}
+
+
 a.big-link{
   margin: 5px;
   text-align: center;
-  color: black;
+  color: $primary-font-color;
   &:hover{
   text-decoration: none;
-  color: gray;
+  color: $secondary-font-color;
   }
 }
 
 .image-content{
   text-align: center;
-  border-bottom: gray 1px solid;
+  border-bottom: $primary-font-color 1px solid;
+  background-color: rgba(153, 139, 145,0.5);
 }
 
 img.big-image{
   height: auto;
-  width: 60%;
-  border: $primary-background-color 1px solid;
+  width: auto;
+  // border: $primary-background-color 1px solid;
   align-content: center;
 }
 
@@ -84,27 +104,40 @@ img.big-image{
 
 
 div.footer-url{
-  border-bottom: $primary-background-color 1px solid;
+  border-bottom: $primary-font-color 1px solid;
   padding-bottom: 15px;
   padding-top: 15px;
-  margin-left: 10px;
+  padding-left: 10px;
 }
 
 a.footer-link{
-  color: black;
+  color: $primary-font-color;
   font-weight: bold;
   margin: 10px;
   &:hover{
     text-decoration: none;
-    color: gray;
+    color: $secondary-font-color;
   }
 }
 
-.footer-tite{
-  padding: 10px;
+.footer-title{
+  // padding: 10px;
+
+}
+
+h2.title{
+  // border-bottom: 1px $primary-background-color solid;
+  font-size: 20px;
+  // padding: 10px;
+  padding-left: 20px;
+  // padding-bottom: 20px;
+  // margin-top: 10px;
+  overflow-wrap: break-word;
+  // background-color: $secondary-background-color;
 }
 
 p.des{
+  color: $secondary-font-color;
   margin-left: 10px;
   padding: 10px;
   padding-bottom:25px; 

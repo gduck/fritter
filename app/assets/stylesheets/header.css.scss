@@ -1,5 +1,22 @@
+$primary-background-color: rgba(255, 29, 142, 0.8);// Neon-pink
+$secondary-background-color: rgba(255, 182, 218, 0.8);// Light-pink
+$tertiary-background-color: white; 
+$primary-font-color: black;
+$secondary-font-color: gray; 
+
+
 .lineup{
   display: inline-block;
+}
+
+#header{
+  // position: fixed;
+  z-index: 101;
+}
+
+.header-wrapper{
+  // position: relative;
+  background-color: $tertiary-background-color;
 }
 
 .header-bar{
@@ -17,7 +34,7 @@
   border-right: 0;
   padding-bottom: 5px;
   &:hover{
-    background-color: white;
+    background-color: $tertiary-background-color;
   }
 }
 
@@ -25,6 +42,12 @@
   text-align: left;
   border-radius: 0;
   border-bottom-right-radius: 0;
+  background-color: $secondary-background-color;
+  color: $primary-font-color;
+}
+
+#search-bar::-webkit-input-placeholder {
+   color: $secondary-font-color;
 }
 
 #dropdown{
@@ -33,13 +56,16 @@
   border-top-left-radius: 0;
 }
 
-// this is funny, without the a tag, text-alight left doesn't work
+// this is funny, without the a tag, text-alight left doesn't work 
 a.header-right{
   display: inline-block;
   padding: 6px 12px;
   text-align: left;
   overflow: hidden;
-  background-color: rgba(237, 242, 242, 0.6);
+  background-color: $tertiary-background-color;
+  &:hover{
+    background-color: $secondary-background-color;
+  }
 }
 
 #avatar{
@@ -52,5 +78,5 @@ a.header-right{
   font-weight: bold;
   font-size: 14px;
   margin-left: 5px;
-  color: gray;
+  color: $primary-font-color;
 }

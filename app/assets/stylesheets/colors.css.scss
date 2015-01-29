@@ -1,7 +1,12 @@
-$primary-background-color: rgba(237, 242, 242, 0.8);
-$primary-font-color: rgba(237, 242, 242, 0.8);
-$secondary-font-color: rgba(237, 242, 242, 0.8);
+$primary-background-color: rgba(255, 29, 142, 0.8);// Neon-pink
+$secondary-background-color: rgba(255, 182, 218, 0.8);// Light-pink
+$tertiary-background-color: white; 
+$primary-font-color: black;
+$secondary-font-color: gray; 
 
+.background{
+  background-color: $secondary-background-color;
+}
 
 hr{
   height: 0;
@@ -9,9 +14,9 @@ hr{
   font-size: 1px;
   line-height: 0;
   clear: both;
-  color: $primary-background-color;
-  background-color: $primary-background-color;
+  color: $secondary-background-color;
+  background-color: $secondary-background-color;
   border: none;
-  border-top: 1px solid #aaaaaa;
-  border-bottom: 1px solid #ffffff;
+  border-top: 1px solid $primary-background-color;
+  border-bottom: 1px solid $primary-background-color;
 }
