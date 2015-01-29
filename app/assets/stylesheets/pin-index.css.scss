@@ -1,4 +1,4 @@
-$primary-background-color: rgba(237, 242, 242, 0.8);
+@import "colors";
 
 div.pin-outer{
   background-color: transparent; 
@@ -31,7 +31,7 @@ div.picture-wrap:hover .panel-visible{
   height: 100%;
   width: 100%;
   position: absolute;
-  // z-index: 1000;
+  // z-index: 1000; 
   display: none;
 }
 
@@ -53,38 +53,26 @@ div.url{
   overflow-wrap:break-word; 
   a:hover{
     text-decoration: none;
-    color: white;
+    color: $secondary-font-color;
   }
 }
 
 a.link{
   width: 100%;
-  color: $primary-background-color;
+  color: $secondary-font-color;
   padding-left: 10px;
 }
 
 .source-url{
   padding-left: 5px;
+  overflow-wrap: break-word;  
 }
+
 button.heart{
   &:hover{
   // cursor: wait;
   }
 }
-
-// div.image{
-//   display: block;
-//   width: 100%;
-//   height: 100vh;
-//   // max-height: 500px;
-//   align-content: center;
-//   background-size: 100% auto;
-//   background-repeat: no-repeat;
-//   background-position: center center;
-//   &:hover{
-//   // cursor: wait;
-//   }
-// }
 
 .image{
   width:100%;
@@ -102,17 +90,18 @@ h2.category{
   margin-bottom: 10px;
   font-size: 10px;
   overflow-wrap: break-word;
-  color: gray;
+  color: $secondary-font-color;
 }
 
 h1.title{
-  border-bottom: 1px $primary-background-color solid;
+  // border-bottom: 1px $primary-background-color solid;
   font-size: 14px;
   padding: 10px;
   padding-left: 20px;
   padding-bottom: 20px;
   margin-top: 10px;
   overflow-wrap: break-word;
+  background-color: $primary-background-color;
 }
 
 p.description{

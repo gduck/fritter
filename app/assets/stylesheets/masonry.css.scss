@@ -1,19 +1,11 @@
-// Add class .has-gutters to container to add additional spacing between columns, but not on the outer sides of the container.
-
-// Add class rtl to container to Enable right-to-left layout by setting the isRTL option to true. See masonry/right-to-left.css
-
-
-
 #masonry-container {
-  // background: #FFF;
-  // text-align: center;
   padding: 5px;
-  margin-bottom: 20px;
-  border-radius: 10px;
+  // margin-bottom: 20px;
+  // border-radius: 10px;
   clear: both;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
+  // -webkit-border-radius: 5px;
+  //    -moz-border-radius: 5px;
+  //         border-radius: 5px;
 }
 
 .clearfix:before .clearfix:after { content: ""; display: table; }

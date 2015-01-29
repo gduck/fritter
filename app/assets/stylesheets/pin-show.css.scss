@@ -1,8 +1,4 @@
-$primary-background-color: rgba(237, 242, 242, 0.6);
-
-.background{
-  background-color: $primary-background-color;
-}
+@import "colors";
 
 #cross{
   width: 100%;
@@ -13,14 +9,17 @@ $primary-background-color: rgba(237, 242, 242, 0.6);
 }
 
 button.back{
-
+  background-color: $tertiary-background-color;
+  &:hover{
+    background-color: $secondary-background-color;
+  }
 }
 
 .wrapper{
   width: 75%;
   max-width: 800px;
-  border: solid 1px $primary-background-color;
-  background-color: $primary-background-color;
+  border: solid 1px $tertiary-background-color;
+  background-color: $tertiary-background-color;
   border-radius: 10px;
   display: inline-block;
   margin: 20px;
@@ -30,14 +29,13 @@ button.back{
 
 .nav-content{
   padding: 15px;
-  background-color: white;
+  background-color: $tertiary-background-color;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom: gray 1px solid;
   box-shadow: 0px 1px 1px gray;
   text-align: left;
-  // position: fixed;
-  // width: 75vw;
+  // width: 75vw; 
 }
 
 .nav-content > button{
@@ -49,29 +47,42 @@ button.back{
   display: inline-block;
 }
 
+.big-heart > button{
+  &:hover{
+    background-color: $secondary-background-color;
+  }
+}
+
 .nav-content div.big-globe{
   display: inline-block;
 }
 
+.big-globe > button{
+  &:hover{
+    background-color: $secondary-background-color;
+  }
+}
+
+
 a.big-link{
   margin: 5px;
   text-align: center;
-  color: black;
+  color: $primary-font-color;
   &:hover{
   text-decoration: none;
-  color: gray;
+  color: $secondary-font-color;
   }
 }
 
 .image-content{
   text-align: center;
-  border-bottom: gray 1px solid;
+  border-bottom: $primary-font-color 1px solid;
+  background-color: rgba(153, 139, 145,0.5);
 }
 
 img.big-image{
   height: auto;
-  width: 60%;
-  border: $primary-background-color 1px solid;
+  width: auto;
   align-content: center;
 }
 
@@ -84,27 +95,30 @@ img.big-image{
 
 
 div.footer-url{
-  border-bottom: $primary-background-color 1px solid;
+  border-bottom: $primary-font-color 1px solid;
   padding-bottom: 15px;
   padding-top: 15px;
-  margin-left: 10px;
+  padding-left: 10px;
 }
 
 a.footer-link{
-  color: black;
+  color: $primary-font-color;
   font-weight: bold;
   margin: 10px;
   &:hover{
     text-decoration: none;
-    color: gray;
+    color: $secondary-font-color;
   }
 }
 
-.footer-tite{
-  padding: 10px;
+h2.title{
+  font-size: 20px;
+  padding-left: 20px;
+  overflow-wrap: break-word;
 }
 
 p.des{
+  color: $secondary-font-color;
   margin-left: 10px;
   padding: 10px;
   padding-bottom:25px; 

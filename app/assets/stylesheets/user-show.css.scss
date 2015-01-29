@@ -1,3 +1,5 @@
+@import "colors";
+
 .profile-pix{
   width: 70px;
   height: auto;
@@ -6,7 +8,7 @@
 }
 
 h1.user{
-  color: gray;
+  color: $primary-font-color;
   z-index: 0;
 }
 
@@ -16,15 +18,26 @@ h1.user{
   padding: 20px;
   max-width: 450px;
   display: inline-block;
-  z-index: 0;
+  z-index: 81;
 }
 
 .user-details{
-  right: 0;
+  right: 15px;
   position: fixed;
   margin: 15px; 
 }
 
 .user-header{
-  z-index: 1;
+  z-index: 91;
+  position: fixed;
+  top: 55px;
+  width: 100%;
+  background-color: $tertiary-background-color;
+  border-top: 1px $secondary-background-color solid; 
+  border-bottom: 1px $secondary-background-color solid;
+  height: 100px;
+}
+
+#user-des{
+  margin-top: 160px;
 }
