@@ -68,6 +68,9 @@ ul.dropdown-menu.list-inline{
 
 .dropdown-list{
   width:149px;
+  a:hover{
+    background-color: $secondary-background-color;
+  }
 }
 
 // this doesn't work
