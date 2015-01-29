@@ -3,25 +3,3 @@ $secondary-background-color: rgba(176, 196, 200, 0.8);
 $tertiary-background-color: white; 
 $primary-font-color: black;
 $secondary-font-color: gray; 
-
-
-
-.background{
-  background-color: $secondary-background-color;
-}
-
-hr{
-  height: 0;
-  max-height: 0;
-  font-size: 1px;
-  line-height: 0;
-  clear: both;
-  color: $secondary-background-color;
-  background-color: $secondary-background-color;
-  border: none;
-  border-bottom: 1px solid $primary-background-color;
-}
-
-#home-index-pins{
-  margin-top: 56px;
-}

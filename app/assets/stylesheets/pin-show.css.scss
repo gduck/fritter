@@ -1,7 +1,5 @@
 @import "colors";
 
-
-
 #cross{
   width: 100%;
   text-align: right;
@@ -37,7 +35,6 @@ button.back{
   border-bottom: gray 1px solid;
   box-shadow: 0px 1px 1px gray;
   text-align: left;
-  // position: fixed;
   // width: 75vw; 
 }
 
@@ -86,7 +83,6 @@ a.big-link{
 img.big-image{
   height: auto;
   width: auto;
-  // border: $primary-background-color 1px solid;
   align-content: center;
 }
 
@@ -115,20 +111,10 @@ a.footer-link{
   }
 }
 
-.footer-title{
-  // padding: 10px;
-
-}
-
 h2.title{
-  // border-bottom: 1px $primary-background-color solid;
   font-size: 20px;
-  // padding: 10px;
   padding-left: 20px;
-  // padding-bottom: 20px;
-  // margin-top: 10px;
   overflow-wrap: break-word;
-  // background-color: $secondary-background-color;
 }
 
 p.des{
