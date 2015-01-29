@@ -17,6 +17,11 @@ hr{
   color: $secondary-background-color;
   background-color: $secondary-background-color;
   border: none;
-  border-top: 1px solid $primary-background-color;
+  // border-top: 1px solid $primary-background-color;
   border-bottom: 1px solid $primary-background-color;
+}
+
+div.container-fluid{
+  // padding-left: 0;
+  // padding-right: 0;
 }
