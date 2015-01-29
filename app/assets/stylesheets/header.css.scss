@@ -52,7 +52,30 @@
   border-left: 0;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
+  &:hover{
+    background-color: $secondary-background-color;
+  }
 }
+
+
+ul.dropdown-menu.list-inline{
+  width: 450px;
+  right: 80px;
+  left: inherit;
+  font-size: 11px;
+  color: $primary-font-color;
+}
+
+.dropdown-list{
+  width:149px;
+}
+
+// this doesn't work
+// .dropdown-category{
+//   &:hover{
+//     background-color: $secondary-background-color;
+//   }
+// }
 
 // this is funny, without the a tag, text-alight left doesn't work 
 a.header-right{

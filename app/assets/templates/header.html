@@ -10,9 +10,9 @@
             <div class="glyphicon glyphicon-list"></div>
             <span class="sr-only">Toggle Dropdown</span>
           </button>
-          <ul class="dropdown-menu" role="menu">
-            <li ng-repeat='category in categories'>
-              <a href="#">{{ category.name }}</a>
+          <ul class="dropdown-menu list-inline" role="menu">
+            <li class="dropdown-list" ng-repeat='category in categories'>
+              <a href="#" class="dropdown-category">{{ category.name }}</a>
             </li>
           </ul>
         </div>
