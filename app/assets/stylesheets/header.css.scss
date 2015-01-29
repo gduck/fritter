@@ -5,13 +5,16 @@
 }
 
 #header{
-  // position: fixed;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 55px;
   z-index: 101;
   background-color: $tertiary-background-color;
 }
 
 .header-wrapper{
-  // position: relative;
+
 }
 
 .header-bar{

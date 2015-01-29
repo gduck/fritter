@@ -18,7 +18,7 @@ h1.user{
   padding: 20px;
   max-width: 450px;
   display: inline-block;
-  z-index: 0;
+  z-index: 81;
 }
 
 .user-details{
@@ -28,5 +28,16 @@ h1.user{
 }
 
 .user-header{
-  z-index: 1;
+  z-index: 91;
+  position: fixed;
+  top: 55px;
+  width: 100%;
+  background-color: $tertiary-background-color;
+  border-top: 1px $secondary-background-color solid; 
+  border-bottom: 1px $secondary-background-color solid;
+  height: 100px;
+}
+
+#user-des{
+  margin-top: 160px;
 }
