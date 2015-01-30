@@ -1,7 +1,6 @@
 <div class="container-fluid">
   <div class="row">
     <div class="header-bar col-xs-10 col-xs-offset-1">
-      
       <div class="header-left col-xs-10">
         <div class="row">
           <a href="#/" class="lineup btn btn-default col-xs-1" id="logo"><img src="assets/logo.gif"  height="20px"></a>
@@ -12,17 +11,15 @@
           </button>
           <ul class="dropdown-menu" role="menu">
             <li ng-repeat='category in categories'>
-              <a data-id="{{category.id}}" ng-click="setCategory(category.id)" href="#{{category.link}}">{{ category.name }}</a>
+              <a ng-href="#{{category.link}}">{{ category.name }}</a>
             </li>
           </ul>
         </div>
       </div>
-
       <a href="#/user/ "class="header-right btn btn-default col-xs-2">
         <img src="assets/minion.jpg" id="avatar"class="img-circle lineup">
         <div id="user-name" class="lineup">Minion Kevin</div>
       </a>
-
     </div>
   </div>
 </div>

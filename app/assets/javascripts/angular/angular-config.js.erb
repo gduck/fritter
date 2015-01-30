@@ -6,4 +6,5 @@ app.config(['$routeProvider',function($routeProvider){
   .when('/user/',     {templateUrl: "<%= asset_path('user.html') %>",     controller: 'UserCtrl'})
   .when('/pins/:id',  {templateUrl: "<%= asset_path('pin-show.html') %>", controller: 'PinCtrl'})
   .when('/categories/:category', {templateUrl: "<%= asset_path('home.html') %>", controller: 'HomeCtrl'})
+  .otherwise({redirectTo: '/'})
 }]);

@@ -1,4 +1,4 @@
-app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
+app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 
   $scope.searchTerms = '';
   $scope.category = '';
@@ -12,9 +12,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', func
       url = 'pins.json?keyword=' + $scope.searchTerms;
     }
     $http.get(url).success(function(response){
-      console.log("doing a search - ", categoryId);
+      //console.log("doing a search - ", categoryId);
       $scope.pins = response.pins;
-      console.log($scope.pins);
+      //console.log($scope.pins);
     })
   }
   
@@ -40,7 +40,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', func
     // if we have no category in the url, get all
     $http.get('pins.json').success(function(data){
       $scope.pins = data.pins;
-      var numberOfPins = data.pins.length;
+      //var numberOfPins = data.pins.length;
     });
   }
 
