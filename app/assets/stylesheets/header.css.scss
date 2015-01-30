@@ -1,5 +1,16 @@
+@import "colors";
+
 .lineup{
   display: inline-block;
+}
+
+#header{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 55px;
+  z-index: 101;
+  background-color: $tertiary-background-color;
 }
 
 .header-bar{
@@ -17,7 +28,7 @@
   border-right: 0;
   padding-bottom: 5px;
   &:hover{
-    background-color: white;
+    background-color: $tertiary-background-color;
   }
 }
 
@@ -25,21 +36,57 @@
   text-align: left;
   border-radius: 0;
   border-bottom-right-radius: 0;
+  background-color: $secondary-background-color;
+  color: $primary-font-color;
+  outline: none;
+}
+
+#search-bar::-webkit-input-placeholder {
+   color: $tertiary-background-color;
 }
 
 #dropdown{
   border-left: 0;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
+  &:hover{
+    background-color: $secondary-background-color;
+  }
 }
 
-// this is funny, without the a tag, text-alight left doesn't work
+
+ul.dropdown-menu.list-inline{
+  width: 450px;
+  right: 80px;
+  left: inherit;
+  font-size: 11px;
+  color: $primary-font-color;
+}
+
+.dropdown-list{
+  width:149px;
+  a:hover{
+    background-color: $secondary-background-color;
+  }
+}
+
+// this doesn't work
+// .dropdown-category{
+//   &:hover{
+//     background-color: $secondary-background-color;
+//   }
+// }
+
+// this is funny, without the a tag, text-alight left doesn't work 
 a.header-right{
   display: inline-block;
   padding: 6px 12px;
   text-align: left;
   overflow: hidden;
-  background-color: rgba(237, 242, 242, 0.6);
+  background-color: $tertiary-background-color;
+  &:hover{
+    background-color: $secondary-background-color;
+  }
 }
 
 #avatar{
@@ -52,5 +99,5 @@ a.header-right{
   font-weight: bold;
   font-size: 14px;
   margin-left: 5px;
-  color: gray;
+  color: $primary-font-color;
 }
