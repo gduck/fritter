@@ -1,10 +1,14 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.all 
+    if params[:keyword]
+      @categories = Category.where(link: params[:keyword]) 
+    else
+      @categories = Category.all
+    end
   end
 
   def show
-    @category = Category.find_by(:name => params[:name].capitalize)
+    @category = Category.where(link: params[:keyword])
   end
 
 end

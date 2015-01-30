@@ -1,17 +1,47 @@
-app.controller('HomeCtrl', ['$scope', '$http', function($scope, $http){
+app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 
-  $http.get('pins.json').success(function(data){
-    console.log('sucess on getting pins from HomeCtrl');
-    // console.log(data);
-    $scope.pins = data.pins;
-    var numberOfPins = data.pins.length;
-    // console.log('from controller I see', angular.element('.box').length,'boxes');
-  });
+  $scope.searchTerms = '';
+  $scope.category = '';
+  var url = '';
 
+  $scope.search = function() {
+    // had trouble when categoryID was nil
+    if ($scope.category) { 
+      url = 'pins.json?keyword=' + $scope.searchTerms +'&category_id=' + $scope.category.id;
+    } else {
+      url = 'pins.json?keyword=' + $scope.searchTerms;
+    }
+    $http.get(url).success(function(response){
+      //console.log("doing a search - ", categoryId);
+      $scope.pins = response.pins;
+      //console.log($scope.pins);
+    })
+  }
+  
   $http.get('/categories.json').success(function(data){
-    console.log('sucess on get categories');
-    // console.log(data);
     $scope.categories = data.categories;
   })
-  
+  // if there is a category in the url
+  if ($routeParams.category) {
+    // we know we have selected a category, per angular-config
+    // lets find the id with a get request
+    categoryLink = "/categories/"+ $routeParams.category +"/";
+    //console.log("category link:     " + categoryLink); 
+    $http.get('/categories.json?keyword='+categoryLink).success(function(response) {
+      console.log("response ", response.categories[0]);
+      $scope.category = response.categories[0];
+      categoryId = $scope.category.id
+      // and now search to get results in this category
+      $scope.search();
+    }).error(function(response){
+      console.log("error in get category");
+    })
+  } else {
+    // if we have no category in the url, get all
+    $http.get('pins.json').success(function(data){
+      $scope.pins = data.pins;
+      //var numberOfPins = data.pins.length;
+    });
+  }
+
 }])
