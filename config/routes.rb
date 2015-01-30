@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'pins' => 'pins#index'
   get 'pins/:id' => 'pins#show'
 
+  get 'categories/' => 'pins#show'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

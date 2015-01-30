@@ -1,9 +1,17 @@
 class PinsController < ApplicationController
 
   def index
-    permitted_params = params.permit(:category_id)
+    if params[:keyword]||params[:category_id] 
+      puts "THIS SHOULD NOT HAPPEN WHEN I REFRESH!"
+      permitted_params = params.permit(:category_id)
 
-    @pins = Pin.where("title like '%#{params[:keyword]}%'").where(permitted_params).limit(50)
+      @pins = Pin.includes(:category).where(permitted_params).where("title like '%#{params[:keyword]}%'").limit(50)
+
+    else
+      puts "THIS SHOULD HAPPEN WHEN I REFRESH! - YES"
+      @pins = Pin.includes(:category).all
+    end
+
   end
 
   def show
