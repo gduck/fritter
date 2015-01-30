@@ -48,12 +48,16 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
 
   // Zoom in and out part
   $scope.open = false
-  $scope.togglePin = function(){
+  $scope.togglePin = function(pin_id){
+    console.log(pin_id);
+    $http.get('pins/' + pin_id + '.json').success(function(data){
+      console.log(data);
+      $scope.pin = data.pins[0];
+    })
     $scope.open = !$scope.open;
     console.log('click');
   }
 
-  $scope.helloworld = 'Harry';
 
 
 }])
