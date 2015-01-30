@@ -2,13 +2,12 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', func
 
   $scope.searchTerms = '';
   $scope.category = '';
-  var categoryId;
   var url = '';
 
   $scope.search = function() {
+    // had trouble when categoryID was nil
     if ($scope.category) { 
-      categoryId = $scope.category.id;
-      url = 'pins.json?keyword=' + $scope.searchTerms +'&category_id=' + categoryId;
+      url = 'pins.json?keyword=' + $scope.searchTerms +'&category_id=' + $scope.category.id;
     } else {
       url = 'pins.json?keyword=' + $scope.searchTerms;
     }
@@ -22,20 +21,18 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', func
   $http.get('/categories.json').success(function(data){
     $scope.categories = data.categories;
   })
-
   // if there is a category in the url
   if ($routeParams.category) {
     // we know we have selected a category, per angular-config
     // lets find the id with a get request
     categoryLink = "/categories/"+ $routeParams.category +"/";
-    //console.log("category link:     " + categoryLink);
-
+    //console.log("category link:     " + categoryLink); 
     $http.get('/categories.json?keyword='+categoryLink).success(function(response) {
       console.log("response ", response.categories[0]);
       $scope.category = response.categories[0];
       categoryId = $scope.category.id
+      // and now search to get results in this category
       $scope.search();
-
     }).error(function(response){
       console.log("error in get category");
     })
