@@ -22,10 +22,11 @@ namespace :scrapefirst do
     category_list.each do |item|
       category_name = item.css("div.name").inner_text
       category_link = item['href']
+      puts category_link
       #puts category_name
-      new_category = Category.create(link: category_link, name: category_name)
-      puts new_category.name
-      puts new_category.link
+      #new_category = Category.create(simplified_name: category_link, name: category_name)
+      #puts new_category.name
+      #puts new_category.link
     end
   end
 end

@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20150120095548) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
-    t.string   "link"
+    t.string   "simplified_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -25,7 +25,9 @@ ActiveRecord::Schema.define(version: 20150120095548) do
     t.string   "title"
     t.text     "optional_info"
     t.string   "source_url"
-    t.string   "img_url"
+    t.string   "domain_url"
+    t.string   "img_sm_url"
+    t.string   "img_lg_url"
     t.integer  "like_count"
     t.integer  "category_id"
     t.datetime "created_at"
