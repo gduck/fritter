@@ -126,7 +126,6 @@ p.description{
   }
 }
 
-
 .pin-show-modal{
   position: fixed;
   z-index: 300;
@@ -135,5 +134,7 @@ p.description{
   height: 100vh;
   text-align: center;
   background-color: $secondary-background-color;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
