@@ -1,26 +1,44 @@
 app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 
+  // we have all the categories in $scope.categories
+  $http.get('/categories.json').success(function(data){
+    $scope.categories = data.categories;
+    console.log('sucess on get categories: ', $scope.categories);
+  })
+
   $scope.searchTerms = '';
+  var category_id;
+
+  if ($routeParams.category) {
+    // we know we have selected a category.
+    // lets find the id from $scope.categories
+    categoryLink = "/categories/"+$routeParams.category;
+    console.log("category link:     " + categoryLink);
+  }
+
+  $scope.setCategory = function(currentId) {
+    category_id = currentId;
+    // do a redirect url here $location
+    $scope.search();
+  }
 
   $scope.search = function() {
-    $http.get('pins.json?keyword='+$scope.searchTerms).success(function(response){
+    
+    $http.get('pins.json?keyword='+$scope.searchTerms+'&category_id='+category_id).success(function(response){
+      console.log("doing a search - ", category_id);
       $scope.pins = response.pins;
+      console.log(response);
     })
   }
 
-  $http.get('pins.json').success(function(data){
-    console.log('sucess on getting pins from HomeCtrl');
-    // console.log(data);
-    $scope.pins = data.pins;
-    var numberOfPins = data.pins.length;
-    // console.log('from controller I see', angular.element('.box').length,'boxes');
-  });
-
-  $http.get('/categories.json').success(function(data){
-    console.log('sucess on get categories');
-    console.log($routeParams);
-    $scope.categories = data.categories;
-  })
+  // $http.get('pins.json').success(function(data){
+  //   console.log('sucess on getting pins from HomeCtrl');
+  //   // console.log(data);
+  //   $scope.pins = data.pins;
+  //   var numberOfPins = data.pins.length;
+  //   // console.log('from controller I see', angular.element('.box').length,'boxes');
+  //   console.log($scope.categories)
+  // });
 
 
 }])
