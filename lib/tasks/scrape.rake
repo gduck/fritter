@@ -13,7 +13,7 @@ namespace :scrape do
     end
 
     Category.all.each do |category|
-      url = "https://www.pinterest.com" + category.link
+      url = "https://www.pinterest.com/categories/" + category.simplified_name
       puts url
       # this is to pick up scraping 
       # half way through in case of (404) error
@@ -24,8 +24,14 @@ namespace :scrape do
   end
 
   def scrape_site(url, categoryID)
-    document = open(url).read
-    html_doc = Nokogiri::HTML(document)
+    
+    begin
+      document = open(url).read
+      html_doc = Nokogiri::HTML(document)
+    rescue OpenURI::HTTPError => ex
+      puts "Missing category URL"
+      return
+    end
 
     data_pin_link = "a.pinImageWrapper"
     pin_links = html_doc.css(data_pin_link)
@@ -52,9 +58,15 @@ namespace :scrape do
 
   # url will be of format 'https://www.pinterest.com/pin/556264991450154362/'
   def scrape_one_page(url, categoryID)
-    puts "about to scrape :" + url
-    document = open(url).read
-    html_doc = Nokogiri::HTML(document)
+    begin
+      puts "about to scrape :" + url
+      document = open(url).read
+      html_doc = Nokogiri::HTML(document)
+    rescue OpenURI::HTTPError => ex
+      puts "Missing pin URL"
+      return
+    end
+
     newPin = Pin.new(category_id: categoryID)
     
     puts "--------------------"
@@ -70,7 +82,7 @@ namespace :scrape do
     #puts title.to_s
     if not title.any?
       puts "* no title for this one, using page title instead"
-      newPin.title = html_doc.css('title').text.to_s.gsub(/\| Pinterest/, "")
+      newPin.title = html_doc.css('title').text.to_s.gsub(/Pinterest/, "fritter")
       puts "PAGE TITLE "+ newPin.title
     else
       #puts title.inspect
@@ -84,6 +96,12 @@ namespace :scrape do
     puts "the original link" + link
     newPin.source_url = orig_link[0]['href']
     puts "SOURCE URL "+ newPin.source_url
+    domain_name = newPin.source_url.split('/',5).third
+    if domain_name.index("www.") == 0
+      domain_name = domain_name[4..-1]
+    end
+    puts "domain name "+ domain_name
+    newPin.domain_url = domain_name
 
     # occasional pictures have a div with class pinImg some have pinImage. weird
     data_picture_url = ["img.pinImg", "img.pinImage"]
@@ -96,8 +114,10 @@ namespace :scrape do
         return
       end
     end
-    newPin.img_url = picture_url[0]['src']
-    puts "IMG URL " + newPin.img_url
+    newPin.img_sm_url = picture_url[0]['src']
+    puts "IMG URL " + newPin.img_sm_url
+
+
 
     # not using repins in fritter at the moment
     # data_repin_count = "meta[name=\"pinterestapp:repins\"]"
