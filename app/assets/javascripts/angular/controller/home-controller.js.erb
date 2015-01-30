@@ -1,5 +1,15 @@
 app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 
+  $scope.searchTerms = '';
+
+  $scope.search = function() {
+    console.log("here in search");
+    $http.get('pins.json?keyword='+$scope.searchTerms).success(function(response){
+      console.log("getting a new list of pins");
+      $scope.pins = response.pins;
+    })
+  }
+
   $http.get('pins.json').success(function(data){
     console.log('sucess on getting pins from HomeCtrl');
     // console.log(data);
@@ -13,5 +23,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
     console.log($routeParams);
     $scope.categories = data.categories;
   })
+
+
   
 }])

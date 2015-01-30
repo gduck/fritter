@@ -6,8 +6,8 @@
         <div class="row">
           <a href="#/" class="lineup btn btn-default col-xs-1" id="logo"><img src="assets/logo.gif"  height="20px"></a>
           <!-- <form > -->
-            <input ng-model="search_terms" type="text" id="search-bar" class="btn btn-default lineup col-xs-9" placeholder="Search">
-            <!-- {{search_terms}} -->
+            <input ng-model="searchTerms" ng-keyup="search()" type="text" id="search-bar" class="btn btn-default lineup col-xs-9" placeholder="Search">
+            <!-- {{searchTerms}} -->
           <!-- </form> -->
           <button id="dropdown" class="lineup btn btn-default dropdown-toggle col-xs-1" data-toggle="dropdown">
             <div class="glyphicon glyphicon-list"></div>
