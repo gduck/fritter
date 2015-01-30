@@ -11,4 +11,5 @@ app.controller('PinCtrl', ['$scope', '$http', '$routeParams',
     $scope.pin = data.pins[0];
   })
 
+
 }])

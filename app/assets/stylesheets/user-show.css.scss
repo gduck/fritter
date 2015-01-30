@@ -4,8 +4,12 @@
   width: 70px;
   height: auto;
   padding-top: 10px;
-  
+  z-index: 102;
 }
+
+// .profile-picture{
+//   z-index: 152;
+// }
 
 h1.user{
   color: $primary-font-color;
@@ -28,16 +32,17 @@ h1.user{
 }
 
 .user-header{
-  z-index: 91;
+  z-index: 88;
   position: fixed;
   top: 55px;
   width: 100%;
   background-color: $tertiary-background-color;
   border-top: 1px $secondary-background-color solid; 
   border-bottom: 1px $secondary-background-color solid;
-  height: 100px;
+  height: 62px;
 }
 
 #user-des{
-  margin-top: 160px;
+  margin-top: 55px;
+  z-index: 102;
 }

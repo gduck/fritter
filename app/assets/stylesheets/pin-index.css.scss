@@ -7,7 +7,7 @@ div.pin-outer{
 div.pin{
   width: 100%;
   border-radius: 10px;
-  border: solid $primary-background-color 2px;
+  // border: solid $primary-background-color 2px;
 }
 
 div.thumbnail{
@@ -107,6 +107,7 @@ h1.title{
 p.description{
   font-size: 11px;
   padding: 20px;
+  overflow-wrap: break-word;
   &:hover {
     // cursor: wait;
   }
@@ -123,5 +124,17 @@ p.description{
     cursor: url('zoom-in.png');
     // cursor: wait;
   }
+}
+
+.pin-show-modal{
+  position: fixed;
+  z-index: 300;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  background-color: $secondary-background-color;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 

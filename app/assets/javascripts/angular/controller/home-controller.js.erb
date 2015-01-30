@@ -21,6 +21,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
   $http.get('/categories.json').success(function(data){
     $scope.categories = data.categories;
   })
+
   // if there is a category in the url
   if ($routeParams.category) {
     // we know we have selected a category, per angular-config
@@ -42,6 +43,21 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
       $scope.pins = data.pins;
       //var numberOfPins = data.pins.length;
     });
+  }
+
+  // Zoom in and out part
+  $scope.open = false
+  $scope.openPin = function(pin_id){
+    console.log(pin_id);
+    $http.get('pins/' + pin_id + '.json').success(function(data){
+      console.log(data);
+      $scope.pin = data.pins[0];
+    })
+    $scope.open = !$scope.open;
+    console.log('click');
+  }
+  $scope.closePin = function(){
+    $scope.open = !$scope.open;
   }
 
 }])

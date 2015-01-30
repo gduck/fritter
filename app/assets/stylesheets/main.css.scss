@@ -2,6 +2,7 @@
 
 .background{
   background-color: $secondary-background-color;
+  min-height: 100vh;
 }
 
 hr{
@@ -16,6 +17,6 @@ hr{
   border-bottom: 1px solid $primary-background-color;
 }
 
-#home-index-pins{
-  margin-top: 56px;
+.home-index-pins{
+  margin-top: 56px; 
 }
