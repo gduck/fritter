@@ -11,12 +11,5 @@ app.controller('PinCtrl', ['$scope', '$http', '$routeParams',
     $scope.pin = data.pins[0];
   })
 
-  // Zoom in and out part
-  // $scope.open = false;
-  // $scope.togglePin = function(pin_id){
-  //   $scope.open = !$scope.open;
-  // }
-
-
 
 }])

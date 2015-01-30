@@ -1,38 +1,37 @@
-<!-- <div class="background container-fluid"> -->
-  <div class="row text-center">
+<div class="row text-center">
 
-    <div id="cross">
-      <button  class="btn btn-default btn-md glyphicon glyphicon-remove back"></button>
-    </div>
-    
-    <div class="wrapper">
+  <div id="cross">
+    <button  class="btn btn-default btn-md glyphicon glyphicon-remove back"></button>
+  </div>
+  
+  <div class="wrapper">
 
-        <div class="nav-content">
-          <div class="big-globe">
-            <button class=" btn btn-default btn-sm glyphicon glyphicon-globe"><a href='{{ pin.source_url }}' class="big-link">Visit Site</a></button>
-          </div>
-          <div class="big-heart">
-            <button class=" btn btn-default btn-sm  glyphicon glyphicon-heart"></button>
-          </div>
+      <div class="nav-content">
+        <div class="big-globe">
+          <button class=" btn btn-default btn-sm glyphicon glyphicon-globe"><a href='{{ pin.source_url }}' class="big-link">Visit Site</a></button>
         </div>
-          
-        <a href="{{ pin.source_url }}">
-          <div class="image-content">
-            <img src="{{pin.img_url}}" class="big-image">
-          </div>
-        </a>
-
-        <div class="footer-content">
-          <div class="footer-url">
-            <a href="{{ pin.source_url }}" class="footer-link"> Found on: {{ pin.source_url }} </a>
-          </div>
-          <div class="footer-title">
-            <h2 class="title">{{ pin.title }}</h2>
-          </div>
-          <div>
-            <p class="des">{{ pin.optional_info }}</p>
-          </div>
+        <div class="big-heart">
+          <button class=" btn btn-default btn-sm  glyphicon glyphicon-heart"></button>
         </div>
-    </div>
+      </div>
+        
+      <a href="{{ pin.source_url }}">
+        <div class="image-content">
+          <img src="{{pin.img_url}}" class="big-image">
+        </div>
+      </a>
+
+      <div class="footer-content">
+        <div class="footer-url">
+          <a href="{{ pin.source_url }}" class="footer-link"> Found on: {{ pin.source_url }} </a>
+        </div>
+        <div class="footer-title">
+          <h2 class="title">{{ pin.title }}</h2>
+        </div>
+        <div>
+          <p class="des">{{ pin.optional_info }}</p>
+        </div>
+      </div>
   </div>
 </div>
+

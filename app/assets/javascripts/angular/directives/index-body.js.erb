@@ -26,12 +26,3 @@ app.directive('onFinishRender', ['$timeout', function ($timeout){
     }
   }
 }]);
-
-app.directive('pinShow', ['$http', function($http){
-  return {
-    restrict: 'E',
-    templateUrl: "<%= asset_path('pin-show.html') %>",
-
-  };
-}]);
-

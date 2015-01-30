@@ -18,4 +18,15 @@ app.controller('UserCtrl', ['$scope', '$http',
     $scope.categories = data.categories;
   })
 
+  $scope.open = false;
+  $scope.togglePin = function(pin_id){
+    console.log(pin_id);
+    $http.get('pins/' + pin_id + '.json').success(function(data){
+      console.log(data);
+      $scope.pin = data.pins[0];
+    })
+    $scope.open = !$scope.open;
+    console.log('click');
+  }
+
 }])
