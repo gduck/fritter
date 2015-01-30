@@ -5,7 +5,7 @@
         <div class="panel-visible">
 
      <!-- <a href="#/pins/{{pin.id}}" > -->
-          <span class="pin-show-link" ng-show="true" ng-click="togglePin(pin.id)"></span>
+          <span class="pin-show-link" ng-show="true" ng-click="openPin(pin.id)"></span>
           <!-- </a> -->
 
           <div class="like-button"><button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
@@ -29,4 +29,4 @@
   </div>
 </div>
 
-<pin-show class="pin-show-modal" ng-show="open" ng-click="togglePin(pin.id)"></pin-show>
+<pin-show class="pin-show-modal" ng-show="open" ng-click="closePin()"></pin-show>
