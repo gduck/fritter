@@ -1,3 +1,3 @@
 json.name @category.name
-json.link @catgory.simplified_name
+json.simplified_name @catgory.simplified_name
 json.id @category.id
