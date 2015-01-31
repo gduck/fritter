@@ -11,7 +11,7 @@
           </button>
           <ul class="dropdown-menu list-inline" role="menu">
             <li class="dropdown-list" ng-repeat='category in categories'>
-              <a ng-href="#{{category.link}}" class="dropdown-category">{{ category.name }}</a>
+              <a ng-href="#/categories/{{ category.simplified_name }}" class="dropdown-category">{{ category.name }}</a>
             </li>
           </ul>
         </div>

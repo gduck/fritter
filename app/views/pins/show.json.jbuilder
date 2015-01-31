@@ -5,7 +5,7 @@ json.pins [@pin] do |pin|
   json.optional_info pin.optional_info
   json.source_url pin.source_url
   json.domain_url pin.domain_url
-  json.img_url pin.img_sm_url
+  json.img_sm_url pin.img_sm_url
   json.like_count pin.like_count
   json.category_name pin.category.name
 end
