@@ -28,9 +28,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
   if ($routeParams.category) {
     // we know we have selected a category, per angular-config
     // lets find the id with a get request
-    categoryLink = "/categories/"+ $routeParams.category +"/";
-    //console.log("category link:     " + categoryLink); 
-    $http.get('/categories.json?keyword='+categoryLink).success(function(response) {
+    $http.get('/categories.json?keyword='+$routeParams.category).success(function(response) {
       console.log("response ", response.categories[0]);
       $scope.category = response.categories[0];
       categoryId = $scope.category.id
