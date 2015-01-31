@@ -7,4 +7,5 @@ class CreateCategories < ActiveRecord::Migration
       t.timestamps
     end
   end
+  add_index :categories, :simplified_name
 end
