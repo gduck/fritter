@@ -1,5 +1,5 @@
-angular.factory('userServices', function() {
-  var user;
+app.factory('UserServices', function() {
+  var user = {};
 
   user.signedIn = false;
   user.email = "";

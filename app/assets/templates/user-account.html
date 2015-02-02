@@ -6,19 +6,18 @@
 
       <form ng-controller="UserAccCtrl" ng-submit="userSignUp()">
         <input class="input-fields" type="text" placeholder="Email" ng-model="signupEmail">
-        <input class="input-fields" type="text" placeholder="Username">
-        <input class="input-fields" type="password" placeholder="Password">
-        <input class="input-fields" type="password" placeholder="Confirm Password">
-        <button class="btn" ng-click="userSubmit()">Sign Up</button>
+        <input class="input-fields" type="text" placeholder="Username" ng-model="signupUsername">
+        <input class="input-fields" type="password" placeholder="Password" ng-model="signupPassword">
+        <button class="btn" ng-click="userSignUp()">Sign Up</button>
       </form>
 
     </tab>
     <tab heading="Sign In">
 
       <form ng-controller="UserAccCtrl" ng-submit="userSignIn()">
-        <input class="input-fields" type="text" placeholder="Email">
-        <input class="input-fields" type="password" placeholder="Password">
-        <button class="btn" ng-click="userSubmit()">Sign In</button>
+        <input class="input-fields" type="text" placeholder="Email" ng-model="signinEmail">
+        <input class="input-fields" type="password" placeholder="Password" ng-model="signinPassword">
+        <button class="btn" ng-click="userSignIn()">Sign In</button>
       </form>
 
     </tab>
