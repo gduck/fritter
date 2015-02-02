@@ -1,4 +1,4 @@
-<div id="masonry-container" class="masonry masonry-brick transitions-enabled infinite-scroll clearfix background">
+<div id="masonry-container" class="masonry masonry-brick transitions-enabled infinite-scroll clearfix background" infinite-scroll='loadMore()'  infinite-scroll-distance='1'>
   <div id="{{pin.id}}" class="pin-outer col2 box has-gutters" ng-repeat='pin in pins' on-finish-render>
     <div class="pin thumbnail">
       <div class="picture-wrap">
