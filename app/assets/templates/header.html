@@ -16,9 +16,10 @@
           </ul>
         </div>
       </div>
-      <a ng-controller="UserAccCtrl" ng-href="#/user/" class="header-right btn btn-default col-xs-2">
+      <a ng-controller="UserAccCtrl" ng-href="#/user" class="header-right btn btn-default col-xs-2">
         <img src="assets/minion.jpg" id="avatar"class="img-circle lineup">
-        <div id="user-name" class="lineup">{{user.email}}</div>
+        <div ng-show="user.signedIn" id="user-name" class="lineup">{{user.id}} {{user.email}}</div>
+        <div ng-show="!user.signedIn" id="user-name" class="lineup">Sign Up</div>
       </a>
     </div>
   </div>

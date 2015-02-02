@@ -3,15 +3,19 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
 
   $scope.user = UserServices;
 
-  $http.get("/user/get").success(function(response,status){
-    console.log(response);
-    UserServices.signedIn = response.signedIn;
-    UserServices.username = response.username;
-    UserServices.email = response.email;
-  });
-  
 
-$scope.userSignIn = function() {
+  $scope.getUserDetails = function() {
+    $http.get("/user/get").success(function(response,status){
+      console.log(response);
+      UserServices.signedIn = response.signedIn;
+      UserServices.id = response.id;
+      UserServices.username = response.username;
+      UserServices.email = response.email;
+    });
+  }
+  $scope.getUserDetails();
+
+  $scope.userSignIn = function() {
     var url = "/users/sign_in";
     var data = {
       'user': {
@@ -22,7 +26,7 @@ $scope.userSignIn = function() {
       'commit': "Sign In"
     };
     $http.post(url, data).success(function(response, status, xhr){
-      console.log("response ", response);
+      console.log("SUCCESSFUL signin response ", response);
       UserServices.signedIn = true;
       $location.path("/user");
     }).error(function(response) {
@@ -55,11 +59,17 @@ $scope.userSignIn = function() {
   }
 
   $scope.userSignOut = function(){
-    $http.delete("/users/sign_out").success(function(response,status){
+    var data = UserServices.id;
+    console.log(data);
+    console.log("about to logout");
+    $http.delete("/users/sign_out", data).success(function(response,status){
       console.log(response);
       UserServices.signedIn = false;
+      $location.path("/");
     }).error(function(response,status){
+      console.log("ERROR in signout");
       console.log(response);
+      console.log(status);
     });
   };
 

@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-
   def get
     @user = current_user
     render json: {signedIn: user_signed_in?, username: get_username, email: get_email}
