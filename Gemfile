@@ -41,6 +41,7 @@ gem 'better_errors', group: :development
 gem 'binding_of_caller', group: :development
 
 gem 'angularjs-rails'
+gem 'angular-ui-bootstrap-rails'
 
 gem 'masonry-rails'
 
