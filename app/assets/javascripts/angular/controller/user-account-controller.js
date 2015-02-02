@@ -5,12 +5,13 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
 
 
   $scope.getUserDetails = function() {
-    $http.get("/user/get").success(function(response,status){
-      console.log(response);
+    $http.get("/user/get.json").success(function(response,status){
+      console.log("the user services response is ", response);
       UserServices.signedIn = response.signedIn;
       UserServices.id = response.id;
       UserServices.username = response.username;
       UserServices.email = response.email;
+      console.log("in get user details ", UserServices);
     });
   }
   $scope.getUserDetails();
@@ -46,12 +47,14 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
       },
       'commit': "Sign Up"
     };
-    console.log(data);
+    console.log("this is the data", data);
     $http.post(url, data).success(function(response, status, xhr){
       UserServices.signedIn = true;
       console.log("SUCCESSFUL response ", response);
       console.log(status);
-      $location.path("/user");
+      $scope.getUserDetails();
+      console.log("USER SIGNUP current user ", UserServices);
+      // $location.path("/user");
     }).error(function(response) {
       console.log("problem!! - " + response);
       UserServices.signedIn = false;
