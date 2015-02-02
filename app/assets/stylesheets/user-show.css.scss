@@ -1,36 +1,37 @@
-@import "colors";
+// @import "colors";
 
-.profile-pix{
-  width: 70px;
-  height: auto;
-  padding-top: 10px;
-  z-index: 102;
-}
-
-// .profile-picture{
-//   z-index: 152;
+// .profile-pix{
+//   width: 70px;
+//   height: auto;
+//   padding-top: 10px;
+//   z-index: 2000;
 // }
 
-h1.user{
-  color: $primary-font-color;
-  z-index: 0;
-}
+// // .profile-picture{
+// //   z-index: 152;
+// // }
 
-.profile{
-  font-size: 12px;
-  text-align: center;
-  padding: 20px;
-  max-width: 450px;
-  display: inline-block;
-  z-index: 81;
-}
+// h1.user{
+//   color: $primary-font-color;
+//   z-index: 88;
+// }
 
-.user-details{
-  margin: 0; 
-  right: 15px;
-  position: fixed;
-  margin-top: 15px;
-}
+// .profile{
+//   font-size: 12px;
+//   text-align: center;
+//   padding: 20px;
+//   max-width: 450px;
+//   display: inline-block;
+//   z-index: 81;
+// }
+
+// .user-details{
+//   margin: 0; 
+//   right: 15px;
+//   position: fixed;
+//   margin-top: 15px;
+// }
+
 
 .user-details2{
   right: 15px;
@@ -38,18 +39,20 @@ h1.user{
   margin: 15px;
 }
 
-.user-header{
-  z-index: 88;
-  position: fixed;
-  top: 55px;
-  width: 100%;
-  background-color: $tertiary-background-color;
-  border-top: 1px $secondary-background-color solid; 
-  border-bottom: 1px $secondary-background-color solid;
-  height: 62px;
-}
 
-#user-des{
-  margin-top: 55px;
-  z-index: 102;
-}
+// .user-header{
+//   z-index: 88;
+//   position: fixed;
+//   top: 55px;
+//   width: 100%;
+//   background-color: $tertiary-background-color;
+//   border-top: 1px $secondary-background-color solid; 
+//   border-bottom: 1px $secondary-background-color solid;
+//   height: 62px;
+// }
+
+
+// #user-des{
+//   margin-top: 55px;
+//   z-index: 102;
+// }
