@@ -59,10 +59,11 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
   }
 
   $scope.userSignOut = function(){
-    var data = UserServices.id;
+    // var data = UserServices.id;
+    var data = "?id=12";
     console.log(data);
     console.log("about to logout");
-    $http.delete("/users/sign_out", data).success(function(response,status){
+    $http.delete("/users/sign_out.json").success(function(response,status){
       console.log(response);
       UserServices.signedIn = false;
       $location.path("/");
