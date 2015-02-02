@@ -75,5 +75,11 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
   }
 
 
+  $scope.whatever = function(){
+    console.log('whatever works!');
+    $http.get('pins.json').success(function(data){
+      $scope.pins.unshift(data.pins[1]);
+    });
+  }
 
 }])
