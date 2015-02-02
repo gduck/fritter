@@ -1,31 +1,31 @@
-<div id="masonry-container" class="masonry masonry-brick transitions-enabled infinite-scroll clearfix background" infinite-scroll=''  infinite-scroll-distance='1000'>
-  
-  <!-- <button ng-click="whatever()">Whatever</button> -->
-  <div id="{{pin.id}}" class="pin-outer col2 box has-gutters" ng-repeat='pin in pins track by $index' on-finish-render>
-    <div class="pin thumbnail">
-      <div class="picture-wrap">
-        <div class="panel-visible">
+<div infinite-scroll='nextPage()' infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
+  <div masonry>
+    <div  class="masonry-brick mybrick pin-outer col2 box has-gutters" id="{{pin.id}}" ng-repeat='pin in pins track by $index'>
+      <div class="pin thumbnail">
+        <div class="picture-wrap">
+          <div class="panel-visible">
 
-     <!-- <a href="#/pins/{{pin.id}}" > -->
-          <span class="pin-show-link" ng-show="true" ng-click="openPin(pin.id)"></span>
-          <!-- </a> -->
+       <!-- <a href="#/pins/{{pin.id}}" > -->
+            <span class="pin-show-link" ng-show="true" ng-click="openPin(pin.id)"></span>
+            <!-- </a> -->
 
-          <div class="like-button"><button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
+            <div class="like-button"><button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
+            </div>
+            <div class="url">
+              <a href='{{ pin.source_url }}' class="link glyphicon glyphicon-globe"><span class="source-url">{{ pin.source_url }}</span></a>
+            </div>
           </div>
-          <div class="url">
-            <a href='{{ pin.source_url }}' class="link glyphicon glyphicon-globe"><span class="source-url">{{ pin.source_url }}</span></a>
-          </div>
+          <img ng-src='{{ pin.img_sm_url }}' class="image">
         </div>
-        <img ng-src='{{ pin.img_sm_url }}' class="image">
-      </div>
-      <div class="caption">
-        <h2 class="category">{{ pin.category_name }}</h2>
-        <h1 class="title" >
-          {{ pin.title }}
-        </h1>
-        <p class="description">
-          {{ pin.optional_info }}
-        </p>
+        <div class="caption">
+          <h2 class="category">{{ pin.category_name }}</h2>
+          <h1 class="title" >
+            {{ pin.title }}
+          </h1>
+          <p class="description">
+            {{ pin.optional_info }}
+          </p>
+        </div>
       </div>
     </div>
   </div>

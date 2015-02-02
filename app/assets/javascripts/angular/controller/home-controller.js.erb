@@ -2,6 +2,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
 
   $scope.searchTerms = '';
   $scope.category = '';
+  $scope.limit = 24; // limit = the number of pins each get requests retrieve
+  $scope.offset = 0; // the number of times it does loadMore, for inifinity scroll
+    
   var url = '';
 
   $scope.search = function() {
@@ -40,27 +43,42 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
   } else {
     // if we have no category in the url, get all
 
-    var limit = 24; // limit = the number of pins each get requests retrieve
-    var offset = 0; // the number of times it does loadMore, for inifinity scroll
+    
 
-    $http.get('pins.json?limit=' + limit + '&offset=' + offset).success(function(data){
+    $http.get('pins.json?limit=' + $scope.limit + '&offset=' + $scope.offset).success(function(data){
       $scope.pins = data.pins;
+      console.log('pins with offset ', $scope.offset, ': ', $scope.pins);
+    });
+    $scope.busy = false;
+    $scope.after = '';
+  }
+
+  $scope.nextPage = function() {
+    if ($scope.busy) return;
+    $scope.busy = true;
+    $scope.offset += $scope.limit;
+    $http.get('pins.json?limit=' + $scope.limit + '&offset=' + $scope.offset).success(function(data){
+      console.log('pins with offset ', $scope.offset, ': ', data.pins);
+      for(var i = 0; i <= $scope.limit-1; i++) {
+        $scope.pins.push(data.pins[i]);
+      }
+      $scope.busy = false;
     });
   }
 
-  $scope.loadMore = function() {
-    offset += limit;
-    console.log('loadmore', offset);
-    $http.get('pins.json?limit=' + limit + '&offset=' + offset).success(function(data){
-      for(var i = 0; i <= limit-1; i++) {
-        $scope.pins.push(data.pins[i]);
-      }
-    });
-    $('#masonry-container').masonry();
-  };
+  // $scope.loadMore = function() {
+  //   offset += limit;
+  //   console.log('loadmore', offset);
+  //   $http.get('pins.json?limit=' + limit + '&offset=' + offset).success(function(data){
+  //     for(var i = 0; i <= limit-1; i++) {
+  //       $scope.pins.push(data.pins[i]);
+  //     }
+  //   });
+  //   $('#masonry-container').masonry();
+  // };
 
   // Zoom in and out part
-  $scope.open = false
+  $scope.open = false;
   $scope.openPin = function(pin_id){
     console.log(pin_id);
     $http.get('pins/' + pin_id + '.json').success(function(data){

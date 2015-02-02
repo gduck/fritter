@@ -25,9 +25,21 @@
   <h1>angular-masonry</h1>
   <hr>
   <div style="margin-left: 15px;">
-    <div infinite-scroll='bricks.nextPage()' infinite-scroll-disabled='bricks.busy' infinite-scroll-distance='1'>
+    <!-- <div infinite-scroll='bricks.nextPage()' infinite-scroll-disabled='bricks.busy' infinite-scroll-distance='1'>
       <div masonry options="{ 'columnWidth': 400,'gutter': 5}">
         <div class="masonry-brick"  ng-repeat="brick in bricks.items">
+          <img ng-src="{{ brick.src }}" alt="A masonry brick">
+          <h1 style="font-size: 15px;">{{ brick.title }}</h1>
+          <p>Aug 23, 2013</p>
+          <p>Burnaby, BC</p>
+        </div>
+      </div>
+    </div> -->
+
+
+    <div infinite-scroll='nextPage()' infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
+      <div masonry options="{ 'columnWidth': 400,'gutter': 5}">
+        <div class="masonry-brick"  ng-repeat="brick in bricks">
           <img ng-src="{{ brick.src }}" alt="A masonry brick">
           <h1 style="font-size: 15px;">{{ brick.title }}</h1>
           <p>Aug 23, 2013</p>
