@@ -55,7 +55,7 @@ $scope.userSignIn = function() {
   }
 
   $scope.userSignOut = function(){
-    $http.delete("/users/sign_out/").success(function(response,status){
+    $http.delete("/users/sign_out").success(function(response,status){
       console.log(response);
       UserServices.signedIn = false;
     }).error(function(response,status){

@@ -16,9 +16,9 @@
           </ul>
         </div>
       </div>
-      <a href="#/user/ "class="header-right btn btn-default col-xs-2">
+      <a ng-controller="UserAccCtrl" ng-href="#/user/" class="header-right btn btn-default col-xs-2">
         <img src="assets/minion.jpg" id="avatar"class="img-circle lineup">
-        <div id="user-name" class="lineup">Minion Kevin</div>
+        <div id="user-name" class="lineup">{{user.email}}</div>
       </a>
     </div>
   </div>

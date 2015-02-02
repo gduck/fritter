@@ -1,18 +1,15 @@
 app.controller('UserCtrl', ['$scope', '$http', '$location', 'UserServices',
   function($scope, $http, $location, UserServices){
 
-  // $http.get('user.json').success(function(data){
-  //   console.log('sucess on getting users');
-  //   console.log(data);
-  //   $scope.user = data.user;
-  // })
+  // if (!UserServices.signedIn) {
+  //   console.log("redirecting....");
+  //   $location.path('/user/user-account.html');
+  // } 
 
-  if (!UserServices.signedIn) {
-    console.log("redirecting....");
-    $location.path('/user/user-account.html');
-  } else {
-    $scope.user = UserServices;
-  }
+  // UserServices sets the current user data whenever it is changed
+  // ie on signin, signup 
+  // TODO on edit
+  $scope.user = UserServices;
 
   $http.get('pins.json').success(function(data){
     //console.log('success on getting pins from UserCtrl');
