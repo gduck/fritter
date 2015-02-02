@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   # validates :username, presence: true, uniqueness: true
 
   # missing relationship info
+  has_many :upjoins
+  has_many :pins, through: :upjoins
 end
