@@ -2,51 +2,77 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
 
   $scope.searchTerms = '';
   $scope.category = '';
-  var url = '';
+  var limit = 12; // limit = the number of pins each get requests retrieve
+  var offset = 0; // the number of times it does loadMore, for inifinity scroll
+  var url;
 
-  $scope.search = function() {
-    // had trouble when categoryID was nil
-    if ($scope.category) { 
-      url = 'pins.json?keyword=' + $scope.searchTerms +'&category_id=' + $scope.category.id;
-    } else {
-      url = 'pins.json?keyword=' + $scope.searchTerms;
-    }
-    $http.get(url).success(function(response){
-      //console.log("doing a search - ", categoryId);
-      $scope.pins = response.pins;
-      //console.log($scope.pins);
-      //$('#masonry-container').masonry();
-      //console.log("just ran masonry");
+  $scope.categoryId = '';
+  // First we check if there is a category in the url
+  if ($routeParams.category) {
+    // we know we have selected a category, per angular-config
+    // lets find the id with a get request
+    $http.get('/categories.json?keyword='+$routeParams.category).success(function(data) {
+      console.log("data ", data.categories[0]);
+      $scope.category = data.categories[0];
+      $scope.categoryId = $scope.category.id;
+      getPins();
+    }).error(function(data){
+      console.log("error in get category");
     })
+  } else {
+    getPins();
   }
-  
+
+  // Load the categories for the header
   $http.get('/categories.json').success(function(data){
     $scope.categories = data.categories;
   })
 
-  // if there is a category in the url
-  if ($routeParams.category) {
-    // we know we have selected a category, per angular-config
-    // lets find the id with a get request
-    $http.get('/categories.json?keyword='+$routeParams.category).success(function(response) {
-      console.log("response ", response.categories[0]);
-      $scope.category = response.categories[0];
-      categoryId = $scope.category.id
-      // and now search to get results in this category
-      $scope.search();
-    }).error(function(response){
-      console.log("error in get category");
-    })
-  } else {
-    // if we have no category in the url, get all
-    $http.get('pins.json').success(function(data){
+
+  // Get the pins on the first time the page is loaded. 
+  // url is always the same to add the category or keywords to the query if there are any. 
+  // If there is no category or keyword, the PinController in the back-end will handle it
+  function getPins () {
+    url = 'pins.json?category_id='+$scope.categoryId+'&keyword='+$scope.searchTerms+'&limit='+limit+'&offset='+offset;
+    $http.get(url).success(function(data){
       $scope.pins = data.pins;
-      //var numberOfPins = data.pins.length;
+      console.log('pins with offset ', offset, ': ', $scope.pins);
+    });
+    $scope.busy = false;
+    $scope.after = '';
+  }
+
+  $scope.search = function() {
+    var offset = 0; // reset the offset
+    // Get the pins with the updated keyword. 
+    // url is always the same to add the category to the query if there is one. 
+    // If there is no category the PinController in the back-end will handle it
+    url = 'pins.json?category_id='+$scope.categoryId+'&keyword='+$scope.searchTerms+'&limit='+limit+'&offset='+offset;
+    $http.get(url).success(function(data){
+      // Override the pins with the new data
+      $scope.pins = data.pins;
+    })
+  }
+
+  $scope.nextPage = function() {
+    if ($scope.busy) return;
+    $scope.busy = true;
+    // increment the offset
+    offset += limit;
+    // get the next pins (still taking into account the category or keywords if there are any)
+    url = 'pins.json?category_id='+$scope.categoryId+'&keyword='+$scope.searchTerms+'&limit='+limit+'&offset='+offset;
+    $http.get(url).success(function(data){
+      console.log('pins with offset ', offset, ': ', data.pins);
+      for(var i = 0; i <= limit-1; i++) {
+        $scope.pins.push(data.pins[i]);
+      }
+      $scope.busy = false;
     });
   }
 
+
   // Zoom in and out part
-  $scope.open = false
+  $scope.open = false;
   $scope.openPin = function(pin_id){
     console.log(pin_id);
     $http.get('pins/' + pin_id + '.json').success(function(data){
