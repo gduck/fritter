@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+
+
   def get
     render json: {signedIn: user_signed_in?, username: get_username, email: get_email}
   end
@@ -15,5 +17,7 @@ class UsersController < ApplicationController
       return current_user.email
     end
   end
+
+
 
 end
