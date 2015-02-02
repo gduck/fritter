@@ -1,6 +1,11 @@
 
 <div class="text-center col-xs-offset-1 col-xs-10">
 
+<div>User: {{user}}</div>
+<div ng-show="user.signedIn">
+  <button>Logout</button>
+</div>
+
 	<tabset justified="true">
     <tab heading="Sign Up - New User">
 
