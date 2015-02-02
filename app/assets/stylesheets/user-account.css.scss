@@ -1,0 +1,44 @@
+@import "colors";
+
+
+
+h1.user{
+  color: $primary-font-color;
+  z-index: 0;
+}
+
+.profile{
+  font-size: 12px;
+  text-align: center;
+  padding: 20px;
+  max-width: 450px;
+  display: inline-block;
+  z-index: 81;
+}
+
+.user-details{
+  right: 15px;
+  position: fixed;
+  margin: 15px; 
+}
+
+.user-header{
+  z-index: 88;
+  position: fixed;
+  top: 55px;
+  width: 100%;
+  background-color: $tertiary-background-color;
+  border-top: 1px $secondary-background-color solid; 
+  border-bottom: 1px $secondary-background-color solid;
+  height: 62px;
+}
+
+#user-des{
+  margin-top: 55px;
+  z-index: 102;
+}
+
+.padded-form {
+  padding: 20px;
+  margin: 20px;
+}

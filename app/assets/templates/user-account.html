@@ -1,31 +1,33 @@
 
 <div class="text-center col-xs-offset-1 col-xs-10">
 
-<div>User: {{user}}</div>
-<div ng-show="user.signedIn">
-  <a ng-click="userSignOut()"href="">Logout</a>
-</div>
+  <div>User: {{user}}</div>
+  <div ng-show="user.signedIn">
+    <a ng-click="userSignOut()"href="">Logout</a>
+  </div>
 
-	<tabset justified="true">
-    <tab heading="Sign Up - New User">
+  <div class="col-xs-offset-1 col-xs-10 padded-form">
+  	<tabset justified="true">
+      <tab heading="Sign Up - New User">
 
-      <form ng-controller="UserAccCtrl" ng-submit="userSignUp()">
-        <input class="input-fields" type="text" placeholder="Email" ng-model="signupEmail">
-        <input class="input-fields" type="text" placeholder="Username" ng-model="signupUsername">
-        <input class="input-fields" type="password" placeholder="Password" ng-model="signupPassword">
-        <button class="btn" ng-click="userSignUp()">Sign Up</button>
-      </form>
+        <form ng-controller="UserAccCtrl" ng-submit="userSignUp()" class="form-horizontal">
+          <input class="form-control input-fields" type="text" placeholder="Email" ng-model="signupEmail">
+          <input class="form-control input-fields" type="text" placeholder="Username" ng-model="signupUsername">
+          <input class="form-control input-fields" type="password" placeholder="Password" ng-model="signupPassword">
+          <button class="btn" ng-click="userSignUp()">Sign Up</button>
+        </form>
 
-    </tab>
-    <tab heading="Sign In">
+      </tab>
+      <tab heading="Sign In">
 
-      <form ng-controller="UserAccCtrl" ng-submit="userSignIn()">
-        <input class="input-fields" type="text" placeholder="Email" ng-model="signinEmail">
-        <input class="input-fields" type="password" placeholder="Password" ng-model="signinPassword">
-        <button class="btn" ng-click="userSignIn()">Sign In</button>
-      </form>
+        <form ng-controller="UserAccCtrl" ng-submit="userSignIn()" class="form-horizontal">
+          <input class="form-control input-fields" type="text" placeholder="Email" ng-model="signinEmail">
+          <input class="form-control input-fields" type="password" placeholder="Password" ng-model="signinPassword">
+          <button class="btn" ng-click="userSignIn()">Sign In</button>
+        </form>
 
-    </tab>
-  </tabset>  
+      </tab>
+    </tabset>  
+  </div>
 </div>
 
