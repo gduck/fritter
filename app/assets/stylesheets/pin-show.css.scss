@@ -54,6 +54,16 @@ button.back{
   }
 }
 
+#numLikes{
+  display: inline-block;
+  // border-left: 2px solid $secondary-font-color;
+  margin-left: 8px; 
+}
+
+button.glyphicon-heart{
+  display: inline-block;
+}
+
 .nav-content div.big-globe{
   display: inline-block;
 }
