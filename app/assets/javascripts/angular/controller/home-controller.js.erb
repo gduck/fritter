@@ -1,4 +1,4 @@
-app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$timeout', function($scope, $http, $routeParams, $timeout){
+app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 
   $scope.searchTerms = '';
   $scope.category = '';
@@ -15,7 +15,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$timeout', funct
       //console.log("doing a search - ", categoryId);
       $scope.pins = response.pins;
       //console.log($scope.pins);
-      // $('#masonry-container').masonry();
+      //$('#masonry-container').masonry();
       //console.log("just ran masonry");
     })
   }
