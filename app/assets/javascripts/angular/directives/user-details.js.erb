@@ -1,6 +1,8 @@
 app.directive('userDetails', ['$http', function($http){
   return {
     restrict: 'E',
-    templateUrl: "<%= asset_path('user-show.html') %>",
+    templateUrl: "<%= asset_path('user-show.html') %>"
+    // this controller should be called by header
+    // controller: 'HeaderCtrl'  
   };
 }]);

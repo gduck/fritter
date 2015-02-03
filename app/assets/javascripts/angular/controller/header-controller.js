@@ -1,22 +1,26 @@
-app.controller('HeaderCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+app.controller('HeaderCtrl', ['$scope', '$http', '$routeParams', '$location', 'UserServices', function($scope, $http, $routeParams, $location, UserServices){
   
-  // $scope.image = {
-  //   'background-image': "url(" + "<%= asset_path('minion.jpg') %>" + ")"
-  // };
+  console.log("im in header ctrl");
 
-  // $http.get('/categories.json').success(function(data){
-  //   // I just found out this is not being called... 
-  //   // do we need it here?
-  //   console.log('*** sucess on get categories');
-  //   console.log("in header ctrl routeparams ", $routeParams);
-  //   // console.log(data);
-  //   $scope.categories = data.categories;
-  // })
-  
-  // $http.get('/pins/'+$routeParams.id+'.json').success(function(response) {
-  //   console.log("getting new list of pins");
-  //   $scope.pins = response.pins
-  // })
+  $scope.user = UserServices;
 
+  $scope.resetUser = function() {
+    $http.get("/user/get.json").success(function(response,status){
+      //console.log("the user services response is ", response);
+      UserServices.signedIn = response.signedIn;
+      UserServices.id = response.id;
+      UserServices.username = response.username;
+      UserServices.email = response.email;
+      console.log("in get user details, UserServices: ", UserServices);
+    });  
+  }  
+  $scope.resetUser();
+
+  $scope.toggleUserView = function() {
+    console.log("toggling");
+    console.log($scope.user.viewUser);
+    $scope.user.viewUser = !($scope.user.viewUser);
+    console.log($scope.user.viewUser);
+  }
 
 }])
