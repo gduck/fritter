@@ -2,5 +2,6 @@ app.directive('userAccount', ['$http', function($http){
   return {
     restrict: 'E',
     templateUrl: "<%= asset_path('user-account.html') %>",
+    controller: 'UserAccCtrl'
   };
 }]);
