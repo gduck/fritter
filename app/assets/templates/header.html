@@ -23,6 +23,10 @@
       </a>
     </div>
   </div>
-
 </div>
-
+<div ng-if="user.signedIn">
+  <user-details></user-details>
+</div>
+<div ng-if="!user.signedIn">
+  <user-account></user-account>
+</div>

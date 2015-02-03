@@ -3,6 +3,10 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
   $scope.searchTerms = '';
   $scope.category = '';
   var url = '';
+  
+  $http.get('/categories.json').success(function(data){
+    $scope.categories = data.categories;
+  })
 
   $scope.search = function() {
     // had trouble when categoryID was nil
@@ -14,15 +18,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
     $http.get(url).success(function(response){
       //console.log("doing a search - ", categoryId);
       $scope.pins = response.pins;
-      //console.log($scope.pins);
-      //$('#masonry-container').masonry();
-      //console.log("just ran masonry");
     })
   }
   
-  $http.get('/categories.json').success(function(data){
-    $scope.categories = data.categories;
-  })
 
   // if there is a category in the url
   if ($routeParams.category) {
