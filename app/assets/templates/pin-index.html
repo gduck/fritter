@@ -3,11 +3,7 @@
     <div id="{{pin.id}}" class="pin thumbnail">
       <div class="picture-wrap">
         <div class="panel-visible">
-
-     <!-- <a href="#/pins/{{pin.id}}" > -->
           <span class="pin-show-link" ng-show="true" ng-click="openPin(pin.id)"></span>
-          <!-- </a> -->
-
           <div class="like-button"><button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
           </div>
           <div class="url">
@@ -28,5 +24,4 @@
     </div>
   </div>
 </div>
-
 <pin-show class="pin-show-modal" ng-show="open" ng-click="closePin()"></pin-show>

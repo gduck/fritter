@@ -8,6 +8,8 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
     $scope.categories = data.categories;
   })
 
+
+
   $scope.search = function() {
     // had trouble when categoryID was nil
     if ($scope.category) { 
@@ -21,13 +23,15 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
     })
   }
 
+
   $http.get('/categories.json').success(function(data){
     $scope.categories = data.categories;
   })
 
 
+
   // if there is a category in the url
-  if ($routeParams.category) {
+  if($routeParams.category) {
     // we know we have selected a category, per angular-config
     // lets find the id with a get request
     $http.get('/categories.json?keyword='+$routeParams.category).success(function(response) {
@@ -39,36 +43,43 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
     }).error(function(response){
       console.log("error in get category");
     })
-  } else {
-    console.log('else hello')
+  } else{
     // if we have no category in the url, get some pins and get more with infinite scroll as you scroll
-    var limit = 24; // limit = the number of pins each get requests retrieve
+    var limit = 12; // limit = the number of pins each get requests retrieve
     var offset = 0; // the number of times it does loadMore, for inifinity scroll
+    var end = false;
     $scope.busy = false;
     $scope.after = '';
 
     $http.get('pins.json?limit=' + limit + '&offset=' + offset).success(function(data){
       $scope.pins = data.pins;
-      console.log(data.pins, 'data.pin here');
     });
   }
+
+
+
 
   // inifinite scroll function
   $scope.nextPage = function() {
     if ($scope.busy) return;
-    console.log('im not busy, lets make a request (but now im busy)');
-    // function getRandomInt(min, max) {
-    //   return Math.floor(Math.random() * (max - min + 1) + min);
-    // }
+    if (end == true) return;
     $scope.busy = true;
+    offset += limit;
     $http.get('pins.json?limit=' + limit + '&offset=' + offset).success(function(data){
-      offset += limit;
-       for(var i = 0; i <= limit-1; i++) {
+       console.log(offset,'--',data.pins);
+
+       var numPins = data.pins.length;
+       if (numPins < limit){
+        end = true;
+       }
+       for(var i = 0; i < numPins; i++) {
         $scope.pins.push(data.pins[i]);
       }
-      $scope.busy = false;   
+      $scope.busy = false;
     });
   }
+
+
 
   // Zoom in and out part
   $scope.open = false
@@ -84,5 +95,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
   $scope.closePin = function(){
     $scope.open = !$scope.open;
   }
+
+
 
 }])
