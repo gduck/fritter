@@ -23,4 +23,9 @@ app.controller('HeaderCtrl', ['$scope', '$http', '$routeParams', '$location', 'U
     console.log($scope.user.viewUser);
   }
 
+  $scope.goHome = function() {
+    $scope.user.viewUser = false;
+    $location.path("#");
+  }
+
 }])
