@@ -30,6 +30,10 @@ class UsersController < ApplicationController
    end
   end 
 
-
+  protected
+  
+  def permitted_params 
+    params.require(:user).permit(:email, :username)
+  end
 
 end

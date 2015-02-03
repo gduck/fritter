@@ -1,0 +1,9 @@
+app.directive('header', ['$http', function($http){
+  return {
+    restrict: 'E',
+    templateUrl: "<%= asset_path('header.html') %>",
+    // this is the controller for partials user-account
+    // and user-details also
+    controller: 'HeaderCtrl'
+  };
+}]);
