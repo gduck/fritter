@@ -28,6 +28,13 @@ h1.user{
   margin-top: 15px; 
 }
 
+.user-details2{
+  right: 85px;
+  position: fixed;
+  margin: 15px;
+}
+
+
 .user-header{
   z-index: 88;
   position: fixed;
@@ -44,7 +51,42 @@ h1.user{
   z-index: 100;
 }
 
-.padded-form {
-  padding: 20px;
-  margin: 20px;
+// .padded-form {
+//   padding: 20px;
+//   margin: 20px;
+// }
+
+// .login-tab{
+//   width: 350px;
+//   border: 2px solid $primary-background-color;
+//   margin-top: 56px;
+//   text-align: center;
+// }
+
+
+
+.user-login{
+  width: 400px;
 }
+
+tab{
+  // border: 2px solid red;
+
+}
+
+.abc{
+  text-align: center;
+}
+
+.user-login-modal{
+  position: fixed;
+  z-index: 300;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  background-color: $secondary-background-color;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
