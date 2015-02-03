@@ -51,21 +51,26 @@ namespace :scrape do
       puts pin_link
       pin_link_array.push(pin_link)
       puts domain_link + pin_link
-      scrape_one_page(domain_link + pin_link, categoryID)
+      begin
+        scrape_one_page(domain_link + pin_link, categoryID)
+      rescue
+        # catch a problem, do nothing
+        puts ">>>>>>>>>>>>>>>>>>>>>>>> PROBLEM SKIPPED :)"
+      end
     end
   end
 
 
   # url will be of format 'https://www.pinterest.com/pin/556264991450154362/'
   def scrape_one_page(url, categoryID)
-    begin
+    # begin
       puts "about to scrape :" + url
       document = open(url).read
       html_doc = Nokogiri::HTML(document)
-    rescue OpenURI::HTTPError => ex
-      puts "Missing pin URL"
-      return
-    end
+    # rescue OpenURI::HTTPError => ex
+    #   puts "Missing pin URL"
+    #   return
+    # end
 
     newPin = Pin.new(category_id: categoryID)
     
