@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def create
+    User.create(permitted_params)
+  end
+
   def get
     @user = current_user
     # puts "in CONTROLLER current_user " + current_user.email
@@ -31,9 +35,9 @@ class UsersController < ApplicationController
   end 
 
   protected
-  
+
   def permitted_params 
-    params.require(:user).permit(:email, :username)
+    params.require(:user).permit(:id, :email, :username)
   end
 
 end

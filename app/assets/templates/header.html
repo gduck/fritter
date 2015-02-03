@@ -16,17 +16,20 @@
           </ul>
         </div>
       </div>
-      <a ng-href="#/user" class="header-right btn btn-default col-xs-2">
+      <button ng-click="toggleUserView()" class="header-right btn btn-default col-xs-2">
+      <!-- <a ng-href="" class="header-right btn btn-default col-xs-2"> -->
         <img src="assets/minion.jpg" id="avatar"class="img-circle lineup">
-        <div ng-show="user.signedIn" id="user-name" class="lineup">{{user.id}} {{user.email}}</div>
+        <div ng-show="user.signedIn" id="user-name" class="lineup">id#{{user.id}} {{user.email}}</div>
         <div ng-show="!user.signedIn" id="user-name" class="lineup">Sign Up</div>
-      </a>
+      </button>
     </div>
   </div>
 </div>
-<div ng-if="user.signedIn">
-  <user-details></user-details>
-</div>
-<div ng-if="!user.signedIn">
-  <user-account></user-account>
+<div ng-if="user.viewUser">
+  <div ng-if="user.signedIn">
+    <user-details></user-details>
+  </div>
+  <div ng-if="!user.signedIn">
+    <user-account></user-account>
+  </div>
 </div>

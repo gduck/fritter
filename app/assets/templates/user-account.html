@@ -1,28 +1,29 @@
 
 <div class="text-center col-xs-offset-1 col-xs-10">
-<br><br><br><br>
-  <div><h1 class="user">User: {{user}}</h1></div>
+<br>
+  <!-- <div><h1 class="user">User: {{user}}</h1></div>
   <div ng-show="user.signedIn">user is signed in
-  </div>
-    <button ng-controller="UserAccCtrl" ng-click="userSignOut()">Logout</button>
+  </div> -->
+   <!--  <button ng-controller="UserAccCtrl" ng-click="userSignOut()">Logout</button> -->
 
   <div class="col-xs-offset-1 col-xs-10 padded-form user-des">
-  	<tabset justified="true">
+    <!-- <tabset justified="true"> -->
+    <tabset>
       <tab heading="Sign Up - New User">
 
         <form ng-controller="UserAccCtrl" name="account.signupForm" ng-submit="userSignUp()" class="form-horizontal">
           <!-- things im trying for -->
           <!-- <div ng-init="$parent.myForm = sign-form"> -->
           <div ng-init="setForm(signup-form)">
-            <input class="form-control input-fields" type="text" placeholder="Email" ng-model="signupEmail">{{signupEmail}}
-            <input class="form-control input-fields" type="text" placeholder="Username" ng-model="signupUsername">{{signupUsername}}
+            <input class="form-control input-fields" type="text" placeholder="Email" ng-model="signupEmail">
+            <input class="form-control input-fields" type="text" placeholder="Username" ng-model="signupUsername">
             <input class="form-control input-fields" type="password" placeholder="Password - min 4 characters" ng-model="signupPassword">
             <button class="btn" ng-click="userSignUp()">Sign Up</button>
           </div>
         </form>
 
       </tab>
-      <tab heading="Sign In">
+      <tab heading="Sign In - Welcome Back">
 
         <form ng-controller="UserAccCtrl" name="account.signinForm" ng-submit="userSignIn()" class="form-horizontal">
           <div ng-init="$parent.myForm = signin-form">
