@@ -59,8 +59,8 @@ div.user-login{
   border: 2px solid $primary-background-color;
   background-color: white;
   top: 50px;
-  position: relative;
-  // align-content: center;
+  position: fixed;
+  align-content: center;
   text-align: center;
 }
 
