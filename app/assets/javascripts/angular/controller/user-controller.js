@@ -11,7 +11,13 @@ app.controller('UserCtrl', ['$scope', '$http', '$location', 'UserServices',
   // TODO on edit
   $scope.user = UserServices;
 
-  $http.get('pins.json').success(function(data){
+    var limit = 12; // limit = the number of pins each get requests retrieve
+    var offset = 0; // the number of times it does loadMore, for inifinity scroll
+    var end = false;
+    $scope.busy = false;
+    $scope.after = '';
+
+  $http.get('pins.json?limit=' + limit + '&offset=' + offset).success(function(data){
     //console.log('success on getting pins from UserCtrl');
     $scope.pins = data.pins;
   })
@@ -21,6 +27,26 @@ app.controller('UserCtrl', ['$scope', '$http', '$location', 'UserServices',
     // console.log(data);
     $scope.categories = data.categories;
   })
+
+    // inifinite scroll function
+  $scope.nextPage = function() {
+    if ($scope.busy) return;
+    if (end == true) return;
+    $scope.busy = true;
+    offset += limit;
+    $http.get('pins.json?limit=' + limit + '&offset=' + offset).success(function(data){
+       console.log(offset,'--',data.pins);
+
+       var numPins = data.pins.length;
+       if (numPins < limit){
+        end = true;
+       }
+       for(var i = 0; i < numPins; i++) {
+        $scope.pins.push(data.pins[i]);
+      }
+      $scope.busy = false;
+    });
+  }
 
   $scope.open = false
   $scope.openPin = function(pin_id){
