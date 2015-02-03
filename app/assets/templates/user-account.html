@@ -2,15 +2,15 @@
 <div class="text-center col-xs-offset-1 col-xs-10">
 
   <div><h1 class="user">User: {{user}}</h1></div>
-  <div ng-show="user.signedIn">
-    <a ng-click="userSignOut()"href="">Logout</a>
+  <div ng-show="user.signedIn">user is signed in
   </div>
+    <button ng-click="userSignOut()">Logout</button>
 
   <div class="col-xs-offset-1 col-xs-10 padded-form user-des">
   	<tabset justified="true">
       <tab heading="Sign Up - New User">
 
-        <form ng-controller="UserAccCtrl" ng-submit="userSignUp()" class="form-horizontal">
+        <form ng-submit="userSignUp()" class="form-horizontal">
           <input class="form-control input-fields" type="text" placeholder="Email" ng-model="signupEmail">
           <input class="form-control input-fields" type="text" placeholder="Username" ng-model="signupUsername">
           <input class="form-control input-fields" type="password" placeholder="Password" ng-model="signupPassword">
@@ -20,7 +20,7 @@
       </tab>
       <tab heading="Sign In">
 
-        <form ng-controller="UserAccCtrl" ng-submit="userSignIn()" class="form-horizontal">
+        <form ng-submit="userSignIn()" class="form-horizontal">
           <input class="form-control input-fields" type="text" placeholder="Email" ng-model="signinEmail">
           <input class="form-control input-fields" type="password" placeholder="Password" ng-model="signinPassword">
           <button class="btn" ng-click="userSignIn()">Sign In</button>
