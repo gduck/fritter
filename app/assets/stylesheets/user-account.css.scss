@@ -1,10 +1,16 @@
 @import "colors";
 
+.profile-pix{
+  width: 70px;
+  height: auto;
+  padding-top: 10px;
+  z-index: 2000;
+}
 
 
 h1.user{
   color: $primary-font-color;
-  z-index: 0;
+  z-index: 88;
 }
 
 .profile{
@@ -13,13 +19,13 @@ h1.user{
   padding: 20px;
   max-width: 450px;
   display: inline-block;
-  z-index: 81;
+  z-index: 88;
 }
 
 .user-details{
   right: 15px;
   position: fixed;
-  margin: 15px; 
+  margin-top: 15px; 
 }
 
 .user-header{
@@ -35,7 +41,7 @@ h1.user{
 
 #user-des{
   margin-top: 55px;
-  z-index: 102;
+  z-index: 100;
 }
 
 .padded-form {
