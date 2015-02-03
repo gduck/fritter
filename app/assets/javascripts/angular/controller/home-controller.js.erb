@@ -2,62 +2,55 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
 
   $scope.searchTerms = '';
   $scope.category = '';
+  $scope.pins = [];
+  
   var url = '';
+  var category_url = '';
+  var searchTerms_url = '';
+  var limit = 12;
+  var offset = 0;
   
   $http.get('/categories.json').success(function(data){
     $scope.categories = data.categories;
   })
 
-
-
-  $scope.search = function() {
-    // had trouble when categoryID was nil
-    if ($scope.category) { 
-      url = 'pins.json?keyword=' + $scope.searchTerms +'&category_id=' + $scope.category.id;
+  $scope.getPins = function() {
+    if ($scope.searchTerms != "") {
+      searchTerms_url = '&keyword=' + $scope.searchTerms;
     } else {
-      url = 'pins.json?keyword=' + $scope.searchTerms;
+      searchTerms_url = '';
     }
-    $http.get(url).success(function(response){
-      //console.log("doing a search - ", categoryId);
-      $scope.pins = response.pins;
-    })
+    url = 'pins.json?limit=' + limit + '&offset=' + offset;
+    url += searchTerms_url;
+    url += category_url;
+    $http.get(url).success(function(data){
+      $scope.pins = data.pins;
+    });
   }
-
-
-  $http.get('/categories.json').success(function(data){
-    $scope.categories = data.categories;
-  })
-
-
 
   // if there is a category in the url
   if($routeParams.category) {
     // we know we have selected a category, per angular-config
     // lets find the id with a get request
     $http.get('/categories.json?keyword='+$routeParams.category).success(function(response) {
-      console.log("response ", response.categories[0]);
       $scope.category = response.categories[0];
-      categoryId = $scope.category.id
+      //categoryID = $scope.category.id;
+
+      category_url = "&category_id=" + $scope.category.id;
+      console.log("category url is :", $scope.category_url);
       // and now search to get results in this category
-      $scope.search();
+      $scope.getPins();
     }).error(function(response){
       console.log("error in get category");
     })
   } else{
+    category_url = '';
     // if we have no category in the url, get some pins and get more with infinite scroll as you scroll
-    var limit = 12; // limit = the number of pins each get requests retrieve
-    var offset = 0; // the number of times it does loadMore, for inifinity scroll
     var end = false;
     $scope.busy = false;
     $scope.after = '';
-
-    $http.get('pins.json?limit=' + limit + '&offset=' + offset).success(function(data){
-      $scope.pins = data.pins;
-    });
+    $scope.getPins();
   }
-
-
-
 
   // inifinite scroll function
   $scope.nextPage = function() {
@@ -65,37 +58,34 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
     if (end == true) return;
     $scope.busy = true;
     offset += limit;
-    $http.get('pins.json?limit=' + limit + '&offset=' + offset).success(function(data){
-       console.log(offset,'--',data.pins);
 
+    url = 'pins.json?limit=' + limit + '&offset=' + offset;
+    url += searchTerms_url + category_url;
+    $http.get(url).success(function(data){
        var numPins = data.pins.length;
+       console.log("numPins is ", numPins);
        if (numPins < limit){
         end = true;
        }
        for(var i = 0; i < numPins; i++) {
+        //console.log(data.pins[i]);
         $scope.pins.push(data.pins[i]);
       }
       $scope.busy = false;
     });
   }
 
-
-
   // Zoom in and out part
   $scope.open = false
   $scope.openPin = function(pin_id){
     console.log(pin_id);
     $http.get('pins/' + pin_id + '.json').success(function(data){
-      console.log(data);
       $scope.pin = data.pins[0];
     })
     $scope.open = !$scope.open;
-    console.log('click');
   }
   $scope.closePin = function(){
     $scope.open = !$scope.open;
   }
-
-
 
 }])
