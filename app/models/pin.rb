@@ -5,6 +5,8 @@ class Pin < ActiveRecord::Base
   validates :category_id, presence: true
 
   belongs_to :category
+  has_many :upjoins
+  has_many :users, through: :upjoins
 
   # def self.search(search)
   #   if search
