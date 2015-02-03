@@ -5,17 +5,17 @@ app.directive('pinIndex', ['$http', function($http){
   };
 }]);
 
-app.directive('onFinishRender', ['$timeout', function ($timeout){
-  return {
-    restrict: 'A',
-    link: function(scope, element, attr){
-      if (scope.$last === true){
-        //console.log("yes on finish render @indexBody");
-        $timeout(function () {
-          //console.log('from directive I see', angular.element('.pin-outer').length,'.pin-outer');
-          $('#masonry-container').masonry({});
-        }, 1000);
-      }
-    }
-  }
-}]);
+// app.directive('onFinishRender', ['$timeout', function ($timeout){
+//   return {
+//     restrict: 'A',
+//     link: function(scope, element, attr){
+//       if (scope.$last === true){
+//         //console.log("yes on finish render @indexBody");
+//         $timeout(function () {
+//           //console.log('from directive I see', angular.element('.pin-outer').length,'.pin-outer');
+//           $('#masonry-container').masonry({});
+//         }, 1000);
+//       }
+//     }
+//   }
+// }]);

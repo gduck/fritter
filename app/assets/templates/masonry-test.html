@@ -1,0 +1,62 @@
+<style>
+  .masonry-brick {
+    margin: 2px;
+    display: none;
+    border: 1px solid black; padding:2px;margin-bottom: 10px;
+    width: 300px;
+  }
+  .masonry-brick.loaded {
+    display: block;
+  }
+  #gutter-opt-demo2 .item {
+    margin-bottom: 10px;
+  }
+  img {
+  width: auto\9;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+  border: 0;
+  }
+</style>
+
+<div class="container-fluid">
+        <div class="row-fluid">
+<div class="span10">
+  <h1>angular-masonry</h1>
+  <h2>{{test}}</h2>
+  <hr>
+  <div style="margin-left: 15px;">
+    <!-- <div infinite-scroll='bricks.nextPage()' infinite-scroll-disabled='bricks.busy' infinite-scroll-distance='1'>
+      <div masonry options="{ 'columnWidth': 400,'gutter': 5}">
+        <div class="masonry-brick"  ng-repeat="brick in bricks.items">
+          <img ng-src="{{ brick.src }}" alt="A masonry brick">
+          <h1 style="font-size: 15px;">{{ brick.title }}</h1>
+          <p>Aug 23, 2013</p>
+          <p>Burnaby, BC</p>
+        </div>
+      </div>
+    </div> -->
+
+
+    <div infinite-scroll='nextPage()' infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
+      <div masonry options="{ 'columnWidth': 400,'gutter': 5}">
+        <div class="masonry-brick"  ng-repeat="brick in bricks">
+          <img ng-src="{{ brick.src }}" alt="A masonry brick">
+          <h1 style="font-size: 15px;">{{ brick.title }}</h1>
+          <p>Aug 23, 2013</p>
+          <p>Burnaby, BC</p>
+        </div>
+      </div>
+    </div>
+
+       <!--  <masonry item-selector=".mybrick" column-width="200">
+          <div masonry-brick class="mybrick" style="border: 1px sold black">
+            <img src="http://lorempixel.com/400/200/sports/"></div>
+          <div masonry-brick class="mybrick" style="border: 1px sold black">
+            <img src="http://lorempixel.com/300/200/sports/"></div>
+      </masonry> -->
+  </div>
+</div>
+</div>
+</div>

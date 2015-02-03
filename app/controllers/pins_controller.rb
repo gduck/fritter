@@ -5,7 +5,7 @@ class PinsController < ApplicationController
       permitted_params = params.permit(:category_id)
       @pins = Pin.includes(:category).where(permitted_params).where("title like '%#{params[:keyword]}%'").limit(50)
     else
-      @pins = Pin.includes(:category).limit(50)
+      @pins = Pin.includes(:category).all.limit(params[:limit]).offset(params[:offset])
     end
 
   end
