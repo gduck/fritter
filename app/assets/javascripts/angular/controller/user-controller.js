@@ -61,5 +61,4 @@ app.controller('UserCtrl', ['$scope', '$http', '$location', 'UserServices',
   $scope.closePin = function(){
     $scope.open = !$scope.open;
   }
-
 }])
