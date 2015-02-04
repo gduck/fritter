@@ -20,7 +20,7 @@ app.controller('HeaderCtrl', ['$scope', '$http', '$routeParams', '$location', 'U
     console.log($scope.user.viewUser);
     $scope.user.viewUser = !($scope.user.viewUser);
     console.log($scope.user.viewUser);
-    $location.path('/user/'+ $scope.user.id);
+    $location.path('/profile');
   }
 
 

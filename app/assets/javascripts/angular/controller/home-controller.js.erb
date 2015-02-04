@@ -1,4 +1,4 @@
-app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
 
   $scope.searchTerms = '';
   $scope.category = '';
@@ -11,6 +11,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
   var offset = 0;
   $scope.category_url = '';
  
+
   $http.get('/categories.json').success(function(data){
     $scope.categories = data.categories;
   })
@@ -38,7 +39,8 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
   $scope.setURL = function() {
     url = '';
     // then this is a user page
-    if ($routeParams.id) { url += 'likes.json?'; } 
+    //console.log($location.path() === "/user/profile");
+    if ($location.path() === "/user/profile") { url += 'likes.json?'; } 
     // else not a user page, get all pins
     else { url += 'pins.json?'; }
 

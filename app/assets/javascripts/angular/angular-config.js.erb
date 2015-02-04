@@ -3,7 +3,7 @@ var app = angular.module('fritter', ['ngRoute', 'ui.bootstrap', 'wu.masonry','in
 app.config(['$routeProvider',function($routeProvider){
   $routeProvider
   .when('/',          {templateUrl: "<%= asset_path('home.html') %>",     controller: 'HomeCtrl'})
-  .when('/user/:id',     {templateUrl: "<%= asset_path('home.html') %>",     controller: 'HomeCtrl'})
+  .when('/profile',     {templateUrl: "<%= asset_path('home.html') %>",     controller: 'HomeCtrl'})
   .when('/pins/:id',  {templateUrl: "<%= asset_path('pin.html') %>", controller: 'PinCtrl'})
   .when('/categories/:category', {templateUrl: "<%= asset_path('home.html') %>", controller: 'HomeCtrl'})
   .when('/user/user-account/', {templateUrl: "<%= asset_path('user-account.html')%>", controller: 'HeaderCtrl'})
