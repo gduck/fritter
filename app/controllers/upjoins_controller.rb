@@ -1,2 +1,0 @@
-class UpjoinsController < ApplicationController
-end
