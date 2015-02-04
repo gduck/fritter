@@ -71,12 +71,13 @@ ul.dropdown-menu.list-inline{
   }
 }
 
-// this doesn't work
-// .dropdown-category{
-//   &:hover{
-//     background-color: $secondary-background-color;
-//   }
-// }
+
+li.dropdown-list > a.dropdown-category{
+  &:hover{
+    background-color: $secondary-background-color;
+  }
+}
+
 
 .btn.btn-default.header-right{
   display: inline-block;

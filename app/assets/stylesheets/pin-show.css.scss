@@ -18,13 +18,16 @@ button.back{
 .wrapper{
   width: 75%;
   max-width: 800px;
-  // border: solid 1px $tertiary-background-color;
+  border: solid 1px $tertiary-background-color;
   background-color: $tertiary-background-color;
   border-radius: 10px;
   display: inline-block;
   margin: 20px;
   margin-top: 40px;
   overflow-y: scroll;
+    &:hover{
+    cursor: initial; //if you click it, it still closes the modal
+  }
 }
 
 

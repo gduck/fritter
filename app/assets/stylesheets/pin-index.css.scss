@@ -18,9 +18,6 @@ div.thumbnail{
 div.picture-wrap {
   position: relative;
   width: 100%;
-  &:hover{
-    // cursor: wait;
-  }
 }
 
 div.picture-wrap:hover .panel-visible{
@@ -120,8 +117,7 @@ p.description{
   left: 0;
   align-content: center;
   &:hover{
-    cursor: url('zoom-in.png');
-    // cursor: wait;
+    cursor: zoom-in;
   }
 }
 
@@ -135,5 +131,8 @@ p.description{
   background-color: $secondary-background-color;
   overflow-x: hidden;
   overflow-y: scroll;
+  &:hover{
+    cursor: zoom-out;
+  }
 }
 
