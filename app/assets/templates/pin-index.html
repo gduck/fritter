@@ -5,8 +5,10 @@
   <div ng-repeat='pin in pins track by $index' class="masonry-brick pin-outer col2 box has-gutters" on-finish-render>
     <div id="{{pin.id}}" class="pin thumbnail">
     <!-- THIS NEEDS TO BE REPOSITIONED TO MATCH THE OVERLAY -->
-      <button ng-show="pin.liked_by_me" class="btn btn-danger btn-sm heart glyphicon glyphicon-heart"></button>
       <div class="picture-wrap">
+        <div class="like-button red-like">
+          <button ng-show="pin.liked_by_me" class="btn btn-danger btn-sm heart glyphicon glyphicon-heart"></button>
+        </div>
         <div class="panel-visible">
           <span class="pin-show-link" ng-show="true" ng-click="openPin(pin.id)"></span>
           <div class="like-button">
