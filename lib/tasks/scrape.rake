@@ -12,7 +12,7 @@ namespace :scrape do
       return
     end
 
-    Category.all.each do |category|
+    Category.all.reverse.each do |category|
       url = "https://www.pinterest.com/categories/" + category.simplified_name
       puts url
       # this is to pick up scraping 

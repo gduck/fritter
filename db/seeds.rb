@@ -11,9 +11,9 @@ users = User.all
 users.each do |user|
   (1..100).each do |i|
     # puts Pin.order("RANDOM()").first.id
-    user.upjoins.create(pin_id: Pin.order("RANDOM()").first.id)
+    user.likes.create(pin_id: Pin.order("RANDOM()").first.id)
     puts "new user pin"
   end
-  newEntries = Upjoin.where(user_id: user.id)
+  newEntries = Like.where(user_id: user.id)
   puts newEntries
 end
