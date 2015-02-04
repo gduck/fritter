@@ -27,16 +27,17 @@ app.controller('HeaderCtrl', ['$scope', '$http', '$routeParams', '$location', 'U
   $scope.goHome = function() {
     $scope.user.viewUser = false;
     $location.path("#");
+  }
 
   // Modal for Sign in Sign out part
-  $scope.openUser = false;
+  $scope.user.openUser = false;
   $scope.openModal = function(){
     console.log('openModal');
-    $scope.openUser = true;
+    $scope.user.openUser = true;
   }
   $scope.closeModal = function(){
     console.log('closeModal');
-    $scope.openUser = false;
+    $scope.user.openUser = false;
   }
 
 }])
