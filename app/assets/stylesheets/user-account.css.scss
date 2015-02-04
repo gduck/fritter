@@ -22,11 +22,18 @@ h1.user{
   z-index: 88;
 }
 
-.user-details{
+.logout-button{
   right: 15px;
   position: fixed;
   margin-top: 15px; 
 }
+
+.edit-button{
+  right: 80px;
+  position: fixed;
+  margin-top: 15px;
+}
+
 
 .user-header{
   z-index: 88;
@@ -44,7 +51,34 @@ h1.user{
   z-index: 100;
 }
 
-.padded-form {
+
+div.user-login{
+  width: 400px;
   padding: 20px;
-  margin: 20px;
+  color: $primary-font-color;
+  border: 2px solid $primary-background-color;
+  background-color: white;
+  top: 50px;
+  position: fixed;
+  align-content: center;
+  text-align: center;
 }
+
+// this doesn't work
+input.form-control:focus{
+  outline: none;
+}
+
+.user-login-modal{
+  position: fixed;
+  z-index: 300;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  // align-content: center;
+  background-color: $secondary-background-color;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+

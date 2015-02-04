@@ -40,6 +40,7 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
       console.log("problem!! - " + response);
       UserServices.signedIn = false;
     });
+    $scope.user.openUser = false;
   }
 
   $scope.userSignIn = function() {
@@ -61,6 +62,7 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
       console.log("problem!! - " + response);
       UserServices.signedIn = false;
     });
+    $scope.user.openUser = false;
   };  
 
   $scope.userSignOut = function(){
