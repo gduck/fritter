@@ -109,4 +109,14 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', func
     $scope.open = !$scope.open;
   }
 
+  $scope.likePin = function(index) {
+    console.log("index :", index);
+    console.log("pin[]: ", $scope.pins[index]);
+
+    if ($scope.pins[index].liked_by_me == undefined) {
+      $scope.pins[index].liked_by_me = false;
+    }
+    $scope.pins[index].liked_by_me = !$scope.pins[index].liked_by_me;
+  }
+
 }])
