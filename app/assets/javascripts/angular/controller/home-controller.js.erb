@@ -40,7 +40,11 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', func
     url = '';
     // then this is a user page
     //console.log($location.path() === "/user/profile");
-    if ($location.path() === "/user/profile") { url += 'likes.json?'; } 
+    if ($location.path() === "/profile") { 
+      console.log('checking path data');
+      console.log($location.path() === "/profile");
+      url += 'likes.json?';
+    } 
     // else not a user page, get all pins
     else { url += 'pins.json?'; }
 
