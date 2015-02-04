@@ -4,7 +4,13 @@
       <div class="picture-wrap">
         <div class="panel-visible">
           <span class="pin-show-link" ng-show="true" ng-click="openPin(pin.id)"></span>
-          <div class="like-button"><button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
+          <div class="like-button">
+            <div ng-show="pin.liked_by_me">
+              <button class="btn btn-danger btn-sm heart glyphicon glyphicon-heart"></button>
+            </div>
+            <div ng-show="!pin.liked_by_me">
+              <button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
+            </div>
           </div>
           <div class="url">
             <a href='{{ pin.source_url }}' class="link glyphicon glyphicon-globe"><span class="source-url">{{ pin.source_url }}</span></a>
@@ -13,7 +19,7 @@
         <img ng-src='{{ pin.img_sm_url }}' class="image">
       </div>
       <div class="caption">
-        <h2 class="category">{{ pin.category_name }}</h2>
+        <h2 class="category">{{ pin.category_name }} Liked by me - {{ pin.liked_by_me }}</h2>
         <h1 class="title" >
           {{ pin.title }}
         </h1>

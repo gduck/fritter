@@ -26,7 +26,7 @@ app.controller('HeaderCtrl', ['$scope', '$http', '$routeParams', '$location', 'U
 
   $scope.goHome = function() {
     $scope.user.viewUser = false;
-    $location.path("#");
+    $location.path("/");
   }
 
   // Modal for Sign in Sign out part

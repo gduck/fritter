@@ -9,88 +9,129 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
   var searchTerms_url = '';
   var limit = 12;
   var offset = 0;
-  
-  // then this is a user page
-  if ($routeParams.id) {
-    var getUserPinsUrl = '';
-    getUserPinsUrl += 'likes.json?limit=' + limit + '&offset=' + offset;
-    getUserPinsUrl += searchTerms_url;
-    getUserPinsUrl += category_url;
-    console.log(getUserPinsUrl);
-  }
-
+  $scope.category_url = '';
+ 
   $http.get('/categories.json').success(function(data){
     $scope.categories = data.categories;
   })
 
+
   $scope.getPins = function(url) {
     // nerd code for set a default value of url if not passed in
-    url = typeof url !== 'undefined' ? url : '';
+    // url = typeof url !== 'undefined' ? url : '';
+    console.log("in getPins with url of ", url);
+
     if ($scope.searchTerms != "") {
       searchTerms_url = '&keyword=' + $scope.searchTerms;
     } else {
       searchTerms_url = '';
     }
     // if no search url given, set it up
-    if (url == '') {
-      url = 'pins.json?limit=' + limit + '&offset=' + offset;
-      url += searchTerms_url;
-      url += category_url;
-    }
+    // if (url == '') {
+    //   url = 'pins.json?limit=' + limit + '&offset=' + offset;
+    //   url += searchTerms_url;
+    //   url += category_url;
+    // }
     $http.get(url).success(function(data){
+      $scope.pins = [];
       $scope.pins = data.pins;
+      console.log("GETTING PINS URL ", url);
+      console.log("data is ", data.pins);
     });
   }
 
-  // if there is a category in the url
-  if($routeParams.category) {
-    // we know we have selected a category, per angular-config
-    // lets find the id with a get request
-    $http.get('/categories.json?keyword='+$routeParams.category).success(function(response) {
-      $scope.category = response.categories[0];
-      //categoryID = $scope.category.id;
+  // set the search url
+  $scope.setURL = function() {
+    url = '';
+    // then this is a user page
+    if ($routeParams.id) { url += 'likes.json?'; } 
+    // else not a user page, get all pins
+    else { url += 'pins.json?'; }
+    url += 'limit=' + limit + '&offset=' + offset;
 
-      category_url = "&category_id=" + $scope.category.id;
-      console.log("category url is :", $scope.category_url);
-      // and now search to get results in this category
-      $scope.getPins();
-    }).error(function(response){
-      console.log("error in get category");
-    })
-  } else{
-    category_url = '';
-    // if we have no category in the url, get some pins and get more with infinite scroll as you scroll
-    var end = false;
-    $scope.busy = false;
-    $scope.after = '';
-    $scope.getPins();
+    if($routeParams.category) {
+      $http.get('/categories.json?keyword='+$routeParams.category).success(function(response) {
+        $scope.category = response.categories[0];
+        $scope.category_url = "&category_id=" + $scope.category.id;
+      }).error(function(response){
+        console.log("error in get category");
+      })
+    } else {
+      category_url = '';
+      // if we have no category in the url, get some pins and get more with infinite scroll as you scroll
+      var end = false;
+      $scope.busy = false;
+      $scope.after = '';
+    }
+    console.log('just set url ', url);
   }
+  $scope.setURL();
+
+  // NEED TO INCLUDE THIS IN THE NEXT ROUTEPARAMS CALL
+  // then this is a user page
+  // if ($routeParams.id) {
+  //   var getUserPinsUrl = '';
+  //   getUserPinsUrl += 'likes.json?limit=' + limit + '&offset=' + offset;
+  //   getUserPinsUrl += searchTerms_url;
+  //   getUserPinsUrl += category_url;
+  //   console.log("in routeParams with id ", getUserPinsUrl);
+  //   $scope.getPins(getUserPinsUrl);
+  // }
+
+  // if there is a category in the url
+  // if($routeParams.category) {
+  //   // we know we have selected a category, per angular-config
+  //   // lets find the id with a get request
+  //   $http.get('/categories.json?keyword='+$routeParams.category).success(function(response) {
+  //     $scope.category = response.categories[0];
+  //     // categoryId = $scope.category.id
+  //     $scope.category_url = "&category_id=" + $scope.category.id;
+  //     $scope.getPins();
+
+  //   }).error(function(response){
+  //     console.log("error in get category");
+  //   })
+  // } else {
+  //   category_url = '';
+  //   // if we have no category in the url, get some pins and get more with infinite scroll as you scroll
+  //   var end = false;
+  //   $scope.busy = false;
+  //   $scope.after = '';
+  //   //$scope.getPins();
+  // }
 
   // inifinite scroll function
   $scope.nextPage = function() {
+    // if we have less pins than limit, return
+    if ($scope.pins.count < limit) {
+      var end = true;
+    }
     if ($scope.busy) return;
     if (end == true) return;
     $scope.busy = true;
     offset += limit;
+    $scope.setURL();
 
-    url = 'pins.json?limit=' + limit + '&offset=' + offset;
-    url += searchTerms_url + category_url;
+    //url = 'pins.json?limit=' + limit + '&offset=' + offset;
+    //url += searchTerms_url + category_url;
+    console.log("here in next page url is ", url);
     $http.get(url).success(function(data){
-       var numPins = data.pins.length;
-       console.log("numPins is ", numPins);
-       if (numPins < limit){
+      var numPins = data.pins.length;
+      console.log("numPins is ", numPins);
+      if (numPins < limit){
         end = true;
-       }
-       for(var i = 0; i < numPins; i++) {
+      }
+      for(var i = 0; i < numPins; i++) {
         //console.log(data.pins[i]);
         $scope.pins.push(data.pins[i]);
+        console.log("pushing a pin");
       }
       $scope.busy = false;
     });
   }
 
   // Zoom in and out part
-  $scope.open = false
+  $scope.open = false;
   $scope.openPin = function(pin_id){
     console.log(pin_id);
     $http.get('pins/' + pin_id + '.json').success(function(data){
@@ -98,6 +139,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
     })
     $scope.open = !$scope.open;
   }
+
   $scope.closePin = function(){
     $scope.open = !$scope.open;
   }
