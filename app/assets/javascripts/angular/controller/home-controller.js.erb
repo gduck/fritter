@@ -103,9 +103,12 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', func
       $scope.pin = data.pins[0];
     })
     $scope.open = !$scope.open;
+    // console.log($scope.pin.img_sm_url);
+
   }
 
   $scope.closePin = function(){
+    $scope.pin = null;
     $scope.open = !$scope.open;
   }
 
