@@ -1,14 +1,18 @@
 @import "colors";
 
+#user-des{
+  margin-top: 55px;
+}
+
 .profile-pix{
   width: 70px;
   height: auto;
   padding-top: 10px;
-  z-index: 2000;
+  z-index: 150;
+  position: relative;
 }
 
-
-h1.user{
+h2.user{
   color: $primary-font-color;
   z-index: 88;
 }
@@ -46,10 +50,6 @@ h1.user{
   height: 62px;
 }
 
-#user-des{
-  margin-top: 55px;
-  z-index: 100;
-}
 
 .user-login-modal{
   position: fixed;
