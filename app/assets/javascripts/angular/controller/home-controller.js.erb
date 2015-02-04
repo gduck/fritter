@@ -1,9 +1,10 @@
-app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
+app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'UserServices', function($scope, $http, $routeParams, $location, UserServices){
 
   $scope.searchTerms = '';
   $scope.category = '';
   $scope.pins = [];
   
+  $scope.user = UserServices;
   var url = '';
   var category_url = '';
   var searchTerms_url = '';
@@ -16,25 +17,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', func
     $scope.categories = data.categories;
   })
 
-  $scope.getPins = function() {
-    $scope.setURL();
-
-    if ($scope.searchTerms != "") {
-      searchTerms_url = '&keyword=' + $scope.searchTerms;
-    } else {
-      searchTerms_url = '';
-    }
-    // add our search terms to the url
-    url += searchTerms_url;
-
-    //console.log("in getPins with url of ", url);
-    $http.get(url).success(function(data){
-      $scope.pins = [];
-      $scope.pins = data.pins;
-      console.log("GETTING PINS URL ", url);
-    });
-  }
-
+  
   // set the search url
   $scope.setURL = function() {
     url = '';
@@ -64,10 +47,29 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', func
       $scope.busy = false;
       $scope.after = '';
     }
-
     url += $scope.category_url;
     //console.log('just set url ', url);
   }
+
+  $scope.getPins = function() {
+    $scope.setURL();
+
+    if ($scope.searchTerms != "") {
+      searchTerms_url = '&keyword=' + $scope.searchTerms;
+    } else {
+      searchTerms_url = '';
+    }
+    // add our search terms to the url
+    url += searchTerms_url;
+
+    //console.log("in getPins with url of ", url);
+    $http.get(url).success(function(data){
+      $scope.pins = [];
+      $scope.pins = data.pins;
+      console.log("GETTING PINS URL ", url);
+    });
+  }
+  $scope.getPins();
 
   // inifinite scroll function
   $scope.nextPage = function() {
@@ -112,11 +114,23 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', func
   $scope.likePin = function(index) {
     console.log("index :", index);
     console.log("pin[]: ", $scope.pins[index]);
-
     if ($scope.pins[index].liked_by_me == undefined) {
       $scope.pins[index].liked_by_me = false;
     }
     $scope.pins[index].liked_by_me = !$scope.pins[index].liked_by_me;
+    // create a like table entry
+    data = {
+      like: {
+        user_id: $scope.user.id,
+        pin_id: $scope.pins[index].id
+      }
+    }
+    console.log("data", data);
+    $http.post('/likes', data).success(function(data){
+      console.log("created entry in like table");
+    }).error(function(response){
+      console.log("error in get category ", response);
+    })
   }
 
 }])
