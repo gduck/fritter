@@ -22,7 +22,6 @@
       <!-- if the user view page is up, we don't want this button to do anything. no ng-click -->     
         <div ng-if="!user.viewUser">
           <button ng-click="toggleUserView()" class="header-right btn btn-default col-xs-2">
-          <!-- <button ng-click="toggleUserView()" class="header-right btn btn-default col-xs-2"> -->
             <img src="assets/minion.jpg" id="avatar"class="img-circle lineup">
             <!-- what we show on the button will change depending on whether the user details are showing -->
             <div id="user-name" class="lineup">{{user.email}}</div>
