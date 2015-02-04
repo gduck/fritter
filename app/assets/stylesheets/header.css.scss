@@ -79,6 +79,7 @@ ul.dropdown-menu.list-inline{
 li.dropdown-list > a.dropdown-category{
   &:hover{
     background-color: $secondary-background-color;
+    color: $tertiary-background-color;
   }
 }
 
