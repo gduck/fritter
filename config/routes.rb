@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get 'pins' => 'pins#index'
   get 'pins/:id' => 'pins#show'
+  get 'likes' => 'likes#index'
 
   get '/user/get' => 'users#get'
 

@@ -1,20 +1,19 @@
 app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
   function($scope, $http, $location, UserServices){
-    console.log('Im the UserAccCtrl!');
+  
+  console.log('Im the UserAccCtrl!');
   $scope.user = UserServices;
-  //console.log("I am not needed anymore. why am I here?");
 
   $scope.getUserDetails = function() {
     $http.get("/user/get.json").success(function(response,status){
-      console.log("the user services response is ", response);
       UserServices.signedIn = response.signedIn;
       UserServices.id = response.id;
       UserServices.username = response.username;
       UserServices.email = response.email;
       console.log("in get user details, UserServices: ", UserServices);
+      // console.log("the user services response is ", response);
     });
   }
-  // $scope.getUserDetails();
 
   $scope.userSignUp = function() {
     var url = "/users";
@@ -27,15 +26,13 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
       },
       'commit': "Sign Up"
     };
-    console.log("this is the data before sign up ", data);
-    console.log("this is scope  ", $scope);
     $http.post(url, data).success(function(response, status, xhr){
       UserServices.signedIn = true;
       console.log("SUCCESSFUL response ", response);
       console.log(status);
       $scope.getUserDetails();
       console.log("USER SIGNUP current user ", UserServices);
-      // $location.path("/user");
+      $location.path("/user/" + user.id);
     }).error(function(response) {
       console.log("problem!! - " + response);
       UserServices.signedIn = false;

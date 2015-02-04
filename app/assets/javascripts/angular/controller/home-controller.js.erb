@@ -10,19 +10,33 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', function($scope, 
   var limit = 12;
   var offset = 0;
   
+  // then this is a user page
+  if ($routeParams.id) {
+    var getUserPinsUrl = '';
+    getUserPinsUrl += 'likes.json?limit=' + limit + '&offset=' + offset;
+    getUserPinsUrl += searchTerms_url;
+    getUserPinsUrl += category_url;
+    console.log(getUserPinsUrl);
+  }
+
   $http.get('/categories.json').success(function(data){
     $scope.categories = data.categories;
   })
 
-  $scope.getPins = function() {
+  $scope.getPins = function(url) {
+    // nerd code for set a default value of url if not passed in
+    url = typeof url !== 'undefined' ? url : '';
     if ($scope.searchTerms != "") {
       searchTerms_url = '&keyword=' + $scope.searchTerms;
     } else {
       searchTerms_url = '';
     }
-    url = 'pins.json?limit=' + limit + '&offset=' + offset;
-    url += searchTerms_url;
-    url += category_url;
+    // if no search url given, set it up
+    if (url == '') {
+      url = 'pins.json?limit=' + limit + '&offset=' + offset;
+      url += searchTerms_url;
+      url += category_url;
+    }
     $http.get(url).success(function(data){
       $scope.pins = data.pins;
     });
