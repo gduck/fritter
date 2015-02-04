@@ -6,7 +6,6 @@ app.controller('HeaderCtrl', ['$scope', '$http', '$routeParams', '$location', 'U
 
   $scope.resetUser = function() {
     $http.get("/user/get.json").success(function(response,status){
-      //console.log("the user services response is ", response);
       UserServices.signedIn = response.signedIn;
       UserServices.id = response.id;
       UserServices.username = response.username;
@@ -21,6 +20,7 @@ app.controller('HeaderCtrl', ['$scope', '$http', '$routeParams', '$location', 'U
     console.log($scope.user.viewUser);
     $scope.user.viewUser = !($scope.user.viewUser);
     console.log($scope.user.viewUser);
+    $location.path('/user/'+ $scope.user.id);
   }
 
 

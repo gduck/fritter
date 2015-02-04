@@ -7,7 +7,6 @@ class PinsController < ApplicationController
     else
       @pins = Pin.includes(:category).all.order('created_at DESC').limit(params[:limit]).offset(params[:offset])
     end
-
   end
 
   def show
