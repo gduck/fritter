@@ -3,7 +3,7 @@
     <div class="header-bar col-xs-12">
       <div class="header-left col-xs-10">
         <div class="row">
-          <button ng-click="goHome()" class="glyphicon glyphicon-home lineup btn btn-default col-xs-1" id="logo"><img src="assets/logo.gif"  height="20px"></button>
+          <button ng-click="goHome()" class="glyphicon glyphicon-home lineup btn btn-default col-xs-1" id="logo"></button>
           <input ng-model="searchTerms" ng-keyup="getPins()" type="text" id="search-bar" class="btn btn-default lineup col-xs-9" placeholder="Search">
           <button id="dropdown" class="lineup btn btn-default dropdown-toggle col-xs-1" data-toggle="dropdown">
             <div class="glyphicon glyphicon-list"></div>
@@ -41,7 +41,7 @@
       <div ng-show="!user.signedIn">
         <button ng-click="openModal()" class="header-right btn btn-default col-xs-2">
           <img src="assets/minion.jpg" id="avatar"class="img-circle lineup">
-          <div id="user-name" class="lineup">Sign Up</div>
+          <div id="user-name" class="lineup">Sign Up / Sign In</div>
 <!--           <div ng-show="user.viewUser" id="user-name" class="lineup">Close Sign Up</div> -->
         </button>
       </div>
@@ -56,4 +56,4 @@
     <user-account></user-account>
   </div>
 </div>
-<user-account class="user-login-modal" ng-show="user.openUser"></user-account>
+<user-account ng-show="user.openUser"></user-account>

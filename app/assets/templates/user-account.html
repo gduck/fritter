@@ -1,46 +1,47 @@
+<div  class="user-login-modal">
+  <div class="user-login-modal-inner" ng-show="user.openUser">
+  <!-- <br> this br is equvalent to margin top 56px -->
 
-<div class="row text-center" ng-show="user.openUser">
-<!-- <br> this br is equvalent to margin top 56px -->
+    <!-- <div><h1 class="user">User: {{user}}</h1></div>
+    <div ng-show="user.signedIn">user is signed in
+    </div> -->
+     <!--  <button ng-controller="UserAccCtrl" ng-click="userSignOut()">Logout</button> -->
 
-  <!-- <div><h1 class="user">User: {{user}}</h1></div>
-  <div ng-show="user.signedIn">user is signed in
-  </div> -->
-   <!--  <button ng-controller="UserAccCtrl" ng-click="userSignOut()">Logout</button> -->
+    <!-- <div class="col-xs-offset-1 col-xs-10 padded-form user-des"> -->
+    <div class="user-login">
 
-  <!-- <div class="col-xs-offset-1 col-xs-10 padded-form user-des"> -->
-  <div class="user-login">
+      <!-- <tabset justified="true"> -->
+      <tabset>
+        <tab heading="Sign Up - New User">
 
-    <!-- <tabset justified="true"> -->
-    <tabset>
-      <tab heading="Sign Up - New User">
+          <form ng-controller="UserAccCtrl" name="account.signupForm" ng-submit="userSignUp()" class="form-horizontal">
+            <!-- things im trying for -->
+            <!-- <div ng-init="$parent.myForm = sign-form"> -->
+            <div ng-init="setForm(signup-form)">
+              <input class="form-control input-fields" type="text" placeholder="Email" ng-model="signupEmail">
+  <!--             <input class="form-control input-fields" type="text" placeholder="Username" ng-model="signupUsername"> -->
+              <input class="form-control input-fields" type="password" placeholder="Password - min 4 characters" ng-model="signupPassword">
+              <button class="btn btn-primary btn-sm" ng-click="userSignUp()">Sign Up</button>
+              <button class="btn btn-primary btn-sm" ng-click="closeModal()">Close</button>
+            </div>
+          </form>
 
-        <form ng-controller="UserAccCtrl" name="account.signupForm" ng-submit="userSignUp()" class="form-horizontal">
-          <!-- things im trying for -->
-          <!-- <div ng-init="$parent.myForm = sign-form"> -->
-          <div ng-init="setForm(signup-form)">
-            <input class="form-control input-fields" type="text" placeholder="Email" ng-model="signupEmail">
-            <input class="form-control input-fields" type="text" placeholder="Username" ng-model="signupUsername">
-            <input class="form-control input-fields" type="password" placeholder="Password - min 4 characters" ng-model="signupPassword">
-            <button class="btn btn-primary btn-sm" ng-click="userSignUp()">Sign Up</button>
-            <button class="btn btn-primary btn-sm" ng-click="closeModal()">Close Modal</button>
-          </div>
-        </form>
+        </tab>
+        <tab heading="Sign In - Welcome Back">
 
-      </tab>
-      <tab heading="Sign In - Welcome Back">
+          <form ng-controller="UserAccCtrl" name="account.signinForm" ng-submit="userSignIn()" class="form-horizontal">
+            <div ng-init="$parent.myForm = signin-form">
+              <input class="form-control input-fields" type="text" placeholder="Email" ng-model="signinEmail">
+              <input class="form-control input-fields" type="password" placeholder="Password" ng-model="signinPassword">
+              <button class="btn btn-primary btn-sm" ng-click="userSignIn()">Sign In</button>
+              <button class="btn btn-primary btn-sm" ng-click="closeModal()">Close</button>
+            </div>
+          </form>
 
-        <form ng-controller="UserAccCtrl" name="account.signinForm" ng-submit="userSignIn()" class="form-horizontal">
-          <div ng-init="$parent.myForm = signin-form">
-            <input class="form-control input-fields" type="text" placeholder="Email" ng-model="signinEmail">
-            <input class="form-control input-fields" type="password" placeholder="Password" ng-model="signinPassword">
-            <button class="btn btn-primary btn-sm" ng-click="userSignIn()">Sign In</button>
-            <button class="btn btn-primary btn-sm" ng-click="closeModal()">Close Modal</button>
-          </div>
-        </form>
+        </tab>
+      </tabset>
 
-      </tab>
-    </tabset>
-
-  </div>
+    </div>
+</div>
 </div>
 
