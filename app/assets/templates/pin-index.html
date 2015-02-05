@@ -1,6 +1,6 @@
 <div id="masonry-container" infinite-scroll='nextPage()' infinite-scroll-disabled='busy' infinite-scroll-distance='1' class="transitions-enabled infinite-scroll clearfix background"  masonry>
-  <div class="text-center" ng-show="!pins.length">
-    <h1 ng-class="{'no-result': !pins.length}">No Result Found...</h1>
+  <div class="text-center" ng-show="loaded && pins.length == 0">
+    <h1 class="no-result">No Result Found...</h1>
   </div>
   <div ng-repeat='pin in pins track by $index' class="masonry-brick pin-outer col2 box has-gutters" on-finish-render>
     <div id="{{pin.id}}" class="pin thumbnail">
