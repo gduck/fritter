@@ -15,6 +15,27 @@ class PinsController < ApplicationController
     @pin = Pin.find(params[:id])
   end
 
+  def unlike
+    pin = Pin.find(params[:pin_id])
+    pin.like_count = pin.like_count - 1
+    if pin.save
+      render json: {success: true}
+    else
+      render json: {success: false}
+    end
+  end
+
+  def like
+    pin = Pin.find(params[:pin_id])
+    pin.like_count = pin.like_count + 1
+    if pin.save
+      render json: {success: true}
+    else
+      render json: {success: false}
+    end
+  end
+
+
   protected
   def permitted_params 
     params.require(:pin).permit(:keyword, :category_id, :limit, :offset)

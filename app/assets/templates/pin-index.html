@@ -7,16 +7,16 @@
       <div id="{{pin.id}}" class="pin thumbnail">
         <div class="picture-wrap">
           <div class="like-button red-like" ng-click="likePinToggle($index)">
-            <button ng-show="pin.liked_by_me" class="btn btn-danger btn-sm heart glyphicon glyphicon-heart"></button>
+            <button ng-show="pin.liked_by_me" class="btn btn-danger btn-sm heart glyphicon glyphicon-heart"><div class="num-likes">{{pin.like_count}}</div></button>
           </div>
           <div class="panel-visible">
-            <span class="pin-show-link" ng-show="true" ng-click="openPin(pin.id)"></span>
+            <span class="pin-show-link" ng-show="true" ng-click="openPin(pin.id, pin.liked_by_me)"></span>
             <div class="like-button" ng-click="likePinToggle($index)">
               <div ng-show="pin.liked_by_me">
-                <button class="btn btn-danger btn-sm heart glyphicon glyphicon-heart"></button>
+                <button class="btn btn-danger btn-sm heart glyphicon glyphicon-heart"><div class="num-likes">{{pin.like_count}}</div></button>
               </div>
               <div ng-show="!pin.liked_by_me">
-                <button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"></button>
+                <button class="btn btn-default btn-sm heart glyphicon glyphicon-heart"><div class="num-likes">{{pin.like_count}}</div></button>
               </div>
             </div>
             <div class="url">
@@ -38,5 +38,5 @@
     </div>
   </div>
 </div>
-<pin-show class="pin-show-modal" ng-show="open" ng-click="closePin()"></pin-show>
+<pin-show class="pin-show-modal" ng-show="open" ng-click="closePin()" close="closePin()"></pin-show>
 
