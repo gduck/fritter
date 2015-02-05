@@ -34,6 +34,26 @@ class UsersController < ApplicationController
    end
   end 
 
+  def edit
+    if user_signed_in?
+      # @user=current_user
+
+      current_user.update_attributes(:username => params[:username])
+        # , :userprofile => params[:userprofile]
+
+      render json: {signedIn: user_signed_in?, id: get_id, username: current_user.username, email: get_email} 
+      # userprofile: current_user.userprofile
+
+    else
+      return nil
+    end
+  end
+
+  def index
+    @user = User.all
+
+  end
+
   protected
 
   def permitted_params 

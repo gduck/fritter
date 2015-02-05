@@ -2,8 +2,10 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
 
   $scope.pins = [];
   $scope.likes = [];
+  $scope.loaded = false;
+  $scope.category_url = ''; //might need to clean up
+  $scope.changing = false;
   $scope.user = UserServices;
-
   $scope.searchTerms = '';
   $scope.loaded = false;
   $scope.open = false;
@@ -145,6 +147,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
       $scope.likePin(index);
     }
   }
+
 
   // THIS IS STUFF THAT GETS CALLED AUTOMATICALLY
   $scope.setURL();

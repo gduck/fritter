@@ -14,10 +14,16 @@ Rails.application.routes.draw do
   get 'pins/:id' => 'pins#show'
 
   get 'likes' => 'likes#index'
+<<<<<<< HEAD
   post 'likes/:pin_id' => 'likes#create'
   delete 'likes/:pin_id' => 'likes#destroy'
+=======
+  post '/likes' => 'likes#create'
+>>>>>>> username update works
 
+
+  get '/user' => 'users#index'
   get '/user/get' => 'users#get'
+  patch '/user/:id' => 'users#edit'
 
-  
 end

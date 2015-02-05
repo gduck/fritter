@@ -78,4 +78,7 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
       console.log(status);
     });
   };
+
+
+
 }])

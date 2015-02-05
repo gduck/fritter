@@ -88,3 +88,28 @@ input.form-control{
   border-color: $primary-background-color;
   }
 }
+
+div.change-user-wrap{
+  color: $tertiary-background-color;
+  text-align: center;
+  position: fixed;
+  z-index: 300;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(41, 46, 55, 0.9);
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.change-user{
+  
+}
+
+.change-user-box{
+  width: 400px;
+  margin: 0 auto;
+  position: relative;
+  top: 100px;
+}
+
