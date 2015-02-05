@@ -12,17 +12,36 @@ class LikesController < ApplicationController
   def create
     like = current_user.likes.new
     like.pin_id = params[:pin_id]
-    if like.save
-      render json: {success: true}
-    else
-      render json: {success: false}
+
+    pin = Pin.find(params[:pin_id])
+    pin.like_count = pin.like_count + 1
+
+    Like.transaction do
+      begin
+        pin.save
+        like.save
+        render json: {success: true}
+      rescue 
+        render json: {success: false}
+      end
     end
   end
 
   def destroy
     like = current_user.likes.find_by(permitted_params)
-    like.destroy
-    render json: {status: 200, params: params}
+
+    pin = Pin.find(params[:pin_id])
+    pin.like_count = pin.like_count - 1
+
+    Like.transaction do
+      begin
+        pin.save
+        like.destroy
+        render json: {success: true}
+      rescue 
+        render json: {success: false}
+      end
+    end
   end
 
   protected

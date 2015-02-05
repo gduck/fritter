@@ -122,9 +122,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     }).error(function(response){
       console.log("error in unlikePin ", response);
     })
-    $http.patch('/unlikePin/' + pinID).success(function(data){
-      console.log("unliked pin : ", data);
-    })
   }
 
   $scope.likePin = function(index) {
@@ -135,9 +132,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
       $scope.pins[index].liked_by_me = true;
     }).error(function(response){
       console.log("error in likePin ", response);
-    })
-    $http.patch('/likePin/' + pinID).success(function(data){
-      console.log("liked pin : ", data);
     })
   }
 
