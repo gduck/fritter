@@ -67,11 +67,12 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
     var data = "?id=12";
     console.log(data);
     console.log("about to logout");
+    $scope.user.openUser = false;
     $http.delete("/users/sign_out.json").success(function(response,status){
       console.log(response);
       $scope.getUserDetails();
       //UserServices.signedIn = false;
-      //$location.path("/");
+      $location.path("/");
     }).error(function(response,status){
       console.log("ERROR in signout");
       console.log(response);
