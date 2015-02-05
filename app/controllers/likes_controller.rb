@@ -8,24 +8,21 @@ class LikesController < ApplicationController
     else
       @pins = current_user.pins.includes(:category).order('created_at DESC').limit(params[:limit]).offset(params[:offset])
     end
-      # @likes = current_user.likes.includes(:pin).limit(params[:limit]).offset(params[:offset])
-    # else
-      # @pins = nil
-    # end
   end
 
   def create
-    like = Like.new(permitted_params)
+    like = current_user.likes.new(permitted_params)
     if like.save
-      redirect_to :back
+      render json: {success: true}
     else
       puts "ERROR SAVING OUR LIKE "
+      render json: {success: false}
     end
   end
 
   protected
   def permitted_params 
-    params.require(:like).permit(:user_id, :pin_id)
+    params.require(:like).permit(:pin_id)
   end
 
 end
