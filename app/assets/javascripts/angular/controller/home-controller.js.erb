@@ -57,8 +57,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
   }
 
   if($routeParams.category) {
-    $http.get('categories.json?keyword=' + $routeParams.category).success(function(response) {
-      $scope.category = response.categories[0];
+    // $http.get('categories.json?keyword=' + $routeParams.category).success(function(response) {
+    $http.get('categories/' + $routeParams.category + '.json').success(function(response) {
+      $scope.category = response;
       $scope.category_url = "&category_id=" + $scope.category.id;
       url += $scope.category_url;
       $scope.searchPins();

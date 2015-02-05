@@ -8,12 +8,12 @@ Rails.application.routes.draw do
 
   # resources :categories
   get 'categories' => 'categories#index'
-  get 'categories/:name' => 'categories#show'
+  get '/categories/:simplified_name' => 'categories#show'
 
   get 'pins' => 'pins#index'
   get 'pins/:id' => 'pins#show'
-  get 'likes' => 'likes#index'
 
+  get 'likes' => 'likes#index'
   post '/likes' => 'likes#create'
 
   get '/user/get' => 'users#get'
