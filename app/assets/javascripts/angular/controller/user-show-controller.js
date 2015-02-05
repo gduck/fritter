@@ -1,6 +1,8 @@
 app.controller('UserShowCtrl', ['$scope', '$http', 'UserServices', function($scope, $http, UserServices){
 
-console.log('this is UserShowCtrl', UserServices.id);
+  console.log('this is UserShowCtrl', UserServices.id);
+  // $scope.userprofile = 'Welcome to my page';
+
 
   $scope.changeName = function(){
     $scope.changing = true;
@@ -10,14 +12,24 @@ console.log('this is UserShowCtrl', UserServices.id);
   $scope.submitChange = function(){
     console.log('i jam trying to submit');
     $scope.changing = false;
-    var data = {
-      username: $scope.newUserName,
-      // userprofile: $scope.newUserProfile
-    };
+
+    var data = {};
+    console.log($scope.newUserName);
+
+    if($scope.newUserName != ''){
+      data.username = $scope.newUserName;
+    }
+
+    if($scope.newUserProfile != ""){
+      data.userprofile = $scope.newUserProfile;
+    }
+
+console.log('data',data);
+
     $http.patch('/user/' + UserServices.id , data).success(function(response,status,xhr){
       console.log('i received this resons:', response);
       UserServices.username = response.username;
-      // UserServices.userprofile = response.newUserProfile;
+      UserServices.userprofile = response.userprofile;
     })
 
   }

@@ -6,6 +6,7 @@ app.factory('UserServices', function() {
   user.name = "Temporary Name";
   user.email = "";
   user.username = "";
+  user.userprofile = "";
   user.viewUser = false;
 
   return user;

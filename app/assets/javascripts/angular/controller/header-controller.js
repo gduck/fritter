@@ -12,6 +12,7 @@ app.controller('HeaderCtrl', ['$scope', '$http', '$routeParams', '$location', 'U
       UserServices.id = response.id;
       UserServices.username = response.username;
       UserServices.email = response.email;
+      UserServices.userprofile = response.userprofile;
       console.log("in get user details, UserServices: ", UserServices);
     });  
   }  
