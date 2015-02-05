@@ -10,7 +10,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
   var url = '';
   var category_url = '';
   var searchTerms_url = '';
-  var limit = 12;
+  var limit = 18;
   var offset = 0;
   var end = false;
  
@@ -20,13 +20,11 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
 
    // set the search url
   $scope.setURL = function() {
-    url = '';
-    if ($location.path() === "/profile") { 
-      // then this is a user page
-      url += 'likes.json?';
-    } 
+    // then this is a user page
+    if ($location.path() === "/profile") { url = 'likes.json?'; }  
     // else not a user page, get all pins
-    else { url += 'pins.json?'; }
+    else { url = 'pins.json?'; }
+    
     url += 'limit=' + limit + '&offset=' + offset;
     url += $scope.category_url;
 
