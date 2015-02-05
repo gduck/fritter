@@ -4,56 +4,29 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
   $scope.category = '';
   $scope.pins = [];
   $scope.loaded = false;
-
+  $scope.category_url = '';
   $scope.user = UserServices;
+
   var url = '';
   var category_url = '';
   var searchTerms_url = '';
-  var limit = 12;
+  var limit = 18;
   var offset = 0;
-  $scope.category_url = '';
+  var end = false;
  
-
   $http.get('/categories.json').success(function(data){
     $scope.categories = data.categories;
   })
 
-  
-  // set the search url
+   // set the search url
   $scope.setURL = function() {
-    url = '';
     // then this is a user page
-    //console.log($location.path() === "/user/profile");
-    if ($location.path() === "/profile") { 
-      console.log('checking path data');
-      console.log($location.path() === "/profile");
-      url += 'likes.json?';
-    } 
+    if ($location.path() === "/profile") { url = 'likes.json?'; }  
     // else not a user page, get all pins
-    else { url += 'pins.json?'; }
-
+    else { url = 'pins.json?'; }
+    
     url += 'limit=' + limit + '&offset=' + offset;
-
-    if($routeParams.category) {
-      $http.get('/categories.json?keyword='+$routeParams.category).success(function(response) {
-        $scope.category = response.categories[0];
-        $scope.category_url = "&category_id=" + $scope.category.id;
-      }).error(function(response){
-        console.log("error in get category");
-      })
-    } else {
-      category_url = '';
-      // if we have no category in the url, get some pins and get more with infinite scroll as you scroll
-      var end = false;
-      $scope.busy = false;
-      $scope.after = '';
-    }
     url += $scope.category_url;
-    //console.log('just set url ', url);
-  }
-
-  $scope.getPins = function() {
-    $scope.setURL();
 
     if ($scope.searchTerms != "") {
       searchTerms_url = '&keyword=' + $scope.searchTerms;
@@ -62,38 +35,63 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     }
     // add our search terms to the url
     url += searchTerms_url;
+  }
+  $scope.setURL();
 
-    //console.log("in getPins with url of ", url);
+  $scope.searchPins = function() {
+    // new search - set offset to 0
+    offset = 0;
+    $scope.setURL();
+    console.log("About to search: ", url);
+
     $http.get(url).success(function(data){
-      console.log("the data is ", data);
-      $scope.pins = [];
       $scope.pins = data.pins;
       $scope.loaded = true;
-      console.log("GETTING PINS URL ", url);
+      // if we have less pins than limit, stop nextPage from running
+      if ($scope.pins.count < limit) {
+        end = true;
+      }      
+    }).error(function(response){
+      console.log(">>>>> ERROR IN searchPINS ", response);
     });
   }
-  $scope.getPins();
+
+  if($routeParams.category) {
+    // $http.get('categories.json?keyword=' + $routeParams.category).success(function(response) {
+    $http.get('categories/' + $routeParams.category + '.json').success(function(response) {
+      $scope.category = response;
+      $scope.category_url = "&category_id=" + $scope.category.id;
+      url += $scope.category_url;
+      $scope.searchPins();
+    })
+    .error(function(response){
+      console.log(">>>>> error in get category");
+    });
+  } else {
+    category_url = '';
+    // if we have no category in the url, get some pins and get more with infinite scroll as you scroll
+    // var end = false;
+    $scope.busy = false;
+    $scope.after = '';
+    $scope.searchPins();
+  }
 
   // inifinite scroll function
   $scope.nextPage = function() {
-    // if we have less pins than limit, return
-    if ($scope.pins.count < limit) {
-      var end = true;
-    }
     if ($scope.busy) return;
     if (end == true) return;
-    $scope.busy = true;
     offset += limit;
+    $scope.busy = true;
     $scope.setURL();
-    //console.log("here in next page url is ", url);
+    console.log("About to next page with url: ", url);
+
     $http.get(url).success(function(data){
       var numPins = data.pins.length;
-      console.log("numPins is ", numPins);
+      //console.log("numPins is ", numPins);
       if (numPins < limit){
         end = true;
       }
       for(var i = 0; i < numPins; i++) {
-        //console.log(data.pins[i]);
         $scope.pins.push(data.pins[i]);
       }
       $scope.busy = false;
@@ -108,8 +106,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
       $scope.pin = data.pins[0];
     })
     $scope.open = !$scope.open;
-    // console.log($scope.pin.img_sm_url);
-
   }
 
   $scope.closePin = function(){

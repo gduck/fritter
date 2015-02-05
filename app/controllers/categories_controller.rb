@@ -8,7 +8,13 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.where(simplified_name: params[:keyword])
+    puts ">>>>>>>>>>>>>>>>>>>>>> in show"
+    puts params
+    @category = Category.find_by(:simplified_name => params[:simplified_name])
+    # puts @category
+    # puts @category.name
+    # puts @category.simplified_name
+    # puts @category.id
   end
 
 end
