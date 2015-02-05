@@ -6,7 +6,7 @@
     <div ng-repeat='pin in pins track by $index' class="masonry-brick pin-outer col2 box has-gutters">
       <div id="{{pin.id}}" class="pin thumbnail">
         <div class="picture-wrap">
-          <div class="like-button red-like">
+          <div class="like-button red-like" ng-click="likePinToggle($index)">
             <button ng-show="pin.liked_by_me" class="btn btn-danger btn-sm heart glyphicon glyphicon-heart"></button>
           </div>
           <div class="panel-visible">

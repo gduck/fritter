@@ -34,10 +34,11 @@ class LikesController < ApplicationController
     # puts search_params
     # puts "PERMITTED PARAMS"
     # puts permitted_params
-    like = current_user.likes.find(search_params)
+    like = current_user.likes.find_by(search_params)
     puts "FINDING LIKE"
     puts like
-    # puts ">>>>>>>>>>>>>>>  FIND LIKE "+alike.to_s
+    like.destroy
+    puts ">>>>>>>>>>>>>>>  DESTROYED"
 
     render json: {status: 200, params: params}
   end

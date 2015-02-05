@@ -119,7 +119,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     deleteData = pinID;
     console.log("IN UNLIKE PIN ", deleteData);
     console.log("deleteData is ", deleteData);
-    $http.delete('/likes', deleteData).success(function(data){
+    $http.delete('/likes/'+ pinID + '.json').success(function(data){
       console.log("back from delete function");
       console.log("data is ", data);
     }).error(function(response){
@@ -138,7 +138,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
 
   $scope.likePinToggle = function(index) {
     //console.log("index :", index);
-    //console.log("pin[]: ", $scope.pins[index]);
+    console.log("TOGGLE FUNCTION pin[]: ", $scope.pins[index]);
     var liked = $scope.pins[index].liked_by_me;
     // if first time using this variable - set it
     if (typeof liked === 'undefined') {
@@ -156,7 +156,10 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     // }
 
     if (liked) { $scope.likePin(pinID); }
-    else { $scope.unlikePin(pinID); }
+    else { 
+      $scope.unlikePin(pinID);
+      $scope.pins.splice(index, 1);
+    }
   }
 
 }])
