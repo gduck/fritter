@@ -64,8 +64,8 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
 
   $scope.userSignOut = function(){
     // var data = UserServices.id;
-    var data = "?id=12";
-    console.log(data);
+    //var data = "?id=12";
+    //console.log(data);
     console.log("about to logout");
     $scope.user.openUser = false;
     $http.delete("/users/sign_out.json").success(function(response,status){
@@ -73,6 +73,7 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
       $scope.getUserDetails();
       //UserServices.signedIn = false;
       $location.path("/");
+      $scope.user.openUser = false;
     }).error(function(response,status){
       console.log("ERROR in signout");
       console.log(response);
