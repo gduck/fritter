@@ -6,6 +6,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
 
   $scope.searchTerms = '';
   $scope.loaded = false;
+  $scope.open = false;
 
   var pinsHash = {};
   var likesHash = {};
@@ -17,21 +18,13 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
   var offset = 0;
   var end = false;
  
-  $http.get('/categories.json').success(function(data){
-    $scope.categories = data.categories;
-  })
-  $http.get('/likes.json').success(function(data){
-    console.log("getting likes :", data);
-    $scope.likes = data.pins;
-  })
-
-   // set the search url
+  // FUNCTION DEFINITIONS
+  // set the search url
   $scope.setURL = function() {
     // then this is a user page
     if ($location.path() === "/profile") { url = 'likes.json?'; }  
     // else not a user page, get all pins
-    else { url = 'pins.json?'; }
-    
+    else { url = 'pins.json?'; }  
     url += 'limit=' + limit + '&offset=' + offset;
     url += category_url;
 
@@ -43,7 +36,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     // add our search terms to the url
     url += searchTerms_url;
   }
-  $scope.setURL();
 
   var hashLikes = function() {
     for (j = 0; j < $scope.likes.length; j++) {
@@ -77,25 +69,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
       console.log(">>>>> ERROR IN searchPINS ", response);
     });
   }
-
-
-  if($routeParams.category) {
-    $http.get('categories/' + $routeParams.category + '.json').success(function(response) {
-      category_url = "&category_id=" + response.id;
-      url += $scope.category_url;
-      $scope.searchPins();
-    })
-    .error(function(response){
-      console.log(">>>>> error in get category");
-    });
-  } else {
-    category_url = '';
-    // if we have no category in the url, get some pins and get more with infinite scroll as you scroll
-    $scope.busy = false;
-    $scope.after = '';
-    $scope.searchPins();
-  }
-
+  
   // inifinite scroll function
   $scope.nextPage = function() {
     if ($scope.busy) return;
@@ -104,7 +78,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     $scope.busy = true;
     $scope.setURL();
     //console.log("About to next page with url: ", url);
-
     $http.get(url).success(function(data){
       var numPins = data.pins.length;
       if (numPins < limit){
@@ -120,9 +93,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     });
   }
 
-
   // Zoom in and out part
-  $scope.open = false;
   $scope.openPin = function(pin_id){
     //console.log(pin_id);
     $http.get('pins/' + pin_id + '.json').success(function(data){
@@ -136,12 +107,13 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     $scope.open = !$scope.open;
   }
 
-
   $scope.unlikePin = function(index) {
     var pinID = $scope.pins[index].id;
     
     $http.delete('/likes/'+ pinID).success(function(data){
-      $scope.pins[index].liked_by_me = false;
+      if ($location.path() != '/profile') {
+        $scope.pins[index].liked_by_me = false;
+      }
     }).error(function(response){
       console.log("error in unlikePin ", response);
     })
@@ -153,7 +125,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     //console.log("ABOUT TO LIKE PIN ID: ", pinID);
     $http.post('/likes/' + pinID).success(function(data){
       $scope.pins[index].liked_by_me = true;
-      console.log("created entry in like table - data: ", data);
     }).error(function(response){
       console.log("error in likePin ", response);
     })
@@ -174,5 +145,35 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
       $scope.likePin(index);
     }
   }
+
+  // THIS IS STUFF THAT GETS CALLED AUTOMATICALLY
+  $scope.setURL();
+
+  $http.get('/categories.json').success(function(data){
+    $scope.categories = data.categories;
+  })
+
+  $http.get('/likes.json').success(function(data){
+    console.log("getting likes :", data);
+    $scope.likes = data.pins;
+  })
+
+  if($routeParams.category) {
+    $http.get('categories/' + $routeParams.category + '.json').success(function(response) {
+      category_url = "&category_id=" + response.id;
+      url += $scope.category_url;
+      $scope.searchPins();
+    })
+    .error(function(response){
+      console.log(">>>>> error in get category");
+    });
+  } else {
+    category_url = '';
+    // if we have no category in the url, get some pins and get more with infinite scroll as you scroll
+    $scope.busy = false;
+    $scope.after = '';
+    $scope.searchPins();
+  }
+
 
 }])
