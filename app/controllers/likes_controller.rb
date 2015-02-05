@@ -20,17 +20,13 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    like = current_user.likes.find_by(search_params)
+    like = current_user.likes.find_by(permitted_params)
     like.destroy
     render json: {status: 200, params: params}
   end
 
   protected
   def permitted_params 
-    params.permit(:pin_id)
-  end
-
-  def search_params 
     params.permit(:pin_id)
   end
 

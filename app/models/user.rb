@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   # validates :username, presence: true, uniqueness: true
 
-  # missing relationship info
-  has_many :likes
+  has_many :likes, :dependent => :destroy
   has_many :pins, through: :likes
+
 end
