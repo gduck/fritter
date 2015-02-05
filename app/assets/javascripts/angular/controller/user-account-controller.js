@@ -4,9 +4,11 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
 
   $scope.getUserDetails = function() {
     $http.get("/user/get.json").success(function(response,status){
+      console.log('i receive this response: ',response);
       UserServices.signedIn = response.signedIn;
       UserServices.id = response.id;
       UserServices.username = response.username;
+      UserServices.userprofile = response.userprofile;
       UserServices.email = response.email;
       console.log("in get user details, UserServices: ", UserServices);
       // console.log("the user services response is ", response);
@@ -30,7 +32,6 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
       console.log(status);
       $scope.getUserDetails();
       console.log("USER SIGNUP current user ", UserServices);
-      $location.path("/user/" + user.id);
     }).error(function(response) {
       console.log("problem!! - " + response);
       UserServices.signedIn = false;
@@ -69,7 +70,7 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
     $http.delete("/users/sign_out.json").success(function(response,status){
       console.log(response);
       $scope.getUserDetails();
-      //UserServices.signedIn = false;
+      UserServices.signedIn = false; // ask dale why this was commented
       $location.path("/");
       $scope.user.openUser = false;
     }).error(function(response,status){
@@ -78,4 +79,7 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
       console.log(status);
     });
   };
+
+
+
 }])
