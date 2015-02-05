@@ -11,7 +11,7 @@
           </div>
           <div class="panel-visible">
             <span class="pin-show-link" ng-show="true" ng-click="openPin(pin.id)"></span>
-            <div class="like-button" ng-click="likePin($index)">
+            <div class="like-button" ng-click="likePinToggle($index)">
               <div ng-show="pin.liked_by_me">
                 <button class="btn btn-danger btn-sm heart glyphicon glyphicon-heart"></button>
               </div>
