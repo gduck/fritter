@@ -2,6 +2,7 @@
   <div class="text-center" ng-show="loaded && pins.length == 0">
     <h1 class="no-result">No Result Found...</h1>
   </div>
+
   <div ng-repeat='pin in pins track by $index' class="masonry-brick pin-outer col2 box has-gutters" on-finish-render>
     <div id="{{pin.id}}" class="pin thumbnail">
       <div class="picture-wrap">
