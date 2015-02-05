@@ -120,6 +120,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     console.log("IN UNLIKE PIN ", deleteData);
     console.log("deleteData is ", deleteData);
     $http.delete('/likes/'+ pinID + '.json').success(function(data){
+      $scope.pins[index].liked_by_me = false;
       console.log("back from delete function");
       console.log("data is ", data);
     }).error(function(response){
@@ -130,6 +131,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
   $scope.likePin = function(pinID) {
     console.log("ABOUT TO LIKE PIN ID: ", pinID);
     $http.post('/likes/' + pinID + '.json').success(function(data){
+      $scope.pins[index].liked_by_me; = true;
       console.log("created entry in like table - data: ", data);
     }).error(function(response){
       console.log("error in likePin ", response);
@@ -137,17 +139,11 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
   }
 
   $scope.likePinToggle = function(index) {
-    //console.log("index :", index);
-    console.log("TOGGLE FUNCTION pin[]: ", $scope.pins[index]);
     var liked = $scope.pins[index].liked_by_me;
     // if first time using this variable - set it
-    if (typeof liked === 'undefined') {
-      liked = false;
-    }
-    liked = !liked;
+    if (typeof liked === 'undefined') { liked = false; }
 
     var pinID = $scope.pins[index].id;
-
     if (liked) { $scope.likePin(pinID); }
     else { 
       $scope.unlikePin(pinID);
