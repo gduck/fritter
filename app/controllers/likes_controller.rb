@@ -1,26 +1,18 @@
 class LikesController < ApplicationController
 
  def index
-    # if current_user
     if params[:keyword] || params[:category_id] 
       permitted_params = params.permit(:category_id)
       @pins = current_user.pins.includes(:category).where(permitted_params).where("title LIKE '%#{params[:keyword]}%'").order('likes.id DESC').limit(params[:limit]).offset(params[:offset])
     else
       @pins = current_user.pins.includes(:category).order('likes.id DESC').limit(params[:limit]).offset(params[:offset])
     end
-      # @likes = current_user.likes.includes(:pin).limit(params[:limit]).offset(params[:offset])
-    # else
-      # @pins = nil
-    # end
   end
 
   def create
-    puts " >>>>>>>>>>>>>>>>>> PERMITTED PARAMS "
-    puts permitted_params
     like = current_user.likes.new
     like.pin_id = params[:pin_id]
     if like.save
-      puts ">>>>>>>>>>>>>>>>>>> LIKE SAVED"
       render json: {success: true}
     else
       render json: {success: false}
@@ -28,18 +20,8 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    # puts "PARAMS"
-    # puts params
-    # puts "SEARCH PARAMS"
-    # puts search_params
-    # puts "PERMITTED PARAMS"
-    # puts permitted_params
     like = current_user.likes.find_by(search_params)
-    puts "FINDING LIKE"
-    puts like
     like.destroy
-    puts ">>>>>>>>>>>>>>>  DESTROYED"
-
     render json: {status: 200, params: params}
   end
 

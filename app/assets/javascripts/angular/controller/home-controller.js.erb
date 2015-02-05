@@ -148,13 +148,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
 
     var pinID = $scope.pins[index].id;
 
-    // var data = {
-    //   'likes': {
-    //     'user_id': $scope.user.id,
-    //     'pin_id': $scope.pins[index].id
-    //   }
-    // }
-
     if (liked) { $scope.likePin(pinID); }
     else { 
       $scope.unlikePin(pinID);
