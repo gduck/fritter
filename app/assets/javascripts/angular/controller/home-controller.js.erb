@@ -1,11 +1,14 @@
 app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'UserServices', function($scope, $http, $routeParams, $location, UserServices){
 
-  $scope.searchTerms = '';
-  $scope.category = '';
   $scope.pins = [];
-  $scope.loaded = false;
-  $scope.category_url = '';
+  $scope.likes = [];
   $scope.user = UserServices;
+
+  $scope.searchTerms = '';
+  $scope.loaded = false;
+
+  var pinsHash = {};
+  var likesHash = {};
 
   var url = '';
   var category_url = '';
@@ -17,6 +20,10 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
   $http.get('/categories.json').success(function(data){
     $scope.categories = data.categories;
   })
+  $http.get('/likes.json').success(function(data){
+    console.log("getting likes :", data);
+    $scope.likes = data.pins;
+  })
 
    // set the search url
   $scope.setURL = function() {
@@ -26,7 +33,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     else { url = 'pins.json?'; }
     
     url += 'limit=' + limit + '&offset=' + offset;
-    url += $scope.category_url;
+    url += category_url;
 
     if ($scope.searchTerms != "") {
       searchTerms_url = '&keyword=' + $scope.searchTerms;
@@ -38,6 +45,20 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
   }
   $scope.setURL();
 
+  var hashLikes = function() {
+    for (j = 0; j < $scope.likes.length; j++) {
+      likesHash[$scope.likes[j].id] = true;
+    }
+  }
+
+  var comparePins = function() {
+    for (i = 0; i < $scope.pins.length; i++) {
+      if (likesHash[$scope.pins[i].id]) {
+        $scope.pins[i].liked_by_me = true;
+      }
+    }
+  }
+
   $scope.searchPins = function() {
     // new search - set offset to 0
     offset = 0;
@@ -47,7 +68,8 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     $http.get(url).success(function(data){
       $scope.pins = data.pins;
       $scope.loaded = true;
-      // if we have less pins than limit, stop nextPage from running
+      hashLikes();
+      comparePins();
       if ($scope.pins.count < limit) {
         end = true;
       }      
@@ -56,11 +78,10 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     });
   }
 
+
   if($routeParams.category) {
-    // $http.get('categories.json?keyword=' + $routeParams.category).success(function(response) {
     $http.get('categories/' + $routeParams.category + '.json').success(function(response) {
-      $scope.category = response;
-      $scope.category_url = "&category_id=" + $scope.category.id;
+      category_url = "&category_id=" + response.id;
       url += $scope.category_url;
       $scope.searchPins();
     })
@@ -70,7 +91,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
   } else {
     category_url = '';
     // if we have no category in the url, get some pins and get more with infinite scroll as you scroll
-    // var end = false;
     $scope.busy = false;
     $scope.after = '';
     $scope.searchPins();
@@ -83,25 +103,28 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     offset += limit;
     $scope.busy = true;
     $scope.setURL();
-    console.log("About to next page with url: ", url);
+    //console.log("About to next page with url: ", url);
 
     $http.get(url).success(function(data){
       var numPins = data.pins.length;
-      //console.log("numPins is ", numPins);
       if (numPins < limit){
         end = true;
       }
       for(var i = 0; i < numPins; i++) {
+        if (likesHash[data.pins[i].id]) {
+          data.pins[i].liked_by_me = true;
+        }
         $scope.pins.push(data.pins[i]);
       }
       $scope.busy = false;
     });
   }
 
+
   // Zoom in and out part
   $scope.open = false;
   $scope.openPin = function(pin_id){
-    console.log(pin_id);
+    //console.log(pin_id);
     $http.get('pins/' + pin_id + '.json').success(function(data){
       $scope.pin = data.pins[0];
     })
@@ -116,14 +139,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
 
   $scope.unlikePin = function(index) {
     var pinID = $scope.pins[index].id;
-
-    deleteData = pinID;
-    console.log("IN UNLIKE PIN ", deleteData);
-    console.log("deleteData is ", deleteData);
+    
     $http.delete('/likes/'+ pinID).success(function(data){
       $scope.pins[index].liked_by_me = false;
-      console.log("back from delete function");
-      console.log("data is ", data);
     }).error(function(response){
       console.log("error in unlikePin ", response);
     })
@@ -132,7 +150,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
   $scope.likePin = function(index) {
     var pinID = $scope.pins[index].id;
 
-    console.log("ABOUT TO LIKE PIN ID: ", pinID);
+    //console.log("ABOUT TO LIKE PIN ID: ", pinID);
     $http.post('/likes/' + pinID).success(function(data){
       $scope.pins[index].liked_by_me = true;
       console.log("created entry in like table - data: ", data);
@@ -147,7 +165,11 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     if (typeof liked === 'undefined') { liked = false; }    
     if (liked) {
       $scope.unlikePin(index);
-      $scope.pins.splice(index, 1);
+      // remove from array if not on home page
+      if ($location.path() == '/profile') {
+        console.log('on profile page');
+        $scope.pins.splice(index, 1);
+      }
     } else { 
       $scope.likePin(index);
     }
