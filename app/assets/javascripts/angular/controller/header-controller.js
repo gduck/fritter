@@ -3,6 +3,8 @@ app.controller('HeaderCtrl', ['$scope', '$http', '$routeParams', '$location', 'U
   console.log("im in header ctrl");
 
   $scope.user = UserServices;
+  if ($location.path() == '/profile') { $scope.user.viewUser = true; }
+  else { $scope.user.viewUser = false; }
 
   $scope.resetUser = function() {
     $http.get("/user/get.json").success(function(response,status){
@@ -15,17 +17,12 @@ app.controller('HeaderCtrl', ['$scope', '$http', '$routeParams', '$location', 'U
   }  
   $scope.resetUser();
 
-  $scope.toggleUserView = function() {
-    console.log("toggling");
-    console.log($scope.user.viewUser);
-    $scope.user.viewUser = !($scope.user.viewUser);
-    console.log($scope.user.viewUser);
+  $scope.setUserView = function() {
+    console.log("not doing anything right now");
     $location.path('/profile');
   }
 
-
   $scope.goHome = function() {
-    $scope.user.viewUser = false;
     $location.path("/");
   }
 

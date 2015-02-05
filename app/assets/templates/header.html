@@ -21,16 +21,18 @@
       <div ng-show="user.signedIn">
       <!-- if the user view page is up, we don't want this button to do anything. no ng-click -->     
         <div ng-if="!user.viewUser">
-          <button ng-click="toggleUserView()" class="header-right btn btn-default col-xs-2">
-            <img src="assets/minion.jpg" id="avatar"class="img-circle lineup">
+        <!-- TOGGLE VIEW IN CONTROLLER DEP ON URL -> /profile -->
+          <button ng-click="setUserView()" class="header-right btn btn-default col-xs-2">
+            <img ng-src="assets/minion.jpg" id="avatar"class="img-circle lineup">
             <!-- what we show on the button will change depending on whether the user details are showing -->
             <div id="user-name" class="lineup">{{user.email}}</div>
           </button>
         </div>
 
+        <!--  IF VIEWUSER == true THEN MUST BE ON URL -> /profile -->
         <div ng-if="user.viewUser">
           <button class="header-right btn btn-default col-xs-2">
-            <img src="assets/minion.jpg" id="avatar"class="img-circle lineup">
+            <img ng-src="assets/minion.jpg" id="avatar"class="img-circle lineup">
             <!-- what we show on the button will change depending on whether the user details are showing -->
             <div id="user-name" class="lineup">{{user.email}}</div>
           </button>
@@ -39,7 +41,7 @@
       <!-- if the user is not signed in, show signup, toggle viewUser -->
       <div ng-show="!user.signedIn">
         <button ng-click="openModal()" class="header-right btn btn-default col-xs-2">
-          <img src="assets/minion.jpg" id="avatar"class="img-circle lineup">
+          <img ng-src="assets/minion.jpg" id="avatar"class="img-circle lineup">
           <div id="user-name" class="lineup">Sign Up / Sign In</div>
 <!--           <div ng-show="user.viewUser" id="user-name" class="lineup">Close Sign Up</div> -->
         </button>
@@ -47,12 +49,13 @@
     </div>
   </div>
 </div>
+<!-- IF VIEWUSER == true THEN ON URL /profile so must be signedIn == true also -->
 <div ng-if="user.viewUser">
-  <div ng-if="user.signedIn">
+  <!-- <div ng-if="user.signedIn"> -->
     <user-details></user-details>
-  </div>
-  <div ng-if="!user.signedIn">
+  <!-- </div> -->
+  <!-- <div ng-if="!user.signedIn">
     <user-account></user-account>
-  </div>
+  </div> -->
 </div>
 <user-account ng-show="user.openUser"></user-account>
