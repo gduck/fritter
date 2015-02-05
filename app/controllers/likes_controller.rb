@@ -23,9 +23,28 @@ class LikesController < ApplicationController
     end
   end
 
+  def destroy
+    puts "PARAMS"
+    puts params
+    puts "SEARCH PARAMS"
+    puts search_params
+    # puts "PERMITTED PARAMS"
+    # puts permitted_params
+    alike = Like.find(user_id: params[:likes[:user_id]], pin_id: params[:likes[:pin_id]])
+    puts "FINDING LIKE"
+    puts alike
+    # puts ">>>>>>>>>>>>>>>  FIND LIKE "+alike.to_s
+
+    render json: {status: 200, params: params}
+  end
+
   protected
   def permitted_params 
-    params.require(:like).permit(:user_id, :pin_id)
+    params.require(:likes).permit(:user_id, :pin_id)
+  end
+
+  def search_params 
+    params.permit(:user_id, :pin_id)
   end
 
 end
