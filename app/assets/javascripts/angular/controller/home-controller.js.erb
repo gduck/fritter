@@ -3,7 +3,8 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
   $scope.searchTerms = '';
   $scope.category = '';
   $scope.pins = [];
-  
+  $scope.loaded = false;
+
   $scope.user = UserServices;
   var url = '';
   var category_url = '';
@@ -64,8 +65,10 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
 
     //console.log("in getPins with url of ", url);
     $http.get(url).success(function(data){
+      console.log("the data is ", data);
       $scope.pins = [];
       $scope.pins = data.pins;
+      $scope.loaded = true;
       console.log("GETTING PINS URL ", url);
     });
   }
