@@ -9,7 +9,6 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', 'Message', func
   user.userprofile = "";
   user.viewUser = false;
   user.openUser = false;
-  user.triggerRefresh = false;
 
   user.watchUser = function() {
     $rootScope.$emit('userDetails', user);
@@ -70,7 +69,6 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', 'Message', func
       user.signedIn = false;
     });
     user.openUser = false;
-    user.triggerRefresh = true;
   }
 
  user.signOut = function(){

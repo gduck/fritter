@@ -96,7 +96,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', '$ro
     }).error(function(response){
       console.log(">>>>> ERROR IN searchPINS ", response);
     });
-    $scope.user.triggerRefresh = false;
   }
   
   // inifinite scroll function
