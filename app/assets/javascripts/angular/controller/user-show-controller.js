@@ -31,6 +31,8 @@ console.log('data',data);
       UserServices.username = response.username;
       UserServices.userprofile = response.userprofile;
     })
+    // this doesn't work
+    Message.sendNoty("success", "Saved");
 
   }
 

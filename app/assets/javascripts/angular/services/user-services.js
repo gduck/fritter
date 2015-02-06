@@ -36,6 +36,7 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', 'Message', func
       Message.sendNoty("success", "Welcome back "+ user.username);
     }).error(function(response) {
       console.log("problem!! - ",response);
+      Message.sendNoty("error", "Error! Please try again!");
       user.signedIn = false;
     });
     user.openUser = false;
@@ -62,6 +63,7 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', 'Message', func
       // Noty signup
       Message.sendNoty("success", "Welcome to fritter! ");
     }).error(function(response) {
+      Message.sendNoty("error", "Error! Please try again!");
       console.log("problem!! - " + response);
       user.signedIn = false;
     });

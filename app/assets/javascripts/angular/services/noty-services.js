@@ -16,5 +16,3 @@ app.factory('Message', ["$http", function($http){
 
    return msg;
 }]);
-
-      // Message.sendNoty("success", "Welcome to fritter! ");
