@@ -34,6 +34,7 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', 'Message', func
       user.watchUser();
       // Noty signIn
       Message.sendNoty("success", "Welcome back "+ user.username);
+      $rootScope.$emit('refreshPage', true);
     }).error(function(response) {
       console.log("problem!! - ",response);
       Message.sendNoty("error", "Error! Please try again!");
