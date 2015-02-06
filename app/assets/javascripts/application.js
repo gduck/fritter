@@ -19,4 +19,5 @@
 //= require angular-ui-bootstrap-tpls
 //= require bootstrap
 //= require_tree ./masonry
+//= require noty/packaged/jquery.noty.packaged.min
 //= require_tree ./angular
