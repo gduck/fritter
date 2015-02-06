@@ -141,6 +141,8 @@ p.description{
   width: 100vw;
   height: 100vh;
   background-color: $secondary-background-color;
+  overflow-x: hidden;
+  overflow-y: scroll;
   &:hover{
     cursor: zoom-out;
   }

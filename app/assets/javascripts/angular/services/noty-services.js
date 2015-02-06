@@ -3,14 +3,18 @@ app.factory('Message', ["$http", function($http){
 
   msg.sendNoty = function (notyType, notyMessage) {
     noty({
-      layout: 'topLeft',
+      // layout: 'topLeft',
+      layout: 'center',
       text: notyMessage,
       type: notyType,
-      timeout: 3000,
-      closeWith: ['click']
+      // timeout: 3000,
+      timeout: false,
+      // closeWith: ['click']
+      closeWith: ['hover']
     })
   }
 
    return msg;
 }]);
 
+      // Message.sendNoty("success", "Welcome to fritter! ");

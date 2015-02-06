@@ -32,7 +32,8 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', 'Message', func
       user.userprofile = response.userprofile;
       user.email = response.email;
       user.watchUser();
-      Message.sendNoty("alert", "Welcome back "+ user.username);
+      // Noty signIn
+      Message.sendNoty("success", "Welcome back "+ user.username);
     }).error(function(response) {
       console.log("problem!! - ",response);
       user.signedIn = false;
@@ -57,8 +58,9 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', 'Message', func
       user.username = response.username;
       user.userprofile = response.userprofile;
       user.email = response.email;
-      user.watchUser();      
-      Message.sendNoty("alert", "Welcome to fritter! ");
+      user.watchUser();
+      // Noty signup
+      Message.sendNoty("success", "Welcome to fritter! ");
     }).error(function(response) {
       console.log("problem!! - " + response);
       user.signedIn = false;
@@ -70,7 +72,6 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', 'Message', func
     user.openUser = false;
     $http.delete("/users/sign_out.json").success(function(response,status){
       console.log(response);
-      $location.path("/");
       user.signedIn = false;
       user.id = null;
       user.username = "";
@@ -78,7 +79,8 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', 'Message', func
       user.email = "";
       user.openUser = false;
       user.watchUser(); 
-      Message.sendNoty("alert", "Signed out. Goodbye!");
+      // noty signout
+      Message.sendNoty("error", "Signed out. Goodbye!");
     }).error(function(response,status){
       console.log("ERROR in signout");
       console.log(response);
@@ -86,6 +88,7 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', 'Message', func
     });
   };
 
+  $location.path("/");
   return user;
 }]);
 
