@@ -1,4 +1,4 @@
-app.factory('UserServices', ['$http', '$rootScope', '$location', function($http, $rootScope, $location) {
+app.factory('UserServices', ['$http', '$rootScope', '$location', 'Message', function($http, $rootScope, $location, Message) {
   var user = {};
 
   user.signedIn = false;
@@ -32,6 +32,7 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', function($http,
       user.userprofile = response.userprofile;
       user.email = response.email;
       user.watchUser();
+      Message.sendNoty("alert", "Welcome back "+ user.username);
     }).error(function(response) {
       console.log("problem!! - ",response);
       user.signedIn = false;
@@ -57,6 +58,7 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', function($http,
       user.userprofile = response.userprofile;
       user.email = response.email;
       user.watchUser();      
+      Message.sendNoty("alert", "Welcome to fritter! ");
     }).error(function(response) {
       console.log("problem!! - " + response);
       user.signedIn = false;
@@ -68,14 +70,15 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', function($http,
     user.openUser = false;
     $http.delete("/users/sign_out.json").success(function(response,status){
       console.log(response);
+      $location.path("/");
       user.signedIn = false;
       user.id = null;
       user.username = "";
       user.userprofile = "";
       user.email = "";
       user.openUser = false;
-      user.watchUser();            
-      $location.path("/");
+      user.watchUser(); 
+      Message.sendNoty("alert", "Signed out. Goodbye!");
     }).error(function(response,status){
       console.log("ERROR in signout");
       console.log(response);

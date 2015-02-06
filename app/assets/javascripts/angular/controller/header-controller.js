@@ -1,5 +1,6 @@
-app.controller('HeaderCtrl', ['$scope', '$http', '$rootScope', '$routeParams', '$location', 'UserServices', function($scope, $http, $rootScope, $routeParams, $location, UserServices){
+app.controller('HeaderCtrl', ['$scope', '$http', '$rootScope', '$routeParams', '$location', 'UserServices', 'Message', function($scope, $http, $rootScope, $routeParams, $location, UserServices, Message){
   
+  // Message.sendNoty('success','hello');
   console.log("im in header ctrl");
 
   $scope.user = UserServices;

@@ -89,6 +89,7 @@ GEM
     multi_json (1.10.1)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
+    noty-rails (2.2.9)
     orm_adapter (0.5.0)
     pg (0.17.1)
     rack (1.5.2)
@@ -176,6 +177,7 @@ DEPENDENCIES
   masonry-rails
   meta_request
   nokogiri
+  noty-rails
   pg
   rails (= 4.1.8)
   sass-rails (~> 4.0.3)
