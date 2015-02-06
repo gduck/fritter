@@ -15,7 +15,13 @@ button.back{
   }
 }
 
+.position{
+  position: relative;
+}
+
 .wrapper{
+  position: relative;
+  z-index: 301;
   width: 75%;
   max-width: 800px;
   border: solid 1px $tertiary-background-color;
