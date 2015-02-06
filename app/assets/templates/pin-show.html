@@ -1,11 +1,13 @@
-  <div class="row text-center">
+<div class="pin-show-modal" ng-show="open">
+  <!-- <div class="row text-center" > -->
 
     <div id="cross">
-      <button  class="btn btn-default btn-md glyphicon glyphicon-remove back"></button>
+      <button class="btn btn-default btn-md glyphicon glyphicon-remove back" ng-click="closePin()"> </button>
     </div>
     
-    <div class="wrapper">
 
+
+    <div class="wrapper">
         <div class="nav-content">
           <div class="big-globe">
             <button class=" btn btn-default btn-sm glyphicon glyphicon-globe"><a href='{{ pin.source_url }}' class="big-link">Visit Site</a></button>
@@ -36,4 +38,5 @@
           </div>
         </div>
     </div>
-  </div>
+  <!-- </div> -->
+</div>

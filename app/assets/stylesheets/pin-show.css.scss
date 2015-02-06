@@ -16,22 +16,40 @@ button.back{
 }
 
 .wrapper{
-  position: relative;
+  position: fixed;
   z-index: 301;
-  width: 75%;
-  max-width: 800px;
   border: solid 1px $tertiary-background-color;
   background-color: $tertiary-background-color;
   border-radius: 10px;
   display: inline-block;
-  margin: 20px;
-  margin-top: 40px;
   overflow-y: scroll;
+  width: 50%;
+  left: 25%;
     &:hover{
     cursor: initial; //if you click it, it still closes the modal
   }
 }
-
+//Medium
+@media (max-width: 1200px) {
+  .wrapper{
+    width: 60%;
+    left: 20%;
+  }
+}
+//Small - tablet
+@media (max-width: 992px) {
+  .wrapper{
+    width: 70%;
+    left: 15%;
+  }
+}
+//Extra small - mobile
+@media (max-width: 768px) {
+  .wrapper{
+    width: 90%;
+    left: 5%;
+  }
+}
 
 .nav-content{
   padding: 15px;
