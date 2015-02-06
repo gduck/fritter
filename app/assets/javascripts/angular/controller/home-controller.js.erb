@@ -1,4 +1,4 @@
-app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'UserServices', function($scope, $http, $routeParams, $location, UserServices){
+app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', '$rootScope', 'UserServices', function($scope, $http, $routeParams, $location, $rootScope, UserServices){
 
   $scope.pins = [];
   $scope.likes = [];
@@ -21,6 +21,14 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
   var end = false;
  
   // FUNCTION DEFINITIONS
+
+  // watch and emit functions for UserService
+  $rootScope.$on('userDetails', function(event, args) {
+    console.log("In watch function, args: ", args);
+    $scope.user = args;
+  })
+
+
   // set the search url
   $scope.setURL = function() {
     // then this is a user page
@@ -135,6 +143,13 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
   }
 
   $scope.likePinToggle = function(index) {
+    console.log("IN TOGGLE INDEX: ", index);
+    // if no current user, prompt to sign in
+    if ($scope.user.signedIn == false) {
+      $scope.user.error = "Please sign up to start collecting pin likes";
+      $scope.openUser = true;
+      return;
+    }
     console.log("IN PIN TOGGLE INDEX: ", index);
     var liked = $scope.pins[index].liked_by_me;
     // if first time using this variable - set it
@@ -183,5 +198,5 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
     $scope.searchPins();
   }
 
-
+  UserServices.watchUser();
 }])

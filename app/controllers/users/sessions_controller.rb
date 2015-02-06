@@ -3,11 +3,13 @@ class Users::SessionsController < Devise::SessionsController
 
  #  after_filter :set_csrf_headers, only: [:create, :destroy]
 
- #  def create
- #    resource = warden.authenticate!(:scope => resource_name, :recall => "users/sessions#failure")
- #    puts "resourcename & resource" + resource_name + resource
- #    return sign_in_and_redirect(resource_name, resource)
- #  end
+  def create
+    # resource = warden.authenticate!(:scope => resource_name, :recall => "users/sessions#failure")
+    # puts "resourcename & resource" + resource_name + resource
+    # return sign_in_and_redirect(resource_name, resource)
+
+    render json: {success: true, email: current_user.email, username: current_user.username, id: current_user.id}
+  end
   
  #  def sign_in_and_redirect(resource_or_scope, resource=nil)
  #    scope = Devise::Mapping.find_scope!(resource_or_scope)

@@ -1,6 +1,13 @@
-app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
-  function($scope, $http, $location, UserServices){
+app.controller('UserAccCtrl', ['$scope', '$rootScope', '$http', '$location', 'UserServices',
+  function($scope, $rootScope, $http, $location, UserServices){
+  
   $scope.user = UserServices;
+
+  // watch and emit functions for UserService
+  $rootScope.$on('userDetails', function(event, args) {
+    console.log("In watch function header controller, args: ", args);
+    $scope.user = args;
+  });
 
   $scope.getUserDetails = function() {
     $http.get("/user/get.json").success(function(response,status){
@@ -40,26 +47,32 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
   }
 
   $scope.userSignIn = function() {
-    var url = "/users/sign_in";
-    var data = {
-      'user': {
-        'email': $scope.signinEmail,
-        'password': $scope.signinPassword,
-        'password_confirmation': $scope.signinPassword
-      },
-      'commit': "Sign In"
-    };
-    $http.post(url, data).success(function(response, status, xhr){
-      console.log("SUCCESSFUL signin response ", response);
-      UserServices.signedIn = true;
-      $scope.getUserDetails();
-      //$location.path("/user");
-    }).error(function(response) {
-      console.log("problem!! - " + response);
-      UserServices.signedIn = false;
-    });
-    $scope.user.openUser = false;
-  };  
+    $scope.user.signIn($scope.signinEmail, $scope.signinPassword);
+    // UserServices.signIn();
+  }
+  // UserServices.watchUser();
+
+  // $scope.userSignIn = function() {
+  //   var url = "/users/sign_in";
+  //   var data = {
+  //     'user': {
+  //       'email': $scope.signinEmail,
+  //       'password': $scope.signinPassword,
+  //       'password_confirmation': $scope.signinPassword
+  //     },
+  //     'commit': "Sign In"
+  //   };
+  //   $http.post(url, data).success(function(response, status, xhr){
+  //     console.log("SUCCESSFUL signin response ", response);
+  //     UserServices.signedIn = true;
+  //     $scope.getUserDetails();
+  //     //$location.path("/user");
+  //   }).error(function(response) {
+  //     console.log("problem!! - " + response);
+  //     UserServices.signedIn = false;
+  //   });
+  //   $scope.user.openUser = false;
+  // };  
 
   $scope.userSignOut = function(){
     // var data = UserServices.id;

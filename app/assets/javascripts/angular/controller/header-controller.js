@@ -1,10 +1,20 @@
-app.controller('HeaderCtrl', ['$scope', '$http', '$routeParams', '$location', 'UserServices', function($scope, $http, $routeParams, $location, UserServices){
+app.controller('HeaderCtrl', ['$scope', '$http', '$rootScope', '$routeParams', '$location', 'UserServices', function($scope, $http, $rootScope, $routeParams, $location, UserServices){
   
   console.log("im in header ctrl");
 
   $scope.user = UserServices;
+
+
+  // watch and emit functions for UserService
+  $rootScope.$on('userDetails', function(event, args) {
+    console.log("In watch function header controller, args: ", args);
+    $scope.user = args;
+  });
+
   if ($location.path() == '/profile') { $scope.user.viewUser = true; }
   else { $scope.user.viewUser = false; }
+
+  //UserServices.watchUser();
 
   $scope.resetUser = function() {
     $http.get("/user/get.json").success(function(response,status){
@@ -19,7 +29,7 @@ app.controller('HeaderCtrl', ['$scope', '$http', '$routeParams', '$location', 'U
   $scope.resetUser();
 
   $scope.setUserView = function() {
-    console.log("not doing anything right now");
+    //console.log("not doing anything right now");
     $location.path('/profile');
   }
 
