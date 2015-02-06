@@ -132,18 +132,31 @@ p.description{
   }
 }
 
+.pin-show-modal-background{
+  position: fixed;
+  text-align: center;
+  margin: 0 auto;
+  z-index: 250;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $secondary-background-color;
+  &:hover{
+    cursor: zoom-out;
+  }
+}
+
 .pin-show-modal{
   position: fixed;
   z-index: 300;
   top: 0;
-  width: 100vw;
-  height: 100vh;
+  // margin: 0 auto;
+  // width: 75%;
+  // max-width: 800px;
+  // width: 100vw;
+  // height: 100vh;
   text-align: center;
-  background-color: $secondary-background-color;
   overflow-x: hidden;
   overflow-y: scroll;
-  &:hover{
-    cursor: zoom-out;
-  }
 }
 
