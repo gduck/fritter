@@ -26,7 +26,8 @@
             <img ng-src="<%= asset_path('minion.jpg') %>" id="avatar"class="img-circle lineup">
 
             <!-- what we show on the button will change depending on whether the user details are showing -->
-            <div id="user-name" class="lineup">{{user.email}}</div>
+            <div ng-show="user.username" id="user-name" class="lineup">{{user.username}}</div>
+            <div ng-show="!user.username" id="user-name" class="lineup">{{user.email}}</div>
           </button>
         </div>
 
@@ -35,7 +36,8 @@
           <button class="header-right btn btn-default col-xs-2">
             <img ng-src="<%= asset_path('minion.jpg') %>" id="avatar"class="img-circle lineup">
             <!-- what we show on the button will change depending on whether the user details are showing -->
-            <div id="user-name" class="lineup">{{user.email}}</div>
+            <div ng-show="user.username" id="user-name" class="lineup">{{user.username}}</div>
+            <div ng-show="!user.username" id="user-name" class="lineup">{{user.email}}</div>          
           </button>
         </div>        
       </div>
