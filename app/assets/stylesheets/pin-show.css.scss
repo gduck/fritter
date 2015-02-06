@@ -15,10 +15,6 @@ button.back{
   }
 }
 
-.position{
-  position: relative;
-}
-
 .wrapper{
   position: relative;
   z-index: 301;
@@ -83,6 +79,8 @@ button.glyphicon-heart{
 
 
 a.big-link{
+  z-index: 301;
+  position: relative;
   margin: 5px;
   text-align: center;
   color: $primary-font-color;
@@ -120,6 +118,8 @@ div.footer-url{
 }
 
 a.footer-link{
+  z-index: 301;
+  position: relative;
   color: $primary-font-color;
   font-weight: bold;
   margin: 10px;

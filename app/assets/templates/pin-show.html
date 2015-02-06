@@ -1,4 +1,4 @@
-  <div class="row text-center position">
+  <div class="row text-center">
 
     <div id="cross">
       <button  class="btn btn-default btn-md glyphicon glyphicon-remove back"></button>
@@ -8,7 +8,7 @@
 
         <div class="nav-content">
           <div class="big-globe">
-            <button class=" btn btn-default btn-sm glyphicon glyphicon-globe"><a href='{{ pin.img_sm_url }}' class="big-link">Visit Site</a></button>
+            <button class=" btn btn-default btn-sm glyphicon glyphicon-globe"><a href='{{ pin.source_url }}' class="big-link">Visit Site</a></button>
           </div>
           <div ng-show="pin.liked_by_me" class="big-heart">
             <button class="btn btn-danger btn-sm heart glyphicon glyphicon-heart"><div class="num-likes">{{pin.like_count}}</div></button>
@@ -19,7 +19,7 @@
         </div>
           
         <div class="image-content">
-          <a href="{{ pin.img_sm_url }}">
+          <a href="{{ pin.source_url }}">
             <img ng-src='{{ pin.img_sm_url }}' class="big-image">
           </a>
         </div>
@@ -33,7 +33,6 @@
           </div>
           <div>
             <p class="des">{{ pin.optional_info }}</p>
-            <p>Some pin info {{pin}}</p>
           </div>
         </div>
     </div>
