@@ -19,6 +19,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       clean_up_passwords resource
       return render json: {:success => false, :message => resource.errors}, status: 400
     end
+    render json: {success: true, email: current_user.email, username: current_user.username, id: current_user.id}
+
   end
 
   protected
