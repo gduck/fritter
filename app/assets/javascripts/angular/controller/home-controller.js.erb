@@ -24,7 +24,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', '$ro
 
   // watch and emit functions for UserService
   $rootScope.$on('userDetails', function(event, args) {
-    console.log("In watch function, args: ", args);
+    //console.log("In watch function, args: ", args);
     $scope.user = args;
   })
 
@@ -147,7 +147,8 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', '$ro
     // if no current user, prompt to sign in
     if ($scope.user.signedIn == false) {
       $scope.user.error = "Please sign up to start collecting pin likes";
-      $scope.openUser = true;
+      // UserServices.sign
+      $scope.user.openUser = true;
       return;
     }
     console.log("IN PIN TOGGLE INDEX: ", index);
@@ -198,5 +199,5 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', '$ro
     $scope.searchPins();
   }
 
-  UserServices.watchUser();
+  //UserServices.watchUser();
 }])
