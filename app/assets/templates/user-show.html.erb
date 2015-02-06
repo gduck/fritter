@@ -4,7 +4,6 @@
 </div>
 <div id="user-des" class="text-center">
   <img src="<%= asset_path('minion.jpg') %>" class="img-circle profile-pix">
-  <!-- <h1 class="user">Show User name{{user.name}}</h1> -->
   <h2 class="user">{{user.username}}</h2>
   <p class="profile" ng-show="user.userprofile">{{user.userprofile}}</p>
   <p class="profile" ng-show="!user.userprofile">Welcome to my page</p>
@@ -24,7 +23,6 @@
           <a class="btn btn-primary btn-sm" ng-click="cancelChange()">Cancel</a>
         </div>
       </form>
-      {{newUserProfile}}
   </div>
 </div>
 

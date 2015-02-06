@@ -70,7 +70,7 @@ app.controller('UserAccCtrl', ['$scope', '$http', '$location', 'UserServices',
     $http.delete("/users/sign_out.json").success(function(response,status){
       console.log(response);
       $scope.getUserDetails();
-      UserServices.signedIn = false; // ask dale why this was commented
+      UserServices.signedIn = false;
       $location.path("/");
       $scope.user.openUser = false;
     }).error(function(response,status){
