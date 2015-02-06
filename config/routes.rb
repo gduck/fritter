@@ -16,8 +16,7 @@ Rails.application.routes.draw do
   get 'likes' => 'likes#index'
   post 'likes/:pin_id' => 'likes#create'
   delete 'likes/:pin_id' => 'likes#destroy'
-
-  get '/user' => 'users#index'
+  
   get '/user/get' => 'users#get'
   patch '/user/:id' => 'users#edit'
 

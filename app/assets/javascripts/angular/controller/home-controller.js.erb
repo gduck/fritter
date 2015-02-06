@@ -96,17 +96,20 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
   }
 
   // Zoom in and out part
-  $scope.openPin = function(pin_id){
+  $scope.openPin = function(pin_id, liked){
     //console.log(pin_id);
     $http.get('pins/' + pin_id + '.json').success(function(data){
       $scope.pin = data.pins[0];
+      $scope.pin.liked_by_me = liked;
     })
     $scope.open = !$scope.open;
   }
 
   $scope.closePin = function(){
-    $scope.pin = null;
-    $scope.open = !$scope.open;
+    console.log("here in close Pin");
+    //$scope.pin = null;
+    $scope.open = false;
+    //$scope.open = !$scope.open;
   }
 
   $scope.unlikePin = function(index) {
@@ -133,11 +136,13 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
   }
 
   $scope.likePinToggle = function(index) {
+    console.log("IN PIN TOGGLE INDEX: ", index);
     var liked = $scope.pins[index].liked_by_me;
     // if first time using this variable - set it
     if (typeof liked === 'undefined') { liked = false; }    
     if (liked) {
       $scope.unlikePin(index);
+      $scope.pins[index].like_count--;
       // remove from array if not on home page
       if ($location.path() == '/profile') {
         console.log('on profile page');
@@ -145,6 +150,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', 'Use
       }
     } else { 
       $scope.likePin(index);
+      $scope.pins[index].like_count++;
     }
   }
 
