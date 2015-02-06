@@ -98,6 +98,12 @@ li.dropdown-list > a.dropdown-category{
   }
 }
 
+.btn.btn-default.header-right:hover #user-name{
+  color: $tertiary-background-color;
+
+}
+
+
 #avatar{
   width: auto;
   height: 20px;
