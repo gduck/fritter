@@ -147,7 +147,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', '$ro
     // if no current user, prompt to sign in
     if ($scope.user.signedIn == false) {
       $scope.user.error = "Please sign up to start collecting pin likes";
-      // UserServices.sign
       $scope.user.openUser = true;
       return;
     }
