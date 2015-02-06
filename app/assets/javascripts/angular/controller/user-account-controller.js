@@ -28,26 +28,9 @@ app.controller('UserAccCtrl', ['$scope', '$rootScope', '$http', '$location', 'Us
   $scope.userSignUp = function() {
     $scope.user.signUp($scope.signupEmail, $scope.signupUsername, $scope.signupPassword);
   }
-
   $scope.userSignOut = function(){
-    // var data = UserServices.id;
-    //var data = "?id=12";
-    //console.log(data);
-    console.log("about to logout");
-    $scope.user.openUser = false;
-    $http.delete("/users/sign_out.json").success(function(response,status){
-      console.log(response);
-      $scope.getUserDetails();
-      UserServices.signedIn = false;
-      $location.path("/");
-      $scope.user.openUser = false;
-    }).error(function(response,status){
-      console.log("ERROR in signout");
-      console.log(response);
-      console.log(status);
-    });
-  };
-
+    $scope.user.signOut();
+  }
 
 
 }])

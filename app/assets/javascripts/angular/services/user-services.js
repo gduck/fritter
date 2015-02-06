@@ -1,4 +1,4 @@
-app.factory('UserServices', ['$http', '$rootScope', function($http, $rootScope) {
+app.factory('UserServices', ['$http', '$rootScope', '$location', function($http, $rootScope, $location) {
   var user = {};
 
   user.signedIn = false;
@@ -74,6 +74,25 @@ app.factory('UserServices', ['$http', '$rootScope', function($http, $rootScope) 
     });
     user.openUser = false;
   }
+
+ user.signOut = function(){
+    user.openUser = false;
+    $http.delete("/users/sign_out.json").success(function(response,status){
+      console.log(response);
+      user.signedIn = false;
+      user.id = null;
+      user.username = "";
+      user.userprofile = "";
+      user.email = "";
+      user.watchUser();            
+      user.openUser = false;
+      $location.path("/");
+    }).error(function(response,status){
+      console.log("ERROR in signout");
+      console.log(response);
+      console.log(status);
+    });
+  };
 
 
   return user;
