@@ -151,6 +151,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', '$ro
     $http.delete('/likes/'+ pinID).success(function(data){
       if ($location.path() != '/profile') {
         $scope.pins[index].liked_by_me = false;
+        $scope.pins[index].like_count--;
       }
     }).error(function(response){
       console.log("error in unlikePin ", response);
@@ -162,7 +163,8 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', '$ro
 
     //console.log("ABOUT TO LIKE PIN ID: ", pinID);
     $http.post('/likes/' + pinID).success(function(data){
-      $scope.pins[index].liked_by_me = true;
+      $scope.pins[index].liked_by_me = true;          
+      $scope.pins[index].like_count++;
     }).error(function(response){
       console.log("error in likePin ", response);
     })
@@ -192,7 +194,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', '$ro
     if (typeof liked === 'undefined') { liked = false; }    
     if (liked) {
       $scope.unlikePin(index);
-      $scope.pins[index].like_count--;
+      
       // remove from array if not on home page
       if ($location.path() == '/profile') {
         console.log('on profile page');
@@ -200,7 +202,6 @@ app.controller('HomeCtrl', ['$scope', '$http', '$routeParams', '$location', '$ro
       }
     } else { 
       $scope.likePin(index);
-      $scope.pins[index].like_count++;
     }
   }
 
