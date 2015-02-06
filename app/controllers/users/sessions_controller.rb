@@ -4,6 +4,8 @@ class Users::SessionsController < Devise::SessionsController
   after_filter :set_csrf_headers, only: [:create, :destroy]
 
   def create
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>> resource_name: "
+    puts resource_name
     resource = warden.authenticate!(:scope => resource_name, :recall => "users/sessions#failure")
     # puts "resourcename & resource" + resource_name + resource
     return sign_in_and_redirect(resource_name, resource)

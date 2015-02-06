@@ -5,7 +5,7 @@ app.controller('UserAccCtrl', ['$scope', '$rootScope', '$http', '$location', 'Us
 
   // watch and emit functions for UserService
   $rootScope.$on('userDetails', function(event, args) {
-    console.log("In watch function header controller, args: ", args);
+    //console.log("In watch function header controller, args: ", args);
     $scope.user = args;
   });
   
@@ -13,10 +13,10 @@ app.controller('UserAccCtrl', ['$scope', '$rootScope', '$http', '$location', 'Us
     $scope.user.signIn($scope.signinEmail, $scope.signinPassword);
   }
   $scope.userSignUp = function() {
-    $scope.user.signUp($scope.signupEmail, $scope.signupUsername, $scope.signupPassword);
+    UserServices.signUp($scope.signupEmail, $scope.signupUsername, $scope.signupPassword);
   }
   $scope.userSignOut = function(){
-    $scope.user.signOut();
+    UserServices.signOut();
   }
 
 

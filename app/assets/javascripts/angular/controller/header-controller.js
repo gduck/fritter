@@ -6,9 +6,9 @@ app.controller('HeaderCtrl', ['$scope', '$http', '$rootScope', '$routeParams', '
 
 
   // watch and emit functions for UserService
-  $rootScope.$on('userDetails', function(event, args) {
-    console.log("In watch function header controller, args: ", args);
-    $scope.user = args;
+  $rootScope.$on('userDetails', function(event, user) {
+    //console.log("In watch function header controller, user: ", user);
+    $scope.user = user;
   });
 
   if ($location.path() == '/profile') { $scope.user.viewUser = true; }
