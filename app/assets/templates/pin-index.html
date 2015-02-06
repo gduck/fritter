@@ -10,7 +10,7 @@
             <button ng-show="pin.liked_by_me" class="btn btn-danger btn-sm heart glyphicon glyphicon-heart"><div class="num-likes">{{pin.like_count}}</div></button>
           </div>
           <div class="panel-visible">
-            <span class="pin-show-link" ng-show="true" ng-click="openPin(pin.id, pin.liked_by_me)"></span>
+            <span class="pin-show-link" ng-show="true" ng-click="openPin(pin.id, pin.liked_by_me, $index)"></span>
             <div class="like-button" ng-click="likePinToggle($index)">
               <div ng-show="pin.liked_by_me">
                 <button class="btn btn-danger btn-sm heart glyphicon glyphicon-heart"><div class="num-likes">{{pin.like_count}}</div></button>

@@ -9,6 +9,7 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', 'Message', func
   user.userprofile = "";
   user.viewUser = false;
   user.openUser = false;
+  user.triggerRefresh = false;
 
   user.watchUser = function() {
     $rootScope.$emit('userDetails', user);
@@ -34,6 +35,7 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', 'Message', func
       user.watchUser();
       // Noty signIn
       Message.sendNoty("success", "Welcome back "+ user.username);
+      $rootScope.$emit('refreshPage', true);
     }).error(function(response) {
       console.log("problem!! - ",response);
       Message.sendNoty("error", "Error! Please try again!");
@@ -68,6 +70,7 @@ app.factory('UserServices', ['$http', '$rootScope', '$location', 'Message', func
       user.signedIn = false;
     });
     user.openUser = false;
+    user.triggerRefresh = true;
   }
 
  user.signOut = function(){
